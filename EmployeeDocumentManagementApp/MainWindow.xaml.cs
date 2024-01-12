@@ -1,4 +1,5 @@
-﻿using System.Windows;
+﻿using System;
+using System.Windows;
 
 namespace EmployeeDocumentManagementApp
 {
@@ -8,7 +9,6 @@ namespace EmployeeDocumentManagementApp
         {
             InitializeComponent();
         }
-
         private void OnLeaveRequestsButtonClick(object sender, RoutedEventArgs e)
         {
             mainFrame.Navigate(new LeaveRequestsWindow());
@@ -18,7 +18,6 @@ namespace EmployeeDocumentManagementApp
         {
             mainFrame.Navigate(new SickLeaveWindow());
         }
-
 
     }
 }
