@@ -1,0 +1,32 @@
+﻿<Window x:Class="EmployeeDocumentManagementApp.SickLeaveWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Болнични" Height="370" Width="525">
+    <Grid>
+        <StackPanel Margin="10">
+            <TextBlock Text="Болнични" FontWeight="Bold" FontSize="16" Margin="0,0,0,10"/>
+
+            <StackPanel>
+                <TextBlock Text="Служител" Foreground="Gray"/>
+                <TextBox x:Name="txtEmployeeName" Margin="0,0,0,10"/>
+            </StackPanel>
+
+            <TextBlock Text="ЕГН" Foreground="Gray"/>
+            <TextBox x:Name="EGN" Margin="0,0,0,10"/>
+
+            <TextBlock Text="От дата" Foreground="Gray"/>
+            <DatePicker x:Name="dpStartDate" Margin="0,0,0,10"/>
+
+            <TextBlock Text="До дата" Foreground="Gray"/>
+            <DatePicker x:Name="dpEndDate" Margin="0,0,0,10"/>
+
+            <TextBlock Text="Номер и серия" Foreground="Gray"/>
+            <TextBox x:Name="txtReason" Margin="0,0,0,10"/>
+
+            <TextBlock Text="Причина" Foreground="Gray"/>
+            <TextBox x:Name="Reason" Margin="0,0,0,10"/>
+
+            <Button Content="Запази" Click="OnSubmitButtonClick"/>
+        </StackPanel>
+    </Grid>
+</Window>
