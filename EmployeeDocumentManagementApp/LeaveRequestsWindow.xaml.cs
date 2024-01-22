@@ -1,4 +1,7 @@
-﻿using System.Windows;
+﻿using System;
+using System.Windows;
+using OfficeOpenXml;
+using System.IO;
 
 namespace EmployeeDocumentManagementApp
 {
@@ -11,10 +14,45 @@ namespace EmployeeDocumentManagementApp
 
         private void OnSubmitButtonClick(object sender, RoutedEventArgs e)
         {
-            // Your submission logic here
-            MessageBox.Show("Leave request submitted successfully!");
+            string desktopPath = System.Environment.GetFolderPath(System.Environment.SpecialFolder.Desktop);
+            string filePath = Path.Combine(desktopPath, "Отпуски2024.xlsx");
 
-            // You can close the window after submission
+            using (var package = File.Exists(filePath) ? new ExcelPackage(new FileInfo(filePath)) : new ExcelPackage())
+            {
+                ExcelWorksheet worksheet = package.Workbook.Worksheets.Count > 0 ? package.Workbook.Worksheets[0] : package.Workbook.Worksheets.Add("Отпуски");
+
+                int lastUsedRow = worksheet.Dimension?.End.Row ?? 1;
+                int newRow = lastUsedRow + 1;
+
+                DateTime submissionDateTime = DateTime.Now;
+
+                // Add headers if it's a new worksheet
+                if (lastUsedRow == 1)
+                {
+                    worksheet.Cells["A1"].Value = "Служител";
+                    worksheet.Cells["B1"].Value = "Начална дата";
+                    worksheet.Cells["C1"].Value = "Крайна дата";
+                    worksheet.Cells["D1"].Value = "Дата и час на подадена заявка";
+
+                    // Make the header row bold
+                    using (var range = worksheet.Cells["A1:D1"])
+                    {
+                        range.Style.Font.Bold = true;
+                    }
+                }
+
+                worksheet.Cells[$"A{newRow}"].Value = txtEmployeeName.Text;
+                worksheet.Cells[$"B{newRow}"].Value = dpStartDate.SelectedDate?.ToString() ?? string.Empty;
+                worksheet.Cells[$"C{newRow}"].Value = dpEndDate.SelectedDate?.ToString() ?? string.Empty;
+
+                // Set the value as a date and time and apply the desired format
+                worksheet.Cells[$"D{newRow}"].Value = submissionDateTime;
+                worksheet.Cells[$"D{newRow}"].Style.Numberformat.Format = "yyyy-MM-dd HH:mm:ss";
+
+                package.SaveAs(new System.IO.FileInfo(filePath));
+            }
+
+            MessageBox.Show("Отпуската е записана успешно!");
             Close();
         }
     }

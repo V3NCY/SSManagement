@@ -1,4 +1,5 @@
-﻿using System;
+﻿using OfficeOpenXml;
+using System;
 using System.Collections.Generic;
 using System.Configuration;
 using System.Data;
@@ -8,10 +9,22 @@ using System.Windows;
 
 namespace EmployeeDocumentManagementApp
 {
-    /// <summary>
-    /// Interaction logic for App.xaml
-    /// </summary>
     public partial class App : Application
     {
+        protected override void OnStartup(StartupEventArgs e)
+        {
+            try
+            {
+                ExcelPackage.LicenseContext = LicenseContext.NonCommercial; 
+
+                base.OnStartup(e);
+
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Error: {ex.Message}", "Application Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                Shutdown(); 
+            }
+        }
     }
 }

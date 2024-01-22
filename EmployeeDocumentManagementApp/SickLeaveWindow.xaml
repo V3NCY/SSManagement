@@ -12,7 +12,7 @@
             </StackPanel>
 
             <TextBlock Text="ЕГН" Foreground="Gray"/>
-            <TextBox x:Name="EGN" Margin="0,0,0,10"/>
+            <TextBox x:Name="txtEGN" Margin="0,0,0,10"/>
 
             <TextBlock Text="От дата" Foreground="Gray"/>
             <DatePicker x:Name="dpStartDate" Margin="0,0,0,10"/>
@@ -21,10 +21,10 @@
             <DatePicker x:Name="dpEndDate" Margin="0,0,0,10"/>
 
             <TextBlock Text="Номер и серия" Foreground="Gray"/>
-            <TextBox x:Name="txtReason" Margin="0,0,0,10"/>
+            <TextBox x:Name="txtNumberAndSeries" Margin="0,0,0,10"/>
 
             <TextBlock Text="Причина" Foreground="Gray"/>
-            <TextBox x:Name="Reason" Margin="0,0,0,10"/>
+            <TextBox x:Name="txtReason" Margin="0,0,0,10"/>
 
             <Button Content="Запази" Click="OnSubmitButtonClick"/>
         </StackPanel>
