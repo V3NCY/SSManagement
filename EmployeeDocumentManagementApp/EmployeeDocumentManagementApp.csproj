@@ -86,6 +86,14 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Employee.cs" />
+    <Compile Include="EmployeeListWindow.xaml.cs">
+      <DependentUpon>EmployeeListWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="EmployeeRegistrationWindow.xaml.cs">
+      <DependentUpon>EmployeeRegistrationWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="EmployeeRepository.cs" />
     <Compile Include="LeaveRequestsWindowBase.cs" />
     <Compile Include="Models\SickLeaveRequest.cs" />
     <Compile Include="Models\SpecialRequests.cs" />
@@ -95,6 +103,14 @@
     <Compile Include="SpecialRequestsWindow.xaml.cs">
       <DependentUpon>SpecialRequestsWindow.xaml</DependentUpon>
     </Compile>
+    <Page Include="EmployeeListWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="EmployeeRegistrationWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="LeaveRequestsWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>

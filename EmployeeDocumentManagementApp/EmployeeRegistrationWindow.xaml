@@ -1,0 +1,25 @@
+﻿<Window x:Class="EmployeeDocumentManagementApp.EmployeeRegistrationWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:EmployeeDocumentManagementApp"
+        mc:Ignorable="d"
+        Title="Добави служител" Height="450" Width="800">
+    <Grid>
+        <StackPanel Margin="20">
+            <TextBlock Text="Добави служител" FontWeight="Bold" FontSize="20" Margin="0,0,0,20"/>
+
+            <Label Content="Име, презиме и фамилия на служителя" FontSize="16"/>
+            <TextBox x:Name="txtEmployeeName" Margin="0,0,0,20" FontSize="16" />
+
+            <Label Content="Длъжност" FontSize="16"/>
+            <TextBox x:Name="txtJobTitle" Margin="0,0,0,20" FontSize="16"/>
+
+            <Label Content="Отдел" FontSize="16"/>
+            <TextBox x:Name="txtDepartment" Margin="0,0,0,20" FontSize="16"/>
+
+            <Button Content="Добави" FontSize="16" Click="OnRegisterButtonClick"/>
+        </StackPanel>
+    </Grid>
+</Window>

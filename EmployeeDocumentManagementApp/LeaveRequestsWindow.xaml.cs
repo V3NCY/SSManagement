@@ -16,6 +16,8 @@ namespace EmployeeDocumentManagementApp
         {
             string desktopPath = System.Environment.GetFolderPath(System.Environment.SpecialFolder.Desktop);
             string filePath = Path.Combine(desktopPath, "Отпуски2024.xlsx");
+            string employeeName = txtEmployeeName.Text;
+            Employee employee = EmployeeRepository.GetEmployeeByName(employeeName);
 
             using (var package = File.Exists(filePath) ? new ExcelPackage(new FileInfo(filePath)) : new ExcelPackage())
             {
@@ -51,6 +53,22 @@ namespace EmployeeDocumentManagementApp
 
                 package.SaveAs(new System.IO.FileInfo(filePath));
             }
+
+            if (employee == null)
+            {
+                MessageBox.Show("Служителят не е намерен. Моля първо го добавете към списъка.");
+                return;
+            }
+
+            // Check if the employee has enough remaining leave days
+            if (employee.RemainingLeaveDays <= 0)
+            {
+                MessageBox.Show("Служителят е изчерпал своята отпуска за тази година.");
+                return;
+            }
+
+            // Deduct a leave day
+            employee.RemainingLeaveDays--;
 
             MessageBox.Show("Отпуската е записана успешно!");
             Close();

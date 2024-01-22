@@ -27,6 +27,17 @@ namespace EmployeeDocumentManagementApp
             SpecialRequestsWindow specialRequestsWindow = new SpecialRequestsWindow();
             specialRequestsWindow.ShowDialog();
         }
+        private void OnEmployeeRegistrationButtonClick(object sender, RoutedEventArgs e)
+        {
+            EmployeeRegistrationWindow registrationWindow = new EmployeeRegistrationWindow();
+            registrationWindow.ShowDialog();
+        }
+
+        private void OnViewEmployeeListButtonClick(object sender, RoutedEventArgs e)
+        {
+            EmployeeListWindow employeeListWindow = new EmployeeListWindow();
+            employeeListWindow.ShowDialog();
+        }
 
     }
 }

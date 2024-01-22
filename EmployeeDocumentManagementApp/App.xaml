@@ -4,6 +4,14 @@
              xmlns:local="clr-namespace:EmployeeDocumentManagementApp"
              StartupUri="MainWindow.xaml">
     <Application.Resources>
-         
+        <Style TargetType="TextBox" x:Key="WatermarkTextBoxStyle">
+            <Style.Triggers>
+                <Trigger Property="Text" Value="">
+                    <!-- Remove the attempt to set 'Text' property within the trigger condition -->
+                    <!--<Setter Property="Text" Value="Placeholder Text"/>-->
+                    <Setter Property="Foreground" Value="Gray"/>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
     </Application.Resources>
 </Application>
