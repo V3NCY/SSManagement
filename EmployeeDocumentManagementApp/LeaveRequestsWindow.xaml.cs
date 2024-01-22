@@ -19,6 +19,22 @@ namespace EmployeeDocumentManagementApp
             string employeeName = txtEmployeeName.Text;
             Employee employee = EmployeeRepository.GetEmployeeByName(employeeName);
 
+            if (employee == null)
+            {
+                MessageBox.Show("Служителят не е намерен. Моля първо го добавете към списъка.");
+                return;
+            }
+
+            // Check if the employee has enough remaining leave days
+            if (employee.RemainingLeaveDays <= 0)
+            {
+                MessageBox.Show("Служителят е изчерпал своята отпуска за тази година.");
+                return;
+            }
+
+            // Deduct a leave day
+            employee.RemainingLeaveDays--;
+
             using (var package = File.Exists(filePath) ? new ExcelPackage(new FileInfo(filePath)) : new ExcelPackage())
             {
                 ExcelWorksheet worksheet = package.Workbook.Worksheets.Count > 0 ? package.Workbook.Worksheets[0] : package.Workbook.Worksheets.Add("Отпуски");
@@ -53,22 +69,6 @@ namespace EmployeeDocumentManagementApp
 
                 package.SaveAs(new System.IO.FileInfo(filePath));
             }
-
-            if (employee == null)
-            {
-                MessageBox.Show("Служителят не е намерен. Моля първо го добавете към списъка.");
-                return;
-            }
-
-            // Check if the employee has enough remaining leave days
-            if (employee.RemainingLeaveDays <= 0)
-            {
-                MessageBox.Show("Служителят е изчерпал своята отпуска за тази година.");
-                return;
-            }
-
-            // Deduct a leave day
-            employee.RemainingLeaveDays--;
 
             MessageBox.Show("Отпуската е записана успешно!");
             Close();

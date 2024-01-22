@@ -8,9 +8,6 @@ public class Employee
     public int EGN { get; set; }
     public string EmployeeName { get; set; }
     public int RemainingLeaveDays { get; set; }
-
     public string JobTitle { get; set; }
     public string Department { get; set; }
-
-
 }
