@@ -1,14 +1,13 @@
-﻿// EmployeeRepository.cs
-using System.Collections.Generic;
+﻿using System.Collections.ObjectModel;
 using System.Linq;
 
 namespace EmployeeDocumentManagementApp
 {
     public class EmployeeRepository
     {
-        private static List<Employee> employees = new List<Employee>();
+        private static ObservableCollection<Employee> employees = new ObservableCollection<Employee>();
 
-        public static List<Employee> Employees
+        public static ObservableCollection<Employee> Employees
         {
             get { return employees; }
         }
@@ -21,16 +20,6 @@ namespace EmployeeDocumentManagementApp
         public static Employee GetEmployeeByName(string name)
         {
             return employees.FirstOrDefault(e => e.EmployeeName == name);
-        }
-
-        public static List<Employee> GetEmployees()
-        {
-            return employees;
-        }
-
-        public static void RemoveEmployee(Employee employee)
-        {
-            employees.Remove(employee);
         }
     }
 }

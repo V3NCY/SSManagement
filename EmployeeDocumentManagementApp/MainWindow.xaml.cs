@@ -12,31 +12,33 @@ namespace EmployeeDocumentManagementApp
         private void OnLeaveRequestsButtonClick(object sender, RoutedEventArgs e)
         {
             LeaveRequestsWindow leaveRequestsWindow = new LeaveRequestsWindow();
-            leaveRequestsWindow.ShowDialog();
+            leaveRequestsWindow.Show(); 
         }
-
 
         private void OnSickLeaveButtonClick(object sender, RoutedEventArgs e)
         {
             SickLeaveWindow sickLeaveWindow = new SickLeaveWindow();
-            sickLeaveWindow.ShowDialog();
+            sickLeaveWindow.Show(); 
         }
 
         private void OnSpecialRequestsButtonClick(object sender, RoutedEventArgs e)
         {
             SpecialRequestsWindow specialRequestsWindow = new SpecialRequestsWindow();
-            specialRequestsWindow.ShowDialog();
+            specialRequestsWindow.Show(); 
         }
+
         private void OnEmployeeRegistrationButtonClick(object sender, RoutedEventArgs e)
         {
             EmployeeRegistrationWindow registrationWindow = new EmployeeRegistrationWindow();
-            registrationWindow.ShowDialog();
+            registrationWindow.Show();
+
+            //registrationWindow.Closed += (s, args) => EmployeeListWindow.RefreshEmployeeList();
         }
 
         private void OnViewEmployeeListButtonClick(object sender, RoutedEventArgs e)
         {
             EmployeeListWindow employeeListWindow = new EmployeeListWindow();
-            employeeListWindow.ShowDialog();
+            employeeListWindow.Show();
         }
 
     }
