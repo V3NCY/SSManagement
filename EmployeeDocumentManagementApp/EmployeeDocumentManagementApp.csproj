@@ -55,6 +55,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="LeaveRequestsWindowBase.cs" />
     <Compile Include="Models\SickLeaveRequest.cs" />
     <Compile Include="SickLeaveWindow.xaml.cs">
       <DependentUpon>SickLeaveWindow.xaml</DependentUpon>

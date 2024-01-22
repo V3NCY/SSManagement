@@ -7,8 +7,9 @@
             <TextBlock Text="Employee Management App" FontWeight="Bold" FontSize="16" Margin="0,0,0,10"/>
 
             <UniformGrid Rows="1" Columns="2" Margin="0,0,0,10">
-                <Button Content="Leave Requests" Click="OnLeaveRequestsButtonClick" Width="150" Height="30"/>
-                <Button Content="Sick Leave" Click="OnSickLeaveButtonClick" Width="150" Height="30"/>
+                <Button Content="Отпуски" Click="OnLeaveRequestsButtonClick" Width="150" Height="30"/>
+                <Button Content="Болничи" Click="OnSickLeaveButtonClick" Width="150" Height="30"/>
+                <Button Content="Молби" Click="OnSickLeaveButtonClick" Width="150" Height="30" Margin="10"/>
                 <!-- Add more buttons for other features or sections as needed -->
             </UniformGrid>
 
