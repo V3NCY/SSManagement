@@ -1,6 +1,4 @@
 ﻿using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Navigation;
 
 namespace EmployeeDocumentManagementApp
 {
@@ -13,13 +11,11 @@ namespace EmployeeDocumentManagementApp
 
         private void OnSubmitButtonClick(object sender, RoutedEventArgs e)
         {
+            // Your submission logic here
             MessageBox.Show("Leave request submitted successfully!");
 
-            // Get the NavigationService from the current page
-            NavigationService navigationService = NavigationService.GetNavigationService(this);
-            navigationService?.GoBack();
+            // You can close the window after submission
+            Close();
         }
-
-
     }
 }

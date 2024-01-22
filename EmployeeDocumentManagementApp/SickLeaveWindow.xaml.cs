@@ -1,6 +1,4 @@
 ﻿using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Navigation;
 
 namespace EmployeeDocumentManagementApp
 {
@@ -13,16 +11,9 @@ namespace EmployeeDocumentManagementApp
 
         private void OnSubmitButtonClick(object sender, RoutedEventArgs e)
         {
-            MessageBox.Show("Sick leave submitted successfully!");
+            MessageBox.Show("Leave request submitted successfully!");
 
-            // Cast sender to SickLeaveWindow
-            SickLeaveWindow sickLeaveWindow = sender as SickLeaveWindow;
-
-            // Get the NavigationService from the current page
-            NavigationService navigationService = NavigationService.GetNavigationService(sickLeaveWindow);
-            navigationService?.GoBack();
+            Close();
         }
-
-
     }
 }

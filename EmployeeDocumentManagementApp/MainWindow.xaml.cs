@@ -11,8 +11,10 @@ namespace EmployeeDocumentManagementApp
 
         private void OnLeaveRequestsButtonClick(object sender, RoutedEventArgs e)
         {
-            mainFrame.Navigate(new LeaveRequestsWindow());
+            LeaveRequestsWindow leaveRequestsWindow = new LeaveRequestsWindow();
+            leaveRequestsWindow.ShowDialog();
         }
+
 
         private void OnSickLeaveButtonClick(object sender, RoutedEventArgs e)
         {
