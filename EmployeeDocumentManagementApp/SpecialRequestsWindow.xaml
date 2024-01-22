@@ -1,0 +1,20 @@
+﻿<Window x:Class="EmployeeDocumentManagementApp.SpecialRequestsWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Молби" Height="395" Width="625">
+    <Grid>
+        <StackPanel Margin="10">
+            <TextBlock Text="Молби" FontWeight="Bold" FontSize="16" Margin="0,0,0,10"/>
+
+            <StackPanel>
+                <TextBlock Text="Служител" Foreground="Gray"/>
+                <TextBox x:Name="txtEmployeeName" Margin="0,0,0,10"/>
+            </StackPanel>
+
+            <TextBlock Text="Молба за:" Foreground="Gray"/>
+            <TextBox x:Name="txtRequestFor" Margin="0,0,0,10"/>
+
+            <Button Content="Запази" Click="OnSubmitButtonClick"/>
+        </StackPanel>
+    </Grid>
+</Window>

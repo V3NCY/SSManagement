@@ -57,8 +57,12 @@
     </ApplicationDefinition>
     <Compile Include="LeaveRequestsWindowBase.cs" />
     <Compile Include="Models\SickLeaveRequest.cs" />
+    <Compile Include="Models\SpecialRequests.cs" />
     <Compile Include="SickLeaveWindow.xaml.cs">
       <DependentUpon>SickLeaveWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="SpecialRequestsWindow.xaml.cs">
+      <DependentUpon>SpecialRequestsWindow.xaml</DependentUpon>
     </Compile>
     <Page Include="LeaveRequestsWindow.xaml">
       <SubType>Designer</SubType>
@@ -80,6 +84,10 @@
       <SubType>Code</SubType>
     </Compile>
     <Page Include="SickLeaveWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="SpecialRequestsWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

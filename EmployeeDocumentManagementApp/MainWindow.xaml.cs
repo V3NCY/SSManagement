@@ -22,5 +22,11 @@ namespace EmployeeDocumentManagementApp
             sickLeaveWindow.ShowDialog();
         }
 
+        private void OnSpecialRequestsButtonClick(object sender, RoutedEventArgs e)
+        {
+            SpecialRequestsWindow specialRequestsWindow = new SpecialRequestsWindow();
+            specialRequestsWindow.ShowDialog();
+        }
+
     }
 }

@@ -1,5 +1,4 @@
-﻿// Employee.cs
-using System.Windows.Media;
+﻿using System.Windows.Media;
 
 public class Employee
 {
@@ -7,5 +6,4 @@ public class Employee
     public string FirstName { get; set; }
     public string LastName { get; set; }
     public int EGN { get; set; }
-    // Add other properties
 }
