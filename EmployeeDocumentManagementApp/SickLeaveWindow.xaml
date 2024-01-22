@@ -1,7 +1,7 @@
 ﻿<Window x:Class="EmployeeDocumentManagementApp.SickLeaveWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        Title="Болнични" Height="370" Width="625">
+        Title="Болнични" Height="395" Width="625">
     <Grid>
         <StackPanel Margin="10">
             <TextBlock Text="Болнични" FontWeight="Bold" FontSize="16" Margin="0,0,0,10"/>

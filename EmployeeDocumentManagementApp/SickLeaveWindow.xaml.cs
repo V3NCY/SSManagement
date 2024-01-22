@@ -11,7 +11,7 @@ namespace EmployeeDocumentManagementApp
 
         private void OnSubmitButtonClick(object sender, RoutedEventArgs e)
         {
-            MessageBox.Show("Leave request submitted successfully!");
+            MessageBox.Show("Sick leave request submitted successfully!");
 
             Close();
         }

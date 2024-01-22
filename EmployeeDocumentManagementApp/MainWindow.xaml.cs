@@ -18,7 +18,8 @@ namespace EmployeeDocumentManagementApp
 
         private void OnSickLeaveButtonClick(object sender, RoutedEventArgs e)
         {
-            mainFrame.Navigate(new SickLeaveWindow());
+            SickLeaveWindow sickLeaveWindow = new SickLeaveWindow();
+            sickLeaveWindow.ShowDialog();
         }
 
     }
