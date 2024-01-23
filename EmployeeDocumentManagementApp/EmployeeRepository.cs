@@ -9,7 +9,7 @@ namespace EmployeeDocumentManagementApp
     {
         private static AppDbContext context = new AppDbContext();
         private static Random random = new Random();
-        
+
         public static ObservableCollection<Employee> GetEmployeesList()
         {
             var employeesList = context.Employees.ToList();
@@ -55,5 +55,13 @@ namespace EmployeeDocumentManagementApp
                 context.SaveChanges();
             }
         }
+
+        public static ObservableCollection<Employee> GetArchivedEmployees()
+        {
+            var archivedEmployeesList = context.Employees.Where(e => e.IsArchived).ToList();
+
+            return new ObservableCollection<Employee>(archivedEmployeesList);
+        }
+
     }
 }

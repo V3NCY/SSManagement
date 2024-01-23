@@ -1,7 +1,9 @@
 ﻿using System.Windows.Media;
 using System.ComponentModel.DataAnnotations;
 using System.Data.Entity;
+using System;
 
+[Serializable]
 public class Employee
 {
     public int EmployeeId { get; set; }
@@ -12,6 +14,7 @@ public class Employee
     public int RemainingLeaveDays { get; set; }
     public string JobTitle { get; set; }
     public string Department { get; set; }
+    public bool IsArchived { get; set; }
 }
 public class AppDbContext : DbContext
 {

@@ -47,7 +47,7 @@ namespace EmployeeDocumentManagementApp
 
         private void MoveToArchive(Employee employee)
         {
-            ArchiveEmployeeRepository.AddToArchive(employee);
+            ArchiveEmployeeRepository.ArchiveEmployee(employee);
         }
 
         private void RemoveEmployee(Employee employee)

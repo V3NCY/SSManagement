@@ -107,6 +107,11 @@
     </Compile>
     <Compile Include="EmployeeRepository.cs" />
     <Compile Include="LeaveRequestsWindowBase.cs" />
+    <Compile Include="Migrations\202401231223136_InitialCreate.cs" />
+    <Compile Include="Migrations\202401231223136_InitialCreate.designer.cs">
+      <DependentUpon>202401231223136_InitialCreate.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\SickLeaveRequest.cs" />
     <Compile Include="Models\SpecialRequests.cs" />
     <Compile Include="SickLeaveWindow.xaml.cs">
@@ -171,6 +176,9 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
+    <EmbeddedResource Include="Migrations\202401231223136_InitialCreate.resx">
+      <DependentUpon>202401231223136_InitialCreate.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>

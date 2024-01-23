@@ -1,11 +1,4 @@
-﻿using OfficeOpenXml;
-using System;
-using System.Collections.Generic;
-using System.Configuration;
-using System.Data;
-using System.Linq;
-using System.Threading.Tasks;
-using System.Windows;
+﻿using System.Windows;
 
 namespace EmployeeDocumentManagementApp
 {
@@ -13,18 +6,16 @@ namespace EmployeeDocumentManagementApp
     {
         protected override void OnStartup(StartupEventArgs e)
         {
-            try
-            {
-                ExcelPackage.LicenseContext = LicenseContext.NonCommercial; 
+            base.OnStartup(e);
 
-                base.OnStartup(e);
+            ArchiveEmployeeRepository.LoadArchivedEmployees();
+        }
 
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show($"Error: {ex.Message}", "Application Error", MessageBoxButton.OK, MessageBoxImage.Error);
-                Shutdown(); 
-            }
+        protected override void OnExit(ExitEventArgs e)
+        {
+            ArchiveEmployeeRepository.SaveArchivedEmployees();
+
+            base.OnExit(e);
         }
     }
 }

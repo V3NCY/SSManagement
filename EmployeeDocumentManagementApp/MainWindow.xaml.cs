@@ -44,7 +44,7 @@ namespace EmployeeDocumentManagementApp
         private void OnArchiveListButtonClick(object sender, RoutedEventArgs e)
         {
             ArchiveListWindow archiveListWindow = new ArchiveListWindow();
-            archiveListWindow.ShowDialog();
+            archiveListWindow.Show(); 
         }
     }
 }
