@@ -1,4 +1,6 @@
 ﻿using System.Windows.Media;
+using System.ComponentModel.DataAnnotations;
+using System.Data.Entity;
 
 public class Employee
 {
@@ -10,4 +12,13 @@ public class Employee
     public int RemainingLeaveDays { get; set; }
     public string JobTitle { get; set; }
     public string Department { get; set; }
+}
+public class AppDbContext : DbContext
+{
+    public DbSet<Employee> Employees { get; set; }
+
+
+    protected override void OnModelCreating(DbModelBuilder modelBuilder)
+    {
+    }
 }

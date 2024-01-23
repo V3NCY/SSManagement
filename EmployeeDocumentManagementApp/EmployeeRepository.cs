@@ -1,42 +1,53 @@
-﻿using System.Collections.ObjectModel;
+﻿using System;
+using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 
 namespace EmployeeDocumentManagementApp
 {
     public class EmployeeRepository
     {
-        private static ObservableCollection<Employee> employees = new ObservableCollection<Employee>();
+        private static AppDbContext context = new AppDbContext();
+        private static Random random = new Random();
 
-        public static ObservableCollection<Employee> Employees
+        public static ObservableCollection<Employee> GetEmployeesList()
         {
-            get { return employees; }
+            var employeesList = context.Employees.ToList();
+            return new ObservableCollection<Employee>(employeesList);
         }
 
         public static void AddEmployee(Employee employee)
         {
             employee.EmployeeId = GenerateUniqueId();
-
-            employees.Add(employee);
+            context.Employees.Add(employee);
+            context.SaveChanges();
         }
 
         public static Employee GetEmployeeByName(string name)
         {
-            return employees.FirstOrDefault(e => e.EmployeeName == name);
+            return context.Employees.FirstOrDefault(e => e.EmployeeName == name);
         }
 
         private static int GenerateUniqueId()
         {
-            return employees.Count + 1;
+            return random.Next(100, 1000);
         }
+
         public static void UpdateEmployee(Employee employee)
         {
-            int index = employees.FindIndex(e => e.EmployeeId == employee.EmployeeId);
-
-            if (index != -1)
+            var existingEmployee = context.Employees.FirstOrDefault(e => e.EmployeeId == employee.EmployeeId);
+            if (existingEmployee != null)
             {
-                employees[index] = employee;
+                existingEmployee.FirstName = employee.FirstName;
+                existingEmployee.LastName = employee.LastName;
+                existingEmployee.EGN = employee.EGN;
+                existingEmployee.EmployeeName = employee.EmployeeName;
+                existingEmployee.RemainingLeaveDays = employee.RemainingLeaveDays;
+                existingEmployee.JobTitle = employee.JobTitle;
+                existingEmployee.Department = employee.Department;
+
+                context.SaveChanges();
             }
         }
-
     }
 }

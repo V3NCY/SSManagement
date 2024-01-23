@@ -6,13 +6,25 @@
         <ListView Name="lvEmployees">
             <ListView.View>
                 <GridView>
+                    <GridViewColumn Header="ID" DisplayMemberBinding="{Binding EmployeeId}" Width="50"/>
                     <GridViewColumn Header="Име на служител" DisplayMemberBinding="{Binding EmployeeName}" Width="200"/>
                     <GridViewColumn Header="Длъжност" DisplayMemberBinding="{Binding JobTitle}" Width="200"/>
                     <GridViewColumn Header="Отдел" DisplayMemberBinding="{Binding Department}" Width="200"/>
                     <GridViewColumn Header="Оставащи дни от отпуска" DisplayMemberBinding="{Binding RemainingLeaveDays}" Width="200"/>
                 </GridView>
             </ListView.View>
+            <ListView.ItemContainerStyle>
+                <Style TargetType="ListViewItem">
+                    <Setter Property="ContextMenu">
+                        <Setter.Value>
+                            <ContextMenu>
+                                <MenuItem Header="Архивирай" Click="OnDeleteMenuItemClick"/>
+                            </ContextMenu>
+                        </Setter.Value>
+                    </Setter>
+                </Style>
+            </ListView.ItemContainerStyle>
         </ListView>
-        <!--<Button Content="Refresh" Click="OnRefreshButtonClick" HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="10"/>-->
+        <Button Content="Refresh" HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="10" Click="OnRefreshButtonClick"/>
     </Grid>
 </Window>

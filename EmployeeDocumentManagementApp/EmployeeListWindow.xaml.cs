@@ -1,11 +1,10 @@
-﻿using System.Windows;
+﻿using System.Collections.ObjectModel;
+using System.Windows;
 
 namespace EmployeeDocumentManagementApp
 {
     public partial class EmployeeListWindow : Window
     {
-        private static EmployeeListWindow instance;
-
         public EmployeeListWindow()
         {
             InitializeComponent();
@@ -15,17 +14,36 @@ namespace EmployeeDocumentManagementApp
 
         private void LoadEmployeeList()
         {
-            lvEmployees.ItemsSource = EmployeeRepository.Employees;
+            lvEmployees.ItemsSource = EmployeeRepository.GetEmployeesList();
         }
 
         private void SubscribeToEmployeeChanges()
         {
-            EmployeeRepository.Employees.CollectionChanged += (sender, e) => LoadEmployeeList();
+            var employeesList = EmployeeRepository.GetEmployeesList();
+
+            if (employeesList != null)
+            {
+                employeesList.CollectionChanged += (sender, e) => LoadEmployeeList();
+            }
         }
 
         private void OnRefreshButtonClick(object sender, RoutedEventArgs e)
         {
             LoadEmployeeList();
+        }
+
+        private void OnDeleteMenuItemClick(object sender, RoutedEventArgs e)
+        {
+            if (lvEmployees.SelectedItem is Employee selectedEmployee)
+            {
+                MoveToArchive(selectedEmployee);
+                LoadEmployeeList();
+            }
+        }
+
+        private void MoveToArchive(Employee employee)
+        {
+            ArchiveEmployeeRepository.AddToArchive(employee);
         }
     }
 }
