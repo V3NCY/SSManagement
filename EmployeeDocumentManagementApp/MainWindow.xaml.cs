@@ -12,19 +12,19 @@ namespace EmployeeDocumentManagementApp
         private void OnLeaveRequestsButtonClick(object sender, RoutedEventArgs e)
         {
             LeaveRequestsWindow leaveRequestsWindow = new LeaveRequestsWindow();
-            leaveRequestsWindow.Show(); 
+            leaveRequestsWindow.Show();
         }
 
         private void OnSickLeaveButtonClick(object sender, RoutedEventArgs e)
         {
             SickLeaveWindow sickLeaveWindow = new SickLeaveWindow();
-            sickLeaveWindow.Show(); 
+            sickLeaveWindow.Show();
         }
 
         private void OnSpecialRequestsButtonClick(object sender, RoutedEventArgs e)
         {
             SpecialRequestsWindow specialRequestsWindow = new SpecialRequestsWindow();
-            specialRequestsWindow.Show(); 
+            specialRequestsWindow.Show();
         }
 
         private void OnEmployeeRegistrationButtonClick(object sender, RoutedEventArgs e)
@@ -41,5 +41,10 @@ namespace EmployeeDocumentManagementApp
             employeeListWindow.Show();
         }
 
+        private void OnArchiveListButtonClick(object sender, RoutedEventArgs e)
+        {
+            ArchiveListWindow archiveListWindow = new ArchiveListWindow();
+            archiveListWindow.ShowDialog();
+        }
     }
 }

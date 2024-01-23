@@ -12,7 +12,7 @@
                 <Button Content="Отпуски" Click="OnLeaveRequestsButtonClick" Width="150" Height="30"/>
                 <Button Content="Добави служител" Click="OnEmployeeRegistrationButtonClick" Width="150" Height="30" Margin="10"/>
                 <Button Content="Списък със служители" Click="OnViewEmployeeListButtonClick" Width="150" Height="30"/>
-
+                <Button Content="Archive List" HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="10" Click="OnArchiveListButtonClick"/>
             </UniformGrid>
 
             <Frame x:Name="mainFrame" NavigationUIVisibility="Hidden"/>

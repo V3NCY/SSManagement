@@ -96,6 +96,9 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="ArchiveEmployeeRepository.cs" />
+    <Compile Include="ArchiveListWindow.xaml.cs">
+      <DependentUpon>ArchiveListWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="EmployeeListWindow.xaml.cs">
       <DependentUpon>EmployeeListWindow.xaml</DependentUpon>
     </Compile>
@@ -112,6 +115,10 @@
     <Compile Include="SpecialRequestsWindow.xaml.cs">
       <DependentUpon>SpecialRequestsWindow.xaml</DependentUpon>
     </Compile>
+    <Page Include="ArchiveListWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="EmployeeListWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>

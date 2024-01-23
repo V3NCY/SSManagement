@@ -1,0 +1,15 @@
+﻿<Window x:Class="EmployeeDocumentManagementApp.ArchiveListWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Archive List" Height="350" WindowState="Maximized">
+    <Grid>
+        <ListView Name="lvArchivedEmployees">
+            <ListView.View>
+                <GridView>
+                    <GridViewColumn Header="ID" DisplayMemberBinding="{Binding EmployeeId}" Width="50"/>
+                    <GridViewColumn Header="Employee Name" DisplayMemberBinding="{Binding EmployeeName}" Width="200"/>
+                </GridView>
+            </ListView.View>
+        </ListView>
+    </Grid>
+</Window>
