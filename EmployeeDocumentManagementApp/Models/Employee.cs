@@ -15,6 +15,7 @@ public class Employee
     public string JobTitle { get; set; }
     public string Department { get; set; }
     public bool IsArchived { get; set; }
+    public byte[] RowVersion { get; set; }
 }
 public class AppDbContext : DbContext
 {
@@ -23,5 +24,6 @@ public class AppDbContext : DbContext
 
     protected override void OnModelCreating(DbModelBuilder modelBuilder)
     {
+        modelBuilder.Entity<Employee>().Property(e => e.RowVersion).IsConcurrencyToken();
     }
 }

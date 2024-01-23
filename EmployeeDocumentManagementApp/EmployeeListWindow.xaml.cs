@@ -1,5 +1,9 @@
-﻿using System.Collections.ObjectModel;
+﻿using System;
+using System.Collections.ObjectModel;
 using System.Data.Entity;
+using System.Data.Entity.Core;
+using System.Data.Entity.Infrastructure;
+using System.Linq;
 using System.Windows;
 
 namespace EmployeeDocumentManagementApp
@@ -34,20 +38,36 @@ namespace EmployeeDocumentManagementApp
         {
             LoadEmployeeList();
         }
-
+        private void MoveToArchive(Employee employee)
+        {
+            ArchiveEmployeeRepository.ArchiveEmployee(employee);
+        }
         private void OnDeleteMenuItemClick(object sender, RoutedEventArgs e)
         {
             if (lvEmployees.SelectedItem is Employee selectedEmployee && selectedEmployee != null)
             {
-                MoveToArchive(selectedEmployee);
-                RemoveEmployee(selectedEmployee);
-                LoadEmployeeList();
+                try
+                {
+                    RemoveEmployee(selectedEmployee);
+                    LoadEmployeeList();
+                }
+                catch (DbUpdateConcurrencyException ex)
+                {
+                    foreach (var entry in ex.Entries)
+                    {
+                        if (entry.Entity is Employee conflictingEmployee)
+                        {
+                            entry.OriginalValues.SetValues(entry.GetDatabaseValues());
+                            RemoveEmployee(conflictingEmployee);
+                            LoadEmployeeList();
+                        }
+                    }
+                }
+                catch (EntityCommandExecutionException ex)
+                {
+                    MessageBox.Show($"Error executing command: {ex.Message}\nInner Exception: {ex.InnerException?.Message}");
+                }
             }
-        }
-
-        private void MoveToArchive(Employee employee)
-        {
-            ArchiveEmployeeRepository.ArchiveEmployee(employee);
         }
 
         private void RemoveEmployee(Employee employee)
@@ -59,8 +79,26 @@ namespace EmployeeDocumentManagementApp
                 context.Employees.Attach(employee);
             }
 
-            entry.State = EntityState.Deleted;
-            context.SaveChanges();
+            try
+            {
+                context.Entry(employee).State = EntityState.Deleted;
+                context.SaveChanges();
+            }
+            catch (DbUpdateConcurrencyException ex)
+            {
+                var databaseValues = context.Entry(employee).GetDatabaseValues();
+
+                if (databaseValues != null)
+                {
+                    context.Entry(employee).OriginalValues.SetValues(databaseValues);
+                    context.SaveChanges(); 
+                }
+                else
+                {
+                    Console.WriteLine("Concurrency conflict: Employee has been deleted by another user.");
+                }
+            }
         }
+
     }
 }
