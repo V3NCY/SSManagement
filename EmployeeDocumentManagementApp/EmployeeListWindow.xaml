@@ -13,11 +13,11 @@
                     <GridViewColumn Header="Оставащи дни от отпуска" DisplayMemberBinding="{Binding RemainingLeaveDays}" Width="200"/>
                 </GridView>
             </ListView.View>
-            <ListView.ItemContainerStyle>
-                <Style TargetType="ListViewItem">
-                  
-                </Style>
-            </ListView.ItemContainerStyle>
+            <ListView.ContextMenu>
+                <ContextMenu>
+                    <MenuItem Header="Архивирай" Click="OnDeleteMenuItemClick"/>
+                </ContextMenu>
+            </ListView.ContextMenu>
         </ListView>
         <Button Content="Refresh" HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="10" Click="OnRefreshButtonClick"/>
     </Grid>

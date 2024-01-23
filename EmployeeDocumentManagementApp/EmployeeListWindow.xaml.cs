@@ -1,4 +1,5 @@
 ﻿using System.Collections.ObjectModel;
+using System.Data.Entity;
 using System.Windows;
 
 namespace EmployeeDocumentManagementApp
@@ -39,18 +40,26 @@ namespace EmployeeDocumentManagementApp
             if (lvEmployees.SelectedItem is Employee selectedEmployee && selectedEmployee != null)
             {
                 MoveToArchive(selectedEmployee);
+                RemoveEmployee(selectedEmployee);
+                LoadEmployeeList();
             }
         }
 
         private void MoveToArchive(Employee employee)
         {
             ArchiveEmployeeRepository.AddToArchive(employee);
-            RemoveEmployee(employee);
         }
 
         private void RemoveEmployee(Employee employee)
         {
-            context.Employees.Remove(employee);
+            var entry = context.Entry(employee);
+
+            if (entry.State == EntityState.Detached)
+            {
+                context.Employees.Attach(employee);
+            }
+
+            entry.State = EntityState.Deleted;
             context.SaveChanges();
         }
     }
