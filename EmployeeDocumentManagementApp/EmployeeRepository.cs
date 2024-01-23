@@ -9,7 +9,7 @@ namespace EmployeeDocumentManagementApp
     {
         private static AppDbContext context = new AppDbContext();
         private static Random random = new Random();
-
+        
         public static ObservableCollection<Employee> GetEmployeesList()
         {
             var employeesList = context.Employees.ToList();
@@ -22,6 +22,12 @@ namespace EmployeeDocumentManagementApp
             context.Employees.Add(employee);
             context.SaveChanges();
         }
+
+        //public static void RemoveEmployee(Employee employee)
+        //{
+        //    context.Employees.Remove(employee);
+        //    context.SaveChanges();
+        //}
 
         public static Employee GetEmployeeByName(string name)
         {

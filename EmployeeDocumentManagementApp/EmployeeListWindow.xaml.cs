@@ -5,6 +5,8 @@ namespace EmployeeDocumentManagementApp
 {
     public partial class EmployeeListWindow : Window
     {
+        private static readonly AppDbContext context = new AppDbContext();
+
         public EmployeeListWindow()
         {
             InitializeComponent();
@@ -34,16 +36,22 @@ namespace EmployeeDocumentManagementApp
 
         private void OnDeleteMenuItemClick(object sender, RoutedEventArgs e)
         {
-            if (lvEmployees.SelectedItem is Employee selectedEmployee)
+            if (lvEmployees.SelectedItem is Employee selectedEmployee && selectedEmployee != null)
             {
                 MoveToArchive(selectedEmployee);
-                LoadEmployeeList();
             }
         }
 
         private void MoveToArchive(Employee employee)
         {
             ArchiveEmployeeRepository.AddToArchive(employee);
+            RemoveEmployee(employee);
+        }
+
+        private void RemoveEmployee(Employee employee)
+        {
+            context.Employees.Remove(employee);
+            context.SaveChanges();
         }
     }
 }

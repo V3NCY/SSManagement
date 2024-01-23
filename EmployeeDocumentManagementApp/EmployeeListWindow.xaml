@@ -15,13 +15,7 @@
             </ListView.View>
             <ListView.ItemContainerStyle>
                 <Style TargetType="ListViewItem">
-                    <Setter Property="ContextMenu">
-                        <Setter.Value>
-                            <ContextMenu>
-                                <MenuItem Header="Архивирай" Click="OnDeleteMenuItemClick"/>
-                            </ContextMenu>
-                        </Setter.Value>
-                    </Setter>
+                  
                 </Style>
             </ListView.ItemContainerStyle>
         </ListView>

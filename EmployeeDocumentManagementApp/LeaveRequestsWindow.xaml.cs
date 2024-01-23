@@ -25,14 +25,12 @@ namespace EmployeeDocumentManagementApp
                 return;
             }
 
-            // Check if the employee has enough remaining leave days
             if (employee.RemainingLeaveDays <= 0)
             {
                 MessageBox.Show("Служителят е изчерпал своята отпуска за тази година.");
                 return;
             }
 
-            // Deduct a leave day
             employee.RemainingLeaveDays--;
 
             using (var package = File.Exists(filePath) ? new ExcelPackage(new FileInfo(filePath)) : new ExcelPackage())
@@ -44,7 +42,6 @@ namespace EmployeeDocumentManagementApp
 
                 DateTime submissionDateTime = DateTime.Now;
 
-                // Add headers if it's a new worksheet
                 if (lastUsedRow == 1)
                 {
                     worksheet.Cells["A1"].Value = "Служител";
@@ -52,7 +49,6 @@ namespace EmployeeDocumentManagementApp
                     worksheet.Cells["C1"].Value = "Крайна дата";
                     worksheet.Cells["D1"].Value = "Дата и час на подадена заявка";
 
-                    // Make the header row bold
                     using (var range = worksheet.Cells["A1:D1"])
                     {
                         range.Style.Font.Bold = true;
@@ -63,7 +59,6 @@ namespace EmployeeDocumentManagementApp
                 worksheet.Cells[$"B{newRow}"].Value = dpStartDate.SelectedDate?.ToString() ?? string.Empty;
                 worksheet.Cells[$"C{newRow}"].Value = dpEndDate.SelectedDate?.ToString() ?? string.Empty;
 
-                // Set the value as a date and time and apply the desired format
                 worksheet.Cells[$"D{newRow}"].Value = submissionDateTime;
                 worksheet.Cells[$"D{newRow}"].Style.Numberformat.Format = "yyyy-MM-dd HH:mm:ss";
 

@@ -7,5 +7,4 @@ public class LeaveRequest
     public int EmployeeId { get; set; }
     public DateTime StartDate { get; set; }
     public DateTime EndDate { get; set; }
-    // Add other properties
 }
