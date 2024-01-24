@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Data.Entity.Validation;
 using System.Linq;
 
 namespace EmployeeDocumentManagementApp
@@ -32,12 +33,16 @@ namespace EmployeeDocumentManagementApp
                 context.Employees.Add(employee);
                 context.SaveChanges();
             }
-            catch (Exception ex)
+            catch (DbEntityValidationException ex)
             {
-                Console.WriteLine($"Error adding employee: {ex.Message}");
-                throw;
+                foreach (var validationError in ex.EntityValidationErrors.SelectMany(e => e.ValidationErrors))
+                {
+                    Console.WriteLine($"Property: {validationError.PropertyName}, Error: {validationError.ErrorMessage}");
+                }
+
             }
         }
+
 
         public static void ArchiveEmployee(Employee employee)
         {

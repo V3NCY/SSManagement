@@ -3,6 +3,7 @@ using System.Collections.ObjectModel;
 using System.Data.Entity;
 using System.Data.Entity.Core;
 using System.Data.Entity.Infrastructure;
+using System.Data.Entity.Validation;
 using System.Linq;
 using System.Windows;
 
@@ -59,18 +60,33 @@ namespace EmployeeDocumentManagementApp
                     {
                         if (entry.Entity is Employee conflictingEmployee)
                         {
-                            entry.OriginalValues.SetValues(entry.GetDatabaseValues());
-                            RemoveEmployee(conflictingEmployee);
-                            LoadEmployeeList();
+                            if (entry.OriginalValues["IsArchived"].Equals(true))
+                            {
+                                MessageBox.Show("This employee has already been archived by another user.");
+                            }
+                            else
+                            {
+                                entry.OriginalValues.SetValues(entry.GetDatabaseValues());
+                                RemoveEmployee(conflictingEmployee);
+                                LoadEmployeeList();
+                            }
                         }
                     }
                 }
-                catch (EntityCommandExecutionException ex)
+                catch (DbEntityValidationException ex)
                 {
-                    MessageBox.Show($"Error executing command: {ex.Message}\nInner Exception: {ex.InnerException?.Message}");
+                    foreach (var entityValidationErrors in ex.EntityValidationErrors)
+                    {
+                        foreach (var validationError in entityValidationErrors.ValidationErrors)
+                        {
+                            Console.WriteLine($"Entity: {entityValidationErrors.Entry.Entity.GetType().Name}, Property: {validationError.PropertyName}, Error: {validationError.ErrorMessage}");
+                        }
+                    }
                 }
             }
         }
+
+
 
         private void RemoveEmployee(Employee employee)
         {
@@ -97,7 +113,7 @@ namespace EmployeeDocumentManagementApp
                 }
                 else
                 {
-                    Console.WriteLine("Concurrency conflict: Employee has been deleted by another user.");
+                    Console.WriteLine(ex);
                 }
             }
         }
