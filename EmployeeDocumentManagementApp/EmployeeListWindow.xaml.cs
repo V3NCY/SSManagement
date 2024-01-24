@@ -38,10 +38,12 @@ namespace EmployeeDocumentManagementApp
         {
             LoadEmployeeList();
         }
+
         private void MoveToArchive(Employee employee)
         {
             ArchiveEmployeeRepository.ArchiveEmployee(employee);
         }
+
         private void OnDeleteMenuItemClick(object sender, RoutedEventArgs e)
         {
             if (lvEmployees.SelectedItem is Employee selectedEmployee && selectedEmployee != null)
@@ -91,7 +93,7 @@ namespace EmployeeDocumentManagementApp
                 if (databaseValues != null)
                 {
                     context.Entry(employee).OriginalValues.SetValues(databaseValues);
-                    context.SaveChanges(); 
+                    context.SaveChanges();
                 }
                 else
                 {
@@ -99,6 +101,5 @@ namespace EmployeeDocumentManagementApp
                 }
             }
         }
-
     }
 }

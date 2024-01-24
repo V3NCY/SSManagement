@@ -48,3 +48,7 @@ C:\Users\orak\Desktop\EmployeeDocumentManagementApp\EmployeeDocumentManagementAp
 C:\Users\orak\Desktop\EmployeeDocumentManagementApp\EmployeeDocumentManagementApp\obj\Debug\ArchiveListWindow.baml
 C:\Users\orak\Desktop\EmployeeDocumentManagementApp\EmployeeDocumentManagementApp\obj\Debug\ArchiveListWindow.g.cs
 C:\Users\orak\Desktop\EmployeeDocumentManagementApp\EmployeeDocumentManagementApp\obj\Debug\EmployeeDocumentManagementApp.Migrations.InitialCreate.resources
+C:\Users\orak\Desktop\EmployeeDocumentManagementApp\EmployeeDocumentManagementApp\obj\Debug\EmployeeDocumentManagementApp.Migrations.YourMigrationName.resources
+C:\Users\orak\Desktop\EmployeeDocumentManagementApp\EmployeeDocumentManagementApp\obj\Debug\EmployeeDocumentManagementApp.Migrations.AddRowVersionColumn.resources
+C:\Users\orak\Desktop\EmployeeDocumentManagementApp\EmployeeDocumentManagementApp\obj\Debug\EmployeeDocumentManagementApp.Migrations.RecreateRowVersionColumn.resources
+C:\Users\orak\Desktop\EmployeeDocumentManagementApp\EmployeeDocumentManagementApp\obj\Debug\AutoMigration.resources

@@ -32,7 +32,7 @@ namespace EmployeeDocumentManagementApp
             EmployeeRegistrationWindow registrationWindow = new EmployeeRegistrationWindow();
             registrationWindow.Show();
 
-            //registrationWindow.Closed += (s, args) => EmployeeListWindow.RefreshEmployeeList();
+            // registrationWindow.Closed += (s, args) => EmployeeListWindow.RefreshEmployeeList();
         }
 
         private void OnViewEmployeeListButtonClick(object sender, RoutedEventArgs e)
@@ -44,7 +44,7 @@ namespace EmployeeDocumentManagementApp
         private void OnArchiveListButtonClick(object sender, RoutedEventArgs e)
         {
             ArchiveListWindow archiveListWindow = new ArchiveListWindow();
-            archiveListWindow.Show(); 
+            archiveListWindow.Show();
         }
     }
 }

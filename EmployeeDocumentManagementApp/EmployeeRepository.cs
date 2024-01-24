@@ -12,26 +12,74 @@ namespace EmployeeDocumentManagementApp
 
         public static ObservableCollection<Employee> GetEmployeesList()
         {
-            var employeesList = context.Employees.ToList();
-            return new ObservableCollection<Employee>(employeesList);
+            try
+            {
+                var employeesList = context.Employees.ToList();
+                return new ObservableCollection<Employee>(employeesList);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Error getting employees list: {ex.Message}");
+                throw; 
+            }
         }
 
         public static void AddEmployee(Employee employee)
         {
-            employee.EmployeeId = GenerateUniqueId();
-            context.Employees.Add(employee);
-            context.SaveChanges();
+            try
+            {
+                employee.EmployeeId = GenerateUniqueId();
+                context.Employees.Add(employee);
+                context.SaveChanges();
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Error adding employee: {ex.Message}");
+                throw;
+            }
         }
 
-        //public static void RemoveEmployee(Employee employee)
-        //{
-        //    context.Employees.Remove(employee);
-        //    context.SaveChanges();
-        //}
+        public static void ArchiveEmployee(Employee employee)
+        {
+            try
+            {
+                employee.IsArchived = true;
+                context.SaveChanges();
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Error archiving employee: {ex.Message}");
+                throw; 
+            }
+        }
+
+        /*
+        public static void RemoveEmployee(Employee employee)
+        {
+            try
+            {
+                context.Employees.Remove(employee);
+                context.SaveChanges();
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Error removing employee: {ex.Message}");
+                throw; // Rethrow the exception for upper layers to handle
+            }
+        }
+        */
 
         public static Employee GetEmployeeByName(string name)
         {
-            return context.Employees.FirstOrDefault(e => e.EmployeeName == name);
+            try
+            {
+                return context.Employees.FirstOrDefault(e => e.EmployeeName == name);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Error getting employee by name: {ex.Message}");
+                throw; 
+            }
         }
 
         private static int GenerateUniqueId()
@@ -41,27 +89,41 @@ namespace EmployeeDocumentManagementApp
 
         public static void UpdateEmployee(Employee employee)
         {
-            var existingEmployee = context.Employees.FirstOrDefault(e => e.EmployeeId == employee.EmployeeId);
-            if (existingEmployee != null)
+            try
             {
-                existingEmployee.FirstName = employee.FirstName;
-                existingEmployee.LastName = employee.LastName;
-                existingEmployee.EGN = employee.EGN;
-                existingEmployee.EmployeeName = employee.EmployeeName;
-                existingEmployee.RemainingLeaveDays = employee.RemainingLeaveDays;
-                existingEmployee.JobTitle = employee.JobTitle;
-                existingEmployee.Department = employee.Department;
+                var existingEmployee = context.Employees.FirstOrDefault(e => e.EmployeeId == employee.EmployeeId);
+                if (existingEmployee != null)
+                {
+                    existingEmployee.FirstName = employee.FirstName;
+                    existingEmployee.LastName = employee.LastName;
+                    existingEmployee.EGN = employee.EGN;
+                    existingEmployee.EmployeeName = employee.EmployeeName;
+                    existingEmployee.RemainingLeaveDays = employee.RemainingLeaveDays;
+                    existingEmployee.JobTitle = employee.JobTitle;
+                    existingEmployee.Department = employee.Department;
 
-                context.SaveChanges();
+                    context.SaveChanges();
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Error updating employee: {ex.Message}");
+                throw; 
             }
         }
 
         public static ObservableCollection<Employee> GetArchivedEmployees()
         {
-            var archivedEmployeesList = context.Employees.Where(e => e.IsArchived).ToList();
-
-            return new ObservableCollection<Employee>(archivedEmployeesList);
+            try
+            {
+                var archivedEmployeesList = context.Employees.Where(e => e.IsArchived).ToList();
+                return new ObservableCollection<Employee>(archivedEmployeesList);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Error getting archived employees: {ex.Message}");
+                throw; 
+            }
         }
-
     }
 }

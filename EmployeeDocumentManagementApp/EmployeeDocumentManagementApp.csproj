@@ -95,6 +95,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="AppDbContext.cs" />
     <Compile Include="ArchiveEmployeeRepository.cs" />
     <Compile Include="ArchiveListWindow.xaml.cs">
       <DependentUpon>ArchiveListWindow.xaml</DependentUpon>
@@ -107,9 +108,25 @@
     </Compile>
     <Compile Include="EmployeeRepository.cs" />
     <Compile Include="LeaveRequestsWindowBase.cs" />
-    <Compile Include="Migrations\202401231223136_InitialCreate.cs" />
-    <Compile Include="Migrations\202401231223136_InitialCreate.designer.cs">
-      <DependentUpon>202401231223136_InitialCreate.cs</DependentUpon>
+    <Compile Include="Migrations\202401240803244_InitialCreate.cs" />
+    <Compile Include="Migrations\202401240803244_InitialCreate.designer.cs">
+      <DependentUpon>202401240803244_InitialCreate.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202401240804175_YourMigrationName.cs" />
+    <Compile Include="Migrations\202401240804175_YourMigrationName.designer.cs">
+      <DependentUpon>202401240804175_YourMigrationName.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202401240806137_AddRowVersionColumn.cs" />
+    <Compile Include="Migrations\202401240806137_AddRowVersionColumn.designer.cs">
+      <DependentUpon>202401240806137_AddRowVersionColumn.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202401240807504_RecreateRowVersionColumn.cs" />
+    <Compile Include="Migrations\202401240807504_RecreateRowVersionColumn.designer.cs">
+      <DependentUpon>202401240807504_RecreateRowVersionColumn.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202401240810326_AutoMigration.cs" />
+    <Compile Include="Migrations\202401240810326_AutoMigration.designer.cs">
+      <DependentUpon>202401240810326_AutoMigration.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\SickLeaveRequest.cs" />
@@ -176,8 +193,20 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
-    <EmbeddedResource Include="Migrations\202401231223136_InitialCreate.resx">
-      <DependentUpon>202401231223136_InitialCreate.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\202401240803244_InitialCreate.resx">
+      <DependentUpon>202401240803244_InitialCreate.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202401240804175_YourMigrationName.resx">
+      <DependentUpon>202401240804175_YourMigrationName.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202401240806137_AddRowVersionColumn.resx">
+      <DependentUpon>202401240806137_AddRowVersionColumn.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202401240807504_RecreateRowVersionColumn.resx">
+      <DependentUpon>202401240807504_RecreateRowVersionColumn.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202401240810326_AutoMigration.resx">
+      <DependentUpon>202401240810326_AutoMigration.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
