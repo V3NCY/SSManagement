@@ -11,27 +11,21 @@ namespace EmployeeDocumentManagementApp
         private static AppDbContext context = new AppDbContext();
         private static Random random = new Random();
 
+        private static ObservableCollection<Employee> employeesList = new ObservableCollection<Employee>();
         public static ObservableCollection<Employee> GetEmployeesList()
         {
-            try
-            {
-                var employeesList = context.Employees.ToList();
-                return new ObservableCollection<Employee>(employeesList);
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine($"Error getting employees list: {ex.Message}");
-                throw; 
-            }
+            return employeesList;
         }
 
-        public static void AddEmployee(Employee employee)
+        public static void AddEmployee(Employee employee, Action refreshCallback = null)
         {
             try
             {
                 employee.EmployeeId = GenerateUniqueId();
                 context.Employees.Add(employee);
                 context.SaveChanges();
+                employeesList.Add(employee);
+                refreshCallback?.Invoke();
             }
             catch (DbEntityValidationException ex)
             {
@@ -41,6 +35,7 @@ namespace EmployeeDocumentManagementApp
                 }
 
             }
+
         }
 
 

@@ -4,9 +4,12 @@ namespace EmployeeDocumentManagementApp
 {
     public partial class MainWindow : Window
     {
+        private EmployeeListWindow employeeListWindow;
+
         public MainWindow()
         {
             InitializeComponent();
+            employeeListWindow = new EmployeeListWindow();
         }
 
         private void OnLeaveRequestsButtonClick(object sender, RoutedEventArgs e)
@@ -29,15 +32,12 @@ namespace EmployeeDocumentManagementApp
 
         private void OnEmployeeRegistrationButtonClick(object sender, RoutedEventArgs e)
         {
-            EmployeeRegistrationWindow registrationWindow = new EmployeeRegistrationWindow();
+            EmployeeRegistrationWindow registrationWindow = new EmployeeRegistrationWindow(() => employeeListWindow.LoadEmployeeList());
             registrationWindow.Show();
-
-            // registrationWindow.Closed += (s, args) => EmployeeListWindow.RefreshEmployeeList();
         }
 
         private void OnViewEmployeeListButtonClick(object sender, RoutedEventArgs e)
         {
-            EmployeeListWindow employeeListWindow = new EmployeeListWindow();
             employeeListWindow.Show();
         }
 

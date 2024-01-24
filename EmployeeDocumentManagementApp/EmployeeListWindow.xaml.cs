@@ -1,37 +1,48 @@
 ﻿using System;
 using System.Collections.ObjectModel;
+using System.Collections.Specialized;
 using System.Data.Entity;
 using System.Data.Entity.Core;
 using System.Data.Entity.Infrastructure;
 using System.Data.Entity.Validation;
 using System.Linq;
 using System.Windows;
+using System.Windows.Input;
 
 namespace EmployeeDocumentManagementApp
 {
     public partial class EmployeeListWindow : Window
     {
         private static readonly AppDbContext context = new AppDbContext();
+        public ICommand RefreshCommand => new RelayCommand(LoadEmployeeList);
+
+        private ObservableCollection<Employee> employeesList;
 
         public EmployeeListWindow()
         {
             InitializeComponent();
-            LoadEmployeeList();
+            DataContext = this;
+            employeesList = EmployeeRepository.GetEmployeesList();
+            lvEmployees.ItemsSource = employeesList;
             SubscribeToEmployeeChanges();
         }
 
-        private void LoadEmployeeList()
+        public void LoadEmployeeList()
         {
-            lvEmployees.ItemsSource = EmployeeRepository.GetEmployeesList();
+            employeesList = EmployeeRepository.GetEmployeesList();
+            lvEmployees.ItemsSource = employeesList;
+        }
+
+        private void EmployeesList_CollectionChanged(object sender, NotifyCollectionChangedEventArgs e)
+        {
+            // Handle collection changed event
         }
 
         private void SubscribeToEmployeeChanges()
         {
-            var employeesList = EmployeeRepository.GetEmployeesList();
-
             if (employeesList != null)
             {
-                employeesList.CollectionChanged += (sender, e) => LoadEmployeeList();
+                employeesList.CollectionChanged += EmployeesList_CollectionChanged;
             }
         }
 
@@ -86,8 +97,6 @@ namespace EmployeeDocumentManagementApp
             }
         }
 
-
-
         private void RemoveEmployee(Employee employee)
         {
             var entry = context.Entry(employee);
@@ -115,6 +124,29 @@ namespace EmployeeDocumentManagementApp
                 {
                     Console.WriteLine(ex);
                 }
+            }
+        }
+
+        private class RelayCommand : ICommand
+        {
+            private readonly Action _execute;
+
+            public RelayCommand(Action execute)
+            {
+                _execute = execute ?? throw new ArgumentNullException(nameof(execute));
+            }
+
+            public event EventHandler CanExecuteChanged
+            {
+                add { CommandManager.RequerySuggested += value; }
+                remove { CommandManager.RequerySuggested -= value; }
+            }
+
+            public bool CanExecute(object parameter) => true;
+
+            public void Execute(object parameter)
+            {
+                _execute();
             }
         }
     }

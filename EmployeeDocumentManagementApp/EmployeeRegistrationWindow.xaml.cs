@@ -1,13 +1,17 @@
-﻿using System.Windows;
+﻿using System;
+using System.Windows;
 
 namespace EmployeeDocumentManagementApp
 {
     public partial class EmployeeRegistrationWindow : Window
     {
-        public EmployeeRegistrationWindow()
+        private readonly Action _onEmployeeAdded;
+        public EmployeeRegistrationWindow(Action onEmployeeAdded)
         {
             InitializeComponent();
+            _onEmployeeAdded = onEmployeeAdded;
         }
+
 
         private void OnRegisterButtonClick(object sender, RoutedEventArgs e)
         {
@@ -24,7 +28,7 @@ namespace EmployeeDocumentManagementApp
                 Department = department,
                 RemainingLeaveDays = remainingLeaveDays,
             };
-
+            _onEmployeeAdded?.Invoke();
             EmployeeRepository.AddEmployee(newEmployee);
 
             MessageBox.Show("Служителят е добавен успешно!");
