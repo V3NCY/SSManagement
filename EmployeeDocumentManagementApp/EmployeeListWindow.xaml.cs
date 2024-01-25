@@ -29,7 +29,15 @@ namespace EmployeeDocumentManagementApp
 
         public void LoadEmployeeList()
         {
-            employeesList = EmployeeRepository.GetEmployeesList();
+            var newEmployeeList = EmployeeRepository.GetEmployeesList();
+
+            employeesList.Clear();
+            foreach (var employee in newEmployeeList)
+            {
+                employeesList.Add(employee);
+            }
+
+            lvEmployees.ItemsSource = null;
             lvEmployees.ItemsSource = employeesList;
         }
 
@@ -147,6 +155,21 @@ namespace EmployeeDocumentManagementApp
             {
                 _execute();
             }
+
+            public static ObservableCollection<Employee> RowVersion()
+            {
+                using (var context = new AppDbContext())
+                {
+                    return new ObservableCollection<Employee>(
+                        context.Employees
+                               .Include(e => e.PaidLeave)
+                               .Include(e => e.UnpaidLeave)
+                               .Include(e => e.OtherLeave)
+                               .ToList()
+                    );
+                }
+            }
         }
+
     }
 }

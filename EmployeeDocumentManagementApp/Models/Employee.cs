@@ -31,4 +31,7 @@ public class Employee
 
     [Timestamp]
     public byte[] RowVersion { get; set; }
+    public bool PaidLeave { get; set; }
+    public bool UnpaidLeave { get; set; }
+    public bool OtherLeave { get; set; }
 }

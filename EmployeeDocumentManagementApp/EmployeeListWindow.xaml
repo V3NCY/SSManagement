@@ -11,6 +11,9 @@
                     <GridViewColumn Header="Длъжност" DisplayMemberBinding="{Binding JobTitle}" Width="200"/>
                     <GridViewColumn Header="Отдел" DisplayMemberBinding="{Binding Department}" Width="200"/>
                     <GridViewColumn Header="Оставащи дни от отпуска" DisplayMemberBinding="{Binding RemainingLeaveDays}" Width="200"/>
+                    <GridViewColumn Header="Платен отпуск" DisplayMemberBinding="{Binding PaidLeave}" Width="200"/>
+                    <GridViewColumn Header="Неплатен отпуск" DisplayMemberBinding="{Binding UnpaidLeave}" Width="200"/>
+                    <GridViewColumn Header="Друг отпуск" DisplayMemberBinding="{Binding OtherLeave}" Width="200"/>
                 </GridView>
             </ListView.View>
             <ListView.ContextMenu>

@@ -1,7 +1,7 @@
 ﻿<Window x:Class="EmployeeDocumentManagementApp.LeaveRequestsWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        Title="Форма за отпуск" Height="200" Width="525">
+        Title="Форма за отпуск" Height="250" Width="525">
     <Window.Resources>
         <Style TargetType="TextBox" BasedOn="{StaticResource {x:Type TextBox}}">
             <Setter Property="Template">
@@ -37,7 +37,11 @@
             <DatePicker x:Name="dpStartDate" Margin="0,0,0,10"/>
             <DatePicker x:Name="dpEndDate" Margin="0,0,0,10"/>
 
-            <Button Content="Заяви" Click="OnSubmitButtonClick"/>
+            <CheckBox Content="Платен отпуск" x:Name="chkPaidLeave" Margin="0,0,0,5"/>
+            <CheckBox Content="Неплатен отпуск" x:Name="chkUnpaidLeave" Margin="0,0,0,5"/>
+            <CheckBox Content="Друг" x:Name="chkOther" Margin="0,0,0,10"/>
+
+            <Button Content="Запази" Click="OnSubmitButtonClick"/>
         </StackPanel>
         
     </Grid>
