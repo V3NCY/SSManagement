@@ -49,7 +49,7 @@ namespace EmployeeDocumentManagementApp
             catch (Exception ex)
             {
                 Console.WriteLine($"Error archiving employee: {ex.Message}");
-                throw; 
+                throw;
             }
         }
 
@@ -78,7 +78,7 @@ namespace EmployeeDocumentManagementApp
             catch (Exception ex)
             {
                 Console.WriteLine($"Error getting employee by name: {ex.Message}");
-                throw; 
+                throw;
             }
         }
 
@@ -108,7 +108,7 @@ namespace EmployeeDocumentManagementApp
             catch (Exception ex)
             {
                 Console.WriteLine($"Error updating employee: {ex.Message}");
-                throw; 
+                throw;
             }
         }
 
@@ -122,7 +122,7 @@ namespace EmployeeDocumentManagementApp
             catch (Exception ex)
             {
                 Console.WriteLine($"Error getting archived employees: {ex.Message}");
-                throw; 
+                throw;
             }
         }
     }

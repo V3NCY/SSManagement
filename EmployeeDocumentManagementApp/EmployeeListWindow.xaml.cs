@@ -35,7 +35,6 @@ namespace EmployeeDocumentManagementApp
 
         private void EmployeesList_CollectionChanged(object sender, NotifyCollectionChangedEventArgs e)
         {
-            // Handle collection changed event
         }
 
         private void SubscribeToEmployeeChanges()

@@ -38,6 +38,12 @@ namespace EmployeeDocumentManagementApp
 
         private void OnViewEmployeeListButtonClick(object sender, RoutedEventArgs e)
         {
+            if (employeeListWindow == null || !employeeListWindow.IsLoaded)
+            {
+                employeeListWindow = new EmployeeListWindow();
+                employeeListWindow.Closed += (s, args) => employeeListWindow = null;
+            }
+
             employeeListWindow.Show();
         }
 
