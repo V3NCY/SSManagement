@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.ComponentModel.DataAnnotations;
 using System.Data.Entity.Validation;
 using System.Linq;
 
@@ -24,8 +25,17 @@ namespace EmployeeDocumentManagementApp
                 employee.EmployeeId = GenerateUniqueId();
                 context.Employees.Add(employee);
                 context.SaveChanges();
+
                 employeesList.Add(employee);
+
                 refreshCallback?.Invoke();
+
+                Console.WriteLine($"Employee added successfully: {employee.EmployeeName}, ID: {employee.EmployeeId}");
+                Console.WriteLine("Current employees in employeesList:");
+                foreach (var emp in employeesList)
+                {
+                    Console.WriteLine($"{emp.EmployeeName}, ID: {emp.EmployeeId}");
+                }
             }
             catch (DbEntityValidationException ex)
             {
@@ -33,12 +43,46 @@ namespace EmployeeDocumentManagementApp
                 {
                     Console.WriteLine($"Property: {validationError.PropertyName}, Error: {validationError.ErrorMessage}");
                 }
-
             }
-
+            catch (Exception ex)
+            {
+                LogErrorDetails(ex);
+                throw;
+            }
         }
 
+        private static void ValidateEmployee(Employee employee)
+        {
+            var validationContext = new ValidationContext(employee, null, null);
+            var validationResults = new List<ValidationResult>();
 
+            if (!Validator.TryValidateObject(employee, validationContext, validationResults, validateAllProperties: true))
+            {
+                var validationErrors = validationResults.Select(result => $"{result.MemberNames.FirstOrDefault()}: {result.ErrorMessage}");
+                throw new DbEntityValidationException($"Validation failed for Employee. Errors: {string.Join(", ", validationErrors)}");
+            }
+        }
+        private static void LogErrorDetails(Exception ex)
+        {
+            Console.WriteLine($"Error Type: {ex.GetType().FullName}");
+            Console.WriteLine($"Error Message: {ex.Message}");
+            Console.WriteLine($"Error.StackTrace: {ex.StackTrace}");
+
+            if (ex is DbEntityValidationException validationException)
+            {
+                foreach (var entityValidationError in validationException.EntityValidationErrors.SelectMany(e => e.ValidationErrors))
+                {
+                    Console.WriteLine($"Entity Validation Error - Property: {entityValidationError.PropertyName}, Error: {entityValidationError.ErrorMessage}");
+                }
+            }
+
+            if (ex.InnerException != null)
+            {
+                Console.WriteLine($"InnerException Type: {ex.InnerException.GetType().FullName}");
+                Console.WriteLine($"InnerException Message: {ex.InnerException.Message}");
+                Console.WriteLine($"InnerException.StackTrace: {ex.InnerException.StackTrace}");
+            }
+        }
         public static void ArchiveEmployee(Employee employee)
         {
             try

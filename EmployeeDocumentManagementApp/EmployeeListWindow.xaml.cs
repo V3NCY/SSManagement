@@ -1,11 +1,9 @@
 ﻿using System;
 using System.Collections.ObjectModel;
 using System.Collections.Specialized;
-using System.Data.Entity;
-using System.Data.Entity.Core;
+using System.ComponentModel;
 using System.Data.Entity.Infrastructure;
 using System.Data.Entity.Validation;
-using System.Linq;
 using System.Windows;
 using System.Windows.Input;
 
@@ -13,32 +11,47 @@ namespace EmployeeDocumentManagementApp
 {
     public partial class EmployeeListWindow : Window
     {
-        private static readonly AppDbContext context = new AppDbContext();
-        public ICommand RefreshCommand => new RelayCommand(LoadEmployeeList);
-
+        private readonly AppDbContext context = new AppDbContext();
         private ObservableCollection<Employee> employeesList;
+
+        public ICommand RefreshCommand => new RelayCommand(LoadEmployeeList);
 
         public EmployeeListWindow()
         {
             InitializeComponent();
             DataContext = this;
-            employeesList = EmployeeRepository.GetEmployeesList();
-            lvEmployees.ItemsSource = employeesList;
+            LoadEmployeeList();
             SubscribeToEmployeeChanges();
         }
 
         public void LoadEmployeeList()
         {
-            var newEmployeeList = EmployeeRepository.GetEmployeesList();
-
-            employeesList.Clear();
-            foreach (var employee in newEmployeeList)
+            try
             {
-                employeesList.Add(employee);
+                var newEmployeeList = EmployeeRepository.GetEmployeesList();
+                EmployeesList = new ObservableCollection<Employee>(newEmployeeList);
             }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Problem loading the employees list: {ex.Message}");
+            }
+        }
 
-            lvEmployees.ItemsSource = null;
-            lvEmployees.ItemsSource = employeesList;
+        public ObservableCollection<Employee> EmployeesList
+        {
+            get { return employeesList; }
+            set
+            {
+                employeesList = value;
+                OnPropertyChanged(nameof(EmployeesList));
+            }
+        }
+
+        public event PropertyChangedEventHandler PropertyChanged;
+
+        protected virtual void OnPropertyChanged(string propertyName)
+        {
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
 
         private void EmployeesList_CollectionChanged(object sender, NotifyCollectionChangedEventArgs e)
@@ -58,18 +71,13 @@ namespace EmployeeDocumentManagementApp
             LoadEmployeeList();
         }
 
-        private void MoveToArchive(Employee employee)
-        {
-            ArchiveEmployeeRepository.ArchiveEmployee(employee);
-        }
-
         private void OnDeleteMenuItemClick(object sender, RoutedEventArgs e)
         {
             if (lvEmployees.SelectedItem is Employee selectedEmployee && selectedEmployee != null)
             {
                 try
                 {
-                    RemoveEmployee(selectedEmployee);
+                    EmployeeRepository.ArchiveEmployee(selectedEmployee);
                     LoadEmployeeList();
                 }
                 catch (DbUpdateConcurrencyException ex)
@@ -85,7 +93,7 @@ namespace EmployeeDocumentManagementApp
                             else
                             {
                                 entry.OriginalValues.SetValues(entry.GetDatabaseValues());
-                                RemoveEmployee(conflictingEmployee);
+                                EmployeeRepository.ArchiveEmployee(conflictingEmployee);
                                 LoadEmployeeList();
                             }
                         }
@@ -100,36 +108,6 @@ namespace EmployeeDocumentManagementApp
                             Console.WriteLine($"Entity: {entityValidationErrors.Entry.Entity.GetType().Name}, Property: {validationError.PropertyName}, Error: {validationError.ErrorMessage}");
                         }
                     }
-                }
-            }
-        }
-
-        private void RemoveEmployee(Employee employee)
-        {
-            var entry = context.Entry(employee);
-
-            if (entry.State == EntityState.Detached)
-            {
-                context.Employees.Attach(employee);
-            }
-
-            try
-            {
-                context.Entry(employee).State = EntityState.Deleted;
-                context.SaveChanges();
-            }
-            catch (DbUpdateConcurrencyException ex)
-            {
-                var databaseValues = context.Entry(employee).GetDatabaseValues();
-
-                if (databaseValues != null)
-                {
-                    context.Entry(employee).OriginalValues.SetValues(databaseValues);
-                    context.SaveChanges();
-                }
-                else
-                {
-                    Console.WriteLine(ex);
                 }
             }
         }
@@ -155,21 +133,6 @@ namespace EmployeeDocumentManagementApp
             {
                 _execute();
             }
-
-            public static ObservableCollection<Employee> RowVersion()
-            {
-                using (var context = new AppDbContext())
-                {
-                    return new ObservableCollection<Employee>(
-                        context.Employees
-                               .Include(e => e.PaidLeave)
-                               .Include(e => e.UnpaidLeave)
-                               .Include(e => e.OtherLeave)
-                               .ToList()
-                    );
-                }
-            }
         }
-
     }
 }

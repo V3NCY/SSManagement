@@ -108,21 +108,9 @@
     </Compile>
     <Compile Include="EmployeeRepository.cs" />
     <Compile Include="LeaveRequestsWindowBase.cs" />
-    <Compile Include="Migrations\202401240803244_InitialCreate.cs" />
-    <Compile Include="Migrations\202401240803244_InitialCreate.designer.cs">
-      <DependentUpon>202401240803244_InitialCreate.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202401240804175_YourMigrationName.cs" />
-    <Compile Include="Migrations\202401240804175_YourMigrationName.designer.cs">
-      <DependentUpon>202401240804175_YourMigrationName.cs</DependentUpon>
-    </Compile>
     <Compile Include="Migrations\202401240806137_AddRowVersionColumn.cs" />
     <Compile Include="Migrations\202401240806137_AddRowVersionColumn.designer.cs">
       <DependentUpon>202401240806137_AddRowVersionColumn.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202401240807504_RecreateRowVersionColumn.cs" />
-    <Compile Include="Migrations\202401240807504_RecreateRowVersionColumn.designer.cs">
-      <DependentUpon>202401240807504_RecreateRowVersionColumn.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\202401240810326_AutoMigration.cs" />
     <Compile Include="Migrations\202401240810326_AutoMigration.designer.cs">
@@ -193,17 +181,8 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
-    <EmbeddedResource Include="Migrations\202401240803244_InitialCreate.resx">
-      <DependentUpon>202401240803244_InitialCreate.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202401240804175_YourMigrationName.resx">
-      <DependentUpon>202401240804175_YourMigrationName.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202401240806137_AddRowVersionColumn.resx">
       <DependentUpon>202401240806137_AddRowVersionColumn.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202401240807504_RecreateRowVersionColumn.resx">
-      <DependentUpon>202401240807504_RecreateRowVersionColumn.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202401240810326_AutoMigration.resx">
       <DependentUpon>202401240810326_AutoMigration.cs</DependentUpon>

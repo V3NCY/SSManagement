@@ -15,7 +15,7 @@ public class Employee
     [Required(ErrorMessage = "EGN is required")]
     public int EGN { get; set; }
 
-    [Required(ErrorMessage = "Employee Name is required")]
+    [Required(ErrorMessage = "Employee Name is required.")]
     public string EmployeeName { get; set; }
 
     [Required(ErrorMessage = "Remaining Leave Days is required")]

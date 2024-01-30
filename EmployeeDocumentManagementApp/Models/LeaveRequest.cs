@@ -1,5 +1,4 @@
-﻿// LeaveRequest.cs
-using System;
+﻿using System;
 
 public class LeaveRequest
 {

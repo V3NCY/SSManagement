@@ -3,7 +3,7 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         Title="Списък със служители" WindowState="Maximized">
     <Grid>
-        <ListView Name="lvEmployees">
+        <ListView Name="lvEmployees" ItemsSource="{Binding EmployeesList}">
             <ListView.View>
                 <GridView>
                     <GridViewColumn Header="ID" DisplayMemberBinding="{Binding EmployeeId}" Width="50"/>

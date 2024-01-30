@@ -7,7 +7,6 @@
             <ListView.View>
                 <GridView>
                     <GridViewColumn Header="ID" DisplayMemberBinding="{Binding EmployeeId}" Width="50"/>
-                    <GridViewColumn Header="Служител" DisplayMemberBinding="{Binding EmployeeName}" Width="200"/>
                     <GridViewColumn Header="Име на служител" DisplayMemberBinding="{Binding EmployeeName}" Width="200"/>
                     <GridViewColumn Header="Длъжност" DisplayMemberBinding="{Binding JobTitle}" Width="200"/>
                     <GridViewColumn Header="Отдел" DisplayMemberBinding="{Binding Department}" Width="200"/>
