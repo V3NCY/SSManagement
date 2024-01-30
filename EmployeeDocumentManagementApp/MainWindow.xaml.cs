@@ -32,10 +32,18 @@ namespace EmployeeDocumentManagementApp
 
         private void OnEmployeeRegistrationButtonClick(object sender, RoutedEventArgs e)
         {
-            EmployeeRegistrationWindow registrationWindow = new EmployeeRegistrationWindow(() => employeeListWindow.LoadEmployeeList());
-            registrationWindow.Closed += (s, args) => employeeListWindow.LoadEmployeeList();
-            registrationWindow.Show();
+            if (employeeListWindow != null)
+            {
+                EmployeeRegistrationWindow registrationWindow = new EmployeeRegistrationWindow(() => employeeListWindow.LoadEmployeeList());
+
+                if (registrationWindow.IsInitialized)
+                {
+                    registrationWindow.Closing += (s, args) => employeeListWindow.LoadEmployeeList();
+                    registrationWindow.Show();
+                }
+            }
         }
+
 
         private void OnViewEmployeeListButtonClick(object sender, RoutedEventArgs e)
         {
