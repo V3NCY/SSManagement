@@ -1,9 +1,12 @@
 ﻿using System;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 [Serializable]
 public class Employee
 {
+    [Key]
+    [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
     public int EmployeeId { get; set; }
 
     [Required(ErrorMessage = "First Name is required")]

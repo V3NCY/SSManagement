@@ -20,17 +20,19 @@ namespace EmployeeDocumentManagementApp
 
         public static void AddEmployee(Employee employee, Action refreshCallback = null)
         {
+                employee.EmployeeId = GenerateUniqueId();
             try
             {
-                employee.EmployeeId = GenerateUniqueId();
                 context.Employees.Add(employee);
-                context.SaveChanges();
 
                 employeesList.Add(employee);
+                Console.WriteLine("Before SaveChanges");
+                context.SaveChanges();
+                Console.WriteLine("After SaveChanges");
+
 
                 refreshCallback?.Invoke();
 
-                Console.WriteLine($"Employee added successfully: {employee.EmployeeName}, ID: {employee.EmployeeId}");
                 Console.WriteLine("Current employees in employeesList:");
                 foreach (var emp in employeesList)
                 {
@@ -50,6 +52,7 @@ namespace EmployeeDocumentManagementApp
                 throw;
             }
         }
+
 
         private static void ValidateEmployee(Employee employee)
         {

@@ -116,6 +116,18 @@
     <Compile Include="Migrations\202401240810326_AutoMigration.designer.cs">
       <DependentUpon>202401240810326_AutoMigration.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202401310934063_UpdateRowVersionNullable.cs" />
+    <Compile Include="Migrations\202401310934063_UpdateRowVersionNullable.designer.cs">
+      <DependentUpon>202401310934063_UpdateRowVersionNullable.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202401310958285_Initial.cs" />
+    <Compile Include="Migrations\202401310958285_Initial.designer.cs">
+      <DependentUpon>202401310958285_Initial.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202401311423319_RemoveRowVersionColumn.cs" />
+    <Compile Include="Migrations\202401311423319_RemoveRowVersionColumn.designer.cs">
+      <DependentUpon>202401311423319_RemoveRowVersionColumn.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\SickLeaveRequest.cs" />
     <Compile Include="Models\SpecialRequests.cs" />
@@ -186,6 +198,15 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202401240810326_AutoMigration.resx">
       <DependentUpon>202401240810326_AutoMigration.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202401310934063_UpdateRowVersionNullable.resx">
+      <DependentUpon>202401310934063_UpdateRowVersionNullable.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202401310958285_Initial.resx">
+      <DependentUpon>202401310958285_Initial.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202401311423319_RemoveRowVersionColumn.resx">
+      <DependentUpon>202401311423319_RemoveRowVersionColumn.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

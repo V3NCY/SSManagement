@@ -43,6 +43,9 @@ C:\Users\orak\Desktop\EmployeeDocumentManagementApp\EmployeeDocumentManagementAp
 C:\Users\orak\Desktop\EmployeeDocumentManagementApp\EmployeeDocumentManagementApp\obj\Debug\EmployeeDocumentManagementApp.g.resources
 C:\Users\orak\Desktop\EmployeeDocumentManagementApp\EmployeeDocumentManagementApp\obj\Debug\EmployeeDocumentManagementApp.Migrations.AddRowVersionColumn.resources
 C:\Users\orak\Desktop\EmployeeDocumentManagementApp\EmployeeDocumentManagementApp\obj\Debug\AutoMigration.resources
+C:\Users\orak\Desktop\EmployeeDocumentManagementApp\EmployeeDocumentManagementApp\obj\Debug\UpdateRowVersionNullable.resources
+C:\Users\orak\Desktop\EmployeeDocumentManagementApp\EmployeeDocumentManagementApp\obj\Debug\Initial.resources
+C:\Users\orak\Desktop\EmployeeDocumentManagementApp\EmployeeDocumentManagementApp\obj\Debug\RemoveRowVersionColumn.resources
 C:\Users\orak\Desktop\EmployeeDocumentManagementApp\EmployeeDocumentManagementApp\obj\Debug\EmployeeDocumentManagementApp.Properties.Resources.resources
 C:\Users\orak\Desktop\EmployeeDocumentManagementApp\EmployeeDocumentManagementApp\obj\Debug\EmployeeDocumentManagementApp.csproj.GenerateResource.cache
 C:\Users\orak\Desktop\EmployeeDocumentManagementApp\EmployeeDocumentManagementApp\obj\Debug\EmployeeDocumentManagementApp.csproj.CoreCompileInputs.cache

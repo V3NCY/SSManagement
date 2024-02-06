@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Runtime.Remoting.Contexts;
 using System.Windows;
 
 namespace EmployeeDocumentManagementApp
@@ -6,7 +7,7 @@ namespace EmployeeDocumentManagementApp
     public partial class EmployeeRegistrationWindow : Window
     {
         private readonly Action _onEmployeeAdded;
-
+        private static AppDbContext context = new AppDbContext();
         public EmployeeRegistrationWindow(Action onEmployeeAdded)
         {
             InitializeComponent();
@@ -32,16 +33,16 @@ namespace EmployeeDocumentManagementApp
                 };
 
                 EmployeeRepository.AddEmployee(newEmployee, _onEmployeeAdded);
-                _onEmployeeAdded?.Invoke(); // Refresh the list immediately
-
-                MessageBox.Show($"Employee added successfully: {newEmployee.EmployeeName}, ID: {newEmployee.EmployeeId}");
+                MessageBox.Show($"Служителят е добавен успешно! Име: {newEmployee.EmployeeName}, ID: {newEmployee.EmployeeId}");
+                context.SaveChanges();
+                Close();
             }
             catch (Exception ex)
             {
                 MessageBox.Show($"Error adding employee: {ex.Message}");
+                _onEmployeeAdded?.Invoke(); 
             }
         }
-
 
     }
 }
