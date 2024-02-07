@@ -40,7 +40,7 @@ namespace EmployeeDocumentManagementApp
             catch (Exception ex)
             {
                 MessageBox.Show($"Error adding employee: {ex.Message}");
-                _onEmployeeAdded?.Invoke(); 
+                _onEmployeeAdded?.Invoke();
             }
         }
 

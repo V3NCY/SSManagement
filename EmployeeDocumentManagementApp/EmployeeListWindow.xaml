@@ -19,11 +19,11 @@
                     <GridViewColumn Header="Друг отпуск" DisplayMemberBinding="{Binding OtherLeave}" Width="200"/>
                 </GridView>
             </ListView.View>
-            <!--<ListView.ContextMenu>
+            <ListView.ContextMenu>
                 <ContextMenu>
-                    <MenuItem Header="Архивирай" Click="OnDeleteMenuItemClick"/>
+                    <!-- <MenuItem Header="Архивирай" Click="OnArchiveListButtonClick"/> -->
                 </ContextMenu>
-            </ListView.ContextMenu>-->
+            </ListView.ContextMenu>
         </ListView>
         <Button Content="Refresh" HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="10" Command="{Binding RefreshCommand}" />
     </Grid>

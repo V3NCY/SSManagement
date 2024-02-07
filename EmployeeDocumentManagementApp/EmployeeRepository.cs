@@ -20,15 +20,12 @@ namespace EmployeeDocumentManagementApp
 
         public static void AddEmployee(Employee employee, Action refreshCallback = null)
         {
-                employee.EmployeeId = GenerateUniqueId();
             try
             {
+                employee.EmployeeId = GenerateUniqueId();
                 context.Employees.Add(employee);
-
                 employeesList.Add(employee);
-                Console.WriteLine("Before SaveChanges");
                 context.SaveChanges();
-                Console.WriteLine("After SaveChanges");
 
 
                 refreshCallback?.Invoke();
