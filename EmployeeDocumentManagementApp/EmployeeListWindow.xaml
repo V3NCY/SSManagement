@@ -25,6 +25,6 @@
                 </ContextMenu>
             </ListView.ContextMenu>
         </ListView>
-        <Button Content="Refresh" HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="10" Command="{Binding RefreshCommand}" />
+        <Button Content="Refresh" HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="30" Click="OnRefreshButtonClick" />
     </Grid>
 </Window>

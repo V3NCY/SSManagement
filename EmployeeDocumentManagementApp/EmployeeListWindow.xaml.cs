@@ -11,10 +11,10 @@ namespace EmployeeDocumentManagementApp
 {
     public partial class EmployeeListWindow : Window, INotifyPropertyChanged
     {
-        private readonly AppDbContext context = new AppDbContext();
         private ObservableCollection<Employee> employeesList;
 
-        public ICommand RefreshCommand => new RelayCommand(LoadEmployeeList);
+       public ICommand RefreshCommand => new RelayCommand(() => LoadEmployeeList());
+
 
         public EmployeeListWindow()
         {
@@ -54,16 +54,16 @@ namespace EmployeeDocumentManagementApp
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
 
-        private void EmployeesList_CollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
-        {
-        }
-
         private void SubscribeToEmployeeChanges()
         {
             if (employeesList != null)
             {
                 employeesList.CollectionChanged += EmployeesList_CollectionChanged;
             }
+        }
+
+        private void EmployeesList_CollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
+        {
         }
 
         private void OnRefreshButtonClick(object sender, RoutedEventArgs e)
@@ -75,38 +75,63 @@ namespace EmployeeDocumentManagementApp
         {
             if (lvEmployees.SelectedItem is Employee selectedEmployee && selectedEmployee != null)
             {
-                try
+                MessageBoxResult result = MessageBox.Show("Сигурни ли сте, че искате да архивирате този служител?", "Потвърждение", MessageBoxButton.YesNo, MessageBoxImage.Question);
+
+                if (result == MessageBoxResult.Yes)
                 {
-                    EmployeeRepository.ArchiveEmployee(selectedEmployee);
-                    LoadEmployeeList();
-                }
-                catch (DbUpdateConcurrencyException ex)
-                {
-                    foreach (var entry in ex.Entries)
+                    try
                     {
-                        if (entry.Entity is Employee conflictingEmployee)
+                        EmployeeRepository.ArchiveEmployee(selectedEmployee);
+                        LoadEmployeeList();
+                    }
+                    catch (DbUpdateConcurrencyException ex)
+                    {
+                        foreach (var entry in ex.Entries)
                         {
-                            if (entry.OriginalValues["IsArchived"].Equals(true))
+                            if (entry.Entity is Employee conflictingEmployee)
                             {
-                                MessageBox.Show("This employee has already been archived by another user.");
+                                if (entry.OriginalValues["IsArchived"].Equals(true))
+                                {
+                                    MessageBox.Show("This employee has already been archived by another user.");
+                                }
+                                else
+                                {
+                                    entry.OriginalValues.SetValues(entry.GetDatabaseValues());
+                                    EmployeeRepository.ArchiveEmployee(conflictingEmployee);
+                                    LoadEmployeeList();
+                                }
                             }
-                            else
+                        }
+                    }
+                    catch (DbEntityValidationException ex)
+                    {
+                        foreach (var entityValidationErrors in ex.EntityValidationErrors)
+                        {
+                            foreach (var validationError in entityValidationErrors.ValidationErrors)
                             {
-                                entry.OriginalValues.SetValues(entry.GetDatabaseValues());
-                                EmployeeRepository.ArchiveEmployee(conflictingEmployee);
-                                LoadEmployeeList();
+                                Console.WriteLine($"Entity: {entityValidationErrors.Entry.Entity.GetType().Name}, Property: {validationError.PropertyName}, Error: {validationError.ErrorMessage}");
                             }
                         }
                     }
                 }
-                catch (DbEntityValidationException ex)
+            }
+        }
+
+        private void OnArchiveMenuItemClick(object sender, RoutedEventArgs e)
+        {
+            if (lvEmployees.SelectedItem is Employee selectedEmployee && selectedEmployee != null)
+            {
+                MessageBoxResult result = MessageBox.Show("Сигурни ли сте, че искате да архивирате този служител?", "Confirmation", MessageBoxButton.YesNo, MessageBoxImage.Question);
+                if (result == MessageBoxResult.Yes)
                 {
-                    foreach (var entityValidationErrors in ex.EntityValidationErrors)
+                    try
                     {
-                        foreach (var validationError in entityValidationErrors.ValidationErrors)
-                        {
-                            Console.WriteLine($"Entity: {entityValidationErrors.Entry.Entity.GetType().Name}, Property: {validationError.PropertyName}, Error: {validationError.ErrorMessage}");
-                        }
+                        EmployeeRepository.ArchiveEmployee(selectedEmployee);
+                        LoadEmployeeList();
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show($"Error archiving employee: {ex.Message}", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
                     }
                 }
             }

@@ -34,7 +34,6 @@ namespace EmployeeDocumentManagementApp
 
                 EmployeeRepository.AddEmployee(newEmployee, _onEmployeeAdded);
                 MessageBox.Show($"Служителят е добавен успешно! Име: {newEmployee.EmployeeName}, ID: {newEmployee.EmployeeId}");
-                context.SaveChanges();
                 Close();
             }
             catch (Exception ex)

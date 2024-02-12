@@ -59,6 +59,7 @@ namespace EmployeeDocumentManagementApp
             }
 
             employeeListWindow.Show();
-        }        
+        }
+
     }
 }
