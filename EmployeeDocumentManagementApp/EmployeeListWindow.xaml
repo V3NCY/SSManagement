@@ -21,7 +21,7 @@
             </ListView.View>
             <ListView.ContextMenu>
                 <ContextMenu>
-                    <!-- <MenuItem Header="Архивирай" Click="OnArchiveListButtonClick"/> -->
+                    <MenuItem Header="Архивирай" Click="OnDeleteMenuItemClick"/>
                 </ContextMenu>
             </ListView.ContextMenu>
         </ListView>

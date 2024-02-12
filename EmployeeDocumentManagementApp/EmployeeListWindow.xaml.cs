@@ -1,15 +1,15 @@
 ﻿using System;
 using System.Collections.ObjectModel;
-using System.Collections.Specialized;
 using System.ComponentModel;
 using System.Data.Entity.Infrastructure;
 using System.Data.Entity.Validation;
+using System.Linq;
 using System.Windows;
 using System.Windows.Input;
 
 namespace EmployeeDocumentManagementApp
 {
-    public partial class EmployeeListWindow : Window
+    public partial class EmployeeListWindow : Window, INotifyPropertyChanged
     {
         private readonly AppDbContext context = new AppDbContext();
         private ObservableCollection<Employee> employeesList;
@@ -54,7 +54,7 @@ namespace EmployeeDocumentManagementApp
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
 
-        private void EmployeesList_CollectionChanged(object sender, NotifyCollectionChangedEventArgs e)
+        private void EmployeesList_CollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
         {
         }
 

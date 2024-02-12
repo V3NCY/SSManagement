@@ -5,7 +5,6 @@ namespace EmployeeDocumentManagementApp
     public partial class MainWindow : Window
     {
         private EmployeeListWindow employeeListWindow;
-
         public MainWindow()
         {
             InitializeComponent();
@@ -45,6 +44,12 @@ namespace EmployeeDocumentManagementApp
         }
 
 
+        private void OnArchiveListButtonClick(object sender, RoutedEventArgs e)
+        {
+            ArchiveListWindow archiveListWindow = new ArchiveListWindow();
+            archiveListWindow.Show();
+        }
+
         private void OnViewEmployeeListButtonClick(object sender, RoutedEventArgs e)
         {
             if (employeeListWindow == null || !employeeListWindow.IsLoaded)
@@ -54,12 +59,6 @@ namespace EmployeeDocumentManagementApp
             }
 
             employeeListWindow.Show();
-        }
-
-        private void OnArchiveListButtonClick(object sender, RoutedEventArgs e)
-        {
-            ArchiveListWindow archiveListWindow = new ArchiveListWindow();
-            archiveListWindow.Show();
-        }
+        }        
     }
 }

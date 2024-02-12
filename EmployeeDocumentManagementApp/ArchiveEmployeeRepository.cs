@@ -1,5 +1,7 @@
-﻿using System.Collections.ObjectModel;
+﻿using System;
+using System.Collections.ObjectModel;
 using System.IO;
+using System.Linq;
 using System.Runtime.Serialization.Formatters.Binary;
 
 namespace EmployeeDocumentManagementApp
@@ -20,10 +22,29 @@ namespace EmployeeDocumentManagementApp
 
         public static void ArchiveEmployee(Employee employee)
         {
-            employee.IsArchived = true;
-            archivedEmployees.Add(employee);
-            SaveArchivedEmployees();
+            try
+            {
+                using (var context = new AppDbContext())
+                {
+                    var existingEmployee = context.Employees.FirstOrDefault(e => e.EmployeeId == employee.EmployeeId);
+                    if (existingEmployee != null)
+                    {
+                        existingEmployee.IsArchived = true;
+                        context.SaveChanges();
+                    }
+                    else
+                    {
+                        Console.WriteLine($"Employee with ID {employee.EmployeeId} not found in the database.");
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Error archiving employee: {ex.Message}");
+                throw;
+            }
         }
+
 
         public static void LoadArchivedEmployees()
         {
@@ -47,8 +68,6 @@ namespace EmployeeDocumentManagementApp
                 archivedEmployees = new ObservableCollection<Employee>();
             }
         }
-
-
         public static void SaveArchivedEmployees()
         {
             using (var fileStream = File.Create("archivedEmployees.dat"))

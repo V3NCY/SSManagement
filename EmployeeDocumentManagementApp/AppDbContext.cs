@@ -3,6 +3,7 @@ using System.Data.Entity;
 using System.Diagnostics;
 public class AppDbContext : DbContext
 {
+    public DbSet<Employee> Employees { get; set; }
     public AppDbContext() : base("DBEmployees")
     {
         try
@@ -15,8 +16,6 @@ public class AppDbContext : DbContext
             Console.WriteLine($"Error initializing database: {ex}");
         }
     }
-
-    public DbSet<Employee> Employees { get; set; }
 
     protected override void OnModelCreating(DbModelBuilder modelBuilder)
     {
