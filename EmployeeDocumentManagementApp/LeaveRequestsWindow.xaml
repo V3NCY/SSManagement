@@ -9,7 +9,7 @@
                     <ControlTemplate TargetType="TextBox">
                         <Grid>
                             <ScrollViewer x:Name="PART_ContentHost"/>
-                            <TextBlock x:Name="Placeholder" Text="Служител" Foreground="Gray" Margin="5,0,0,0" Visibility="Collapsed"/>
+                            <TextBlock x:Name="Placeholder" Text="Служител" Foreground="#000" Margin="5,0,0,0" Visibility="Collapsed"/>
                         </Grid>
                         <ControlTemplate.Triggers>
                             <Trigger Property="IsEnabled" Value="False">

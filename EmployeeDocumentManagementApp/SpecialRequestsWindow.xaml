@@ -24,11 +24,11 @@
             <TextBlock Text="Молби" FontWeight="Bold" FontSize="16" Margin="0,0,0,10"/>
 
             <StackPanel>
-                <TextBlock Text="Служител" Foreground="Gray"/>
+                <TextBlock Text="Служител" Foreground="#000"/>
                 <TextBox x:Name="txtEmployeeName"/>
             </StackPanel>
 
-            <TextBlock Text="Молба за:" Foreground="Gray"/>
+            <TextBlock Text="Молба за:" Foreground="#000"/>
             <TextBox x:Name="txtRequestFor" Margin="0,0,0,10"/>
 
             <Button Content="Запази" Click="OnSubmitButtonClick"/>
