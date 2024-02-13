@@ -2,17 +2,46 @@
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         Title="ТРЗ ORAK" Height="350" Width="725">
+    <Window.Resources>
+        <Style TargetType="Button">
+            <Setter Property="Background" Value="#073763"/>
+            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="BorderThickness" Value="0"/>
+            <Setter Property="BorderBrush" Value="#073763"/>
+            <Setter Property="Padding" Value="10"/>
+            <Setter Property="Height" Value="40"/>
+            <Setter Property="Margin" Value="5"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border Background="{TemplateBinding Background}"
+                                BorderBrush="{TemplateBinding BorderBrush}"
+                                BorderThickness="{TemplateBinding BorderThickness}"
+                                CornerRadius="5">
+                            <ContentPresenter HorizontalAlignment="Center"
+                                              VerticalAlignment="Center"/>
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+        <Style TargetType="Window">
+            <Setter Property="Background" Value="#FFF"/>
+        </Style>
+    </Window.Resources>
+
     <Grid>
         <StackPanel Margin="10">
             <TextBlock Text="ТРЗ ORAK" FontWeight="Bold" FontSize="16" Margin="0,0,0,10"/>
 
             <UniformGrid Rows="4" Columns="4" Margin="0,0,0,10">
-                <Button Content="Болничи" Click="OnSickLeaveButtonClick" Width="150" Height="30"/>
-                <Button Content="Молби" Click="OnSpecialRequestsButtonClick" Width="150" Height="30" Margin="10"/>
-                <Button Content="Отпуски" Click="OnLeaveRequestsButtonClick" Width="150" Height="30"/>
-                <Button Content="Добави служител" Click="OnEmployeeRegistrationButtonClick" Width="150" Height="30" Margin="10"/>
-                <Button Content="Списък със служители" Click="OnViewEmployeeListButtonClick" Width="150" Height="30"/>
-                <Button Content="Archive List" HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="10" Click="OnArchiveListButtonClick"/>
+                <Button Content="Болничи" Click="OnSickLeaveButtonClick"/>
+                <Button Content="Молби" Click="OnSpecialRequestsButtonClick"/>
+                <Button Content="Отпуски" Click="OnLeaveRequestsButtonClick"/>
+                <Button Content="Добави служител" Click="OnEmployeeRegistrationButtonClick"/>
+                <Button Content="Списък със служители" Click="OnViewEmployeeListButtonClick"/>
+                <Button Content="Архив на служители" Click="OnArchiveListButtonClick"/>
             </UniformGrid>
 
             <Frame x:Name="mainFrame" NavigationUIVisibility="Hidden"/>

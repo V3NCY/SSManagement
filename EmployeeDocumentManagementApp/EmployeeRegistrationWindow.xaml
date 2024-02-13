@@ -6,20 +6,37 @@
         xmlns:local="clr-namespace:EmployeeDocumentManagementApp"
         mc:Ignorable="d"
         Title="Добави служител" Height="450" Width="800">
+    <Window.Resources>
+        <Style TargetType="TextBox">
+            <Setter Property="Background" Value="#F0F0F0"/>
+            <Setter Property="Foreground" Value="Black"/>
+            <Setter Property="BorderBrush" Value="#CCCCCC"/>
+            <Setter Property="BorderThickness" Value="1"/>
+            <Setter Property="Margin" Value="0,0,0,20"/>
+            <Setter Property="FontSize" Value="16"/>
+        </Style>
+        <Style TargetType="Button">
+            <Setter Property="Background" Value="#073763"/>
+            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="BorderThickness" Value="0"/>
+            <Setter Property="Padding" Value="10"/>
+            <Setter Property="FontSize" Value="16"/>
+        </Style>
+    </Window.Resources>
     <Grid>
         <StackPanel Margin="20">
             <TextBlock Text="Добави служител" FontWeight="Bold" FontSize="20" Margin="0,0,0,20"/>
 
             <Label Content="Име, презиме и фамилия на служителя" FontSize="16"/>
-            <TextBox x:Name="txtEmployeeName" Margin="0,0,0,20" FontSize="16" />
+            <TextBox x:Name="txtEmployeeName"/>
 
             <Label Content="Длъжност" FontSize="16"/>
-            <TextBox x:Name="txtJobTitle" Margin="0,0,0,20" FontSize="16"/>
+            <TextBox x:Name="txtJobTitle"/>
 
             <Label Content="Отдел" FontSize="16"/>
-            <TextBox x:Name="txtDepartment" Margin="0,0,0,20" FontSize="16"/>
+            <TextBox x:Name="txtDepartment"/>
 
-            <Button Content="Добави" FontSize="16" Click="OnRegisterButtonClick"/>
+            <Button Content="Добави" Click="OnRegisterButtonClick"/>
         </StackPanel>
     </Grid>
 </Window>

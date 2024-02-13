@@ -8,7 +8,6 @@
                 <Setter.Value>
                     <ControlTemplate TargetType="TextBox">
                         <Grid>
-                     
                             <ScrollViewer x:Name="PART_ContentHost"/>
                             <TextBlock x:Name="Placeholder" Text="Служител" Foreground="Gray" Margin="5,0,0,0" Visibility="Collapsed"/>
                         </Grid>
@@ -23,6 +22,18 @@
                     </ControlTemplate>
                 </Setter.Value>
             </Setter>
+            <Setter Property="Background" Value="#F0F0F0"/>
+            <Setter Property="Foreground" Value="Black"/>
+            <Setter Property="BorderBrush" Value="#CCCCCC"/>
+            <Setter Property="BorderThickness" Value="1"/>
+        </Style>
+        <Style TargetType="Button">
+            <Setter Property="Background" Value="#073763"/>
+            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="BorderThickness" Value="0"/>
+            <Setter Property="Padding" Value="10"/>
+            <Setter Property="Height" Value="20"/>
+            <Setter Property="Margin" Value="0,0,0,10"/>
         </Style>
     </Window.Resources>
 
@@ -41,7 +52,7 @@
             <CheckBox Content="Неплатен отпуск" x:Name="chkUnpaidLeave" Margin="0,0,0,5"/>
             <CheckBox Content="Друг" x:Name="chkOther" Margin="0,0,0,10"/>
 
-            <Button Content="Запази" Click="OnSubmitButtonClick"/>
+            <Button Content="Запази" Click="OnSubmitButtonClick" Height="40"/>
         </StackPanel>
         
     </Grid>

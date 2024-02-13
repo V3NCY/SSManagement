@@ -31,6 +31,8 @@ namespace EmployeeDocumentManagementApp
                     {
                         existingEmployee.IsArchived = true;
                         context.SaveChanges();
+                        archivedEmployees.Add(existingEmployee); // Add archived employee to the collection
+                        SaveArchivedEmployees(); // Save the updated collection
                     }
                     else
                     {
@@ -68,6 +70,7 @@ namespace EmployeeDocumentManagementApp
                 archivedEmployees = new ObservableCollection<Employee>();
             }
         }
+
         public static void SaveArchivedEmployees()
         {
             using (var fileStream = File.Create("archivedEmployees.dat"))
