@@ -1,4 +1,5 @@
-﻿using System.Windows;
+﻿using System;
+using System.Windows;
 
 namespace EmployeeDocumentManagementApp
 {
@@ -33,13 +34,21 @@ namespace EmployeeDocumentManagementApp
         {
             if (employeeListWindow != null)
             {
-                EmployeeRegistrationWindow registrationWindow = new EmployeeRegistrationWindow(() => employeeListWindow.LoadEmployeeList());
+                EmployeeRegistrationWindow registrationWindow = new EmployeeRegistrationWindow(employeeListWindow);
 
                 if (registrationWindow.IsInitialized)
                 {
-                    registrationWindow.Closing += (s, args) => employeeListWindow.LoadEmployeeList();
+                    registrationWindow.Closing += EmployeeRegistrationWindow_Closing;
                     registrationWindow.Show();
                 }
+            }
+        }
+
+        private void EmployeeRegistrationWindow_Closing(object sender, EventArgs e)
+        {
+            if (employeeListWindow != null)
+            {
+                employeeListWindow.LoadEmployeeList();
             }
         }
 

@@ -13,7 +13,7 @@ namespace EmployeeDocumentManagementApp
     {
         private ObservableCollection<Employee> employeesList;
 
-       public ICommand RefreshCommand => new RelayCommand(() => LoadEmployeeList());
+        public ICommand RefreshCommand => new RelayCommand(() => LoadEmployeeList());
 
 
         public EmployeeListWindow()

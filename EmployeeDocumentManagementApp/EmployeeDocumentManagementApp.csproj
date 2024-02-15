@@ -128,6 +128,10 @@
     <Compile Include="Migrations\202401311423319_RemoveRowVersionColumn.designer.cs">
       <DependentUpon>202401311423319_RemoveRowVersionColumn.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202402141157287_UserAdd.cs" />
+    <Compile Include="Migrations\202402141157287_UserAdd.designer.cs">
+      <DependentUpon>202402141157287_UserAdd.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\SickLeaveRequest.cs" />
     <Compile Include="Models\SpecialRequests.cs" />
@@ -207,6 +211,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202401311423319_RemoveRowVersionColumn.resx">
       <DependentUpon>202401311423319_RemoveRowVersionColumn.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202402141157287_UserAdd.resx">
+      <DependentUpon>202402141157287_UserAdd.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

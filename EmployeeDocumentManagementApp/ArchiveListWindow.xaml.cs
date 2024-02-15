@@ -1,4 +1,5 @@
 ﻿using System.Windows;
+using System.Collections.ObjectModel;
 
 namespace EmployeeDocumentManagementApp
 {
@@ -16,6 +17,18 @@ namespace EmployeeDocumentManagementApp
         {
             lvArchivedEmployees.ItemsSource = ArchiveEmployeeRepository.GetArchivedEmployees();
         }
+
+        public static void AddToArchiveList(Employee employee)
+        {
+            if (archiveListWindow == null || !archiveListWindow.IsVisible)
+            {
+                archiveListWindow = new ArchiveListWindow();
+                archiveListWindow.Show();
+            }
+
+            archiveListWindow.lvArchivedEmployees.Items.Add(employee);
+        }
+
 
         private void OnArchiveListButtonClick(object sender, RoutedEventArgs e)
         {

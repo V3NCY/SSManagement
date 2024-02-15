@@ -1,45 +1,46 @@
 ﻿using System;
-using System.Runtime.Remoting.Contexts;
 using System.Windows;
 
 namespace EmployeeDocumentManagementApp
 {
     public partial class EmployeeRegistrationWindow : Window
     {
-        private readonly Action _onEmployeeAdded;
-        private static AppDbContext context = new AppDbContext();
-        public EmployeeRegistrationWindow(Action onEmployeeAdded)
+        private readonly EmployeeListWindow _employeeListWindow;
+
+        public EmployeeRegistrationWindow(EmployeeListWindow employeeListWindow)
         {
             InitializeComponent();
-            _onEmployeeAdded = onEmployeeAdded;
+            _employeeListWindow = employeeListWindow;
         }
 
         private void OnRegisterButtonClick(object sender, RoutedEventArgs e)
         {
             try
             {
-                string employeeName = txtEmployeeName.Text;
+                string firstName = txtFirstName.Text;
+                string lastName = txtLastName.Text;
                 string jobTitle = txtJobTitle.Text;
                 string department = txtDepartment.Text;
-
                 int remainingLeaveDays = 20;
 
-                Employee newEmployee = new Employee
+                var newEmployee = new Employee
                 {
-                    EmployeeName = employeeName,
+                    FirstName = firstName,
+                    LastName = lastName,
                     JobTitle = jobTitle,
                     Department = department,
                     RemainingLeaveDays = remainingLeaveDays,
                 };
 
-                EmployeeRepository.AddEmployee(newEmployee, _onEmployeeAdded);
-                MessageBox.Show($"Служителят е добавен успешно! Име: {newEmployee.EmployeeName}, ID: {newEmployee.EmployeeId}");
-                Close();
+                EmployeeRepository.AddEmployee(newEmployee);
+                _employeeListWindow.LoadEmployeeList(); 
+
+                MessageBox.Show($"Employee added successfully! Name: {newEmployee.FirstName} {newEmployee.LastName}, ID: {newEmployee.EmployeeId}");
+                
             }
             catch (Exception ex)
             {
                 MessageBox.Show($"Error adding employee: {ex.Message}");
-                _onEmployeeAdded?.Invoke();
             }
         }
 

@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:EmployeeDocumentManagementApp"
         mc:Ignorable="d"
-        Title="Добави служител" Height="450" Width="800">
+        Title="Добави служител" Height="470" Width="800">
     <Window.Resources>
         <Style TargetType="TextBox">
             <Setter Property="Background" Value="#F0F0F0"/>
@@ -27,8 +27,11 @@
         <StackPanel Margin="20">
             <TextBlock Text="Добави служител" FontWeight="Bold" FontSize="20" Margin="0,0,0,20"/>
 
-            <Label Content="Име, презиме и фамилия на служителя" FontSize="16"/>
-            <TextBox x:Name="txtEmployeeName"/>
+            <Label Content="Име" FontSize="16"/>
+            <TextBox x:Name="txtFirstName"/>
+            
+            <Label Content="Фамилия" FontSize="16"/>
+            <TextBox x:Name="txtLastName"/>
 
             <Label Content="Длъжност" FontSize="16"/>
             <TextBox x:Name="txtJobTitle"/>

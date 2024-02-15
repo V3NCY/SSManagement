@@ -1,4 +1,7 @@
-﻿using System.Windows;
+﻿using System.Configuration;
+using System.Data.SqlClient;
+using System;
+using System.Windows;
 
 namespace EmployeeDocumentManagementApp
 {
@@ -9,6 +12,7 @@ namespace EmployeeDocumentManagementApp
             base.OnStartup(e);
 
             ArchiveEmployeeRepository.LoadArchivedEmployees();
+            TestDatabaseConnection();
         }
 
         protected override void OnExit(ExitEventArgs e)
@@ -16,6 +20,23 @@ namespace EmployeeDocumentManagementApp
             ArchiveEmployeeRepository.SaveArchivedEmployees();
 
             base.OnExit(e);
+        }
+        private void TestDatabaseConnection()
+        {
+            string connectionString = ConfigurationManager.ConnectionStrings["DBEmployees"].ConnectionString;
+
+            using (var connection = new SqlConnection(connectionString))
+            {
+                try
+                {
+                    connection.Open();
+                    MessageBox.Show("Database connection successful!", "Success", MessageBoxButton.OK, MessageBoxImage.Information);
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show($"Error connecting to the database: {ex.Message}", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                }
+            }
         }
     }
 }

@@ -23,6 +23,7 @@
             <Setter Property="Foreground" Value="Black"/>
             <Setter Property="BorderBrush" Value="#CCCCCC"/>
             <Setter Property="BorderThickness" Value="0,1,0,0"/>
+            
         </Style>
         <Style TargetType="ContextMenu">
             <Setter Property="Background" Value="#F0F0F0"/>
@@ -46,7 +47,7 @@
             <ListView.View>
                 <GridView>
                     <GridViewColumn Header="ID" DisplayMemberBinding="{Binding EmployeeId}" Width="50"/>
-                    <GridViewColumn Header="Име на служител" DisplayMemberBinding="{Binding EmployeeName}" Width="200"/>
+                    <GridViewColumn Header="Име на служител" DisplayMemberBinding="{Binding FullName}" Width="200"/>
                     <GridViewColumn Header="Длъжност" DisplayMemberBinding="{Binding JobTitle}" Width="200"/>
                     <GridViewColumn Header="Отдел" DisplayMemberBinding="{Binding Department}" Width="200"/>
                     <GridViewColumn Header="Оставащи дни от отпуска" DisplayMemberBinding="{Binding RemainingLeaveDays}" Width="200"/>
@@ -57,7 +58,7 @@
             </ListView.View>
             <ListView.ContextMenu>
                 <ContextMenu>
-                    <MenuItem Header="Архивирай" Click="OnDeleteMenuItemClick"/>
+                    <MenuItem Header="Архивирай" Click="OnArchiveMenuItemClick"/>
                 </ContextMenu>
             </ListView.ContextMenu>
         </ListView>

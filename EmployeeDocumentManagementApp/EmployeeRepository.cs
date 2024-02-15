@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.ObjectModel;
 using System.ComponentModel.DataAnnotations;
+using System.Data.Entity;
 using System.Data.Entity.Validation;
 using System.IO; // Add using directive for System.IO namespace
 using System.Linq;
@@ -44,7 +45,6 @@ namespace EmployeeDocumentManagementApp
                 throw;
             }
         }
-
         public static void ArchiveEmployee(Employee employee)
         {
             try
@@ -52,7 +52,7 @@ namespace EmployeeDocumentManagementApp
                 employee.IsArchived = true;
                 employeesList.Remove(employee);
                 archivedEmployees.Add(employee);
-                SaveArchivedEmployees(); // Call SaveArchivedEmployees without passing archivedEmployees
+                SaveArchivedEmployees();
                 context.SaveChanges();
             }
             catch (Exception ex)
@@ -61,6 +61,7 @@ namespace EmployeeDocumentManagementApp
                 throw;
             }
         }
+
 
         private static void SaveArchivedEmployees()
         {

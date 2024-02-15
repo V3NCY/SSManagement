@@ -14,9 +14,10 @@ public class Employee
 
     [Required(ErrorMessage = "Last Name is required")]
     public string LastName { get; set; }
+    public string FullName => $"{FirstName} {LastName}";
 
     [Required(ErrorMessage = "EGN is required")]
-    public int EGN { get; set; }
+    public int EGN { get; set; } 
 
     [Required(ErrorMessage = "Employee Name is required.")]
     public string EmployeeName { get; set; }
@@ -34,6 +35,8 @@ public class Employee
 
     [Timestamp]
     public byte[] RowVersion { get; set; }
+    [Timestamp]
+    public byte[] NewRowVersion { get; set; }
     public bool PaidLeave { get; set; }
     public bool UnpaidLeave { get; set; }
     public bool OtherLeave { get; set; }
