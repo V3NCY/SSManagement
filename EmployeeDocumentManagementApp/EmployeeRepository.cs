@@ -3,7 +3,7 @@ using System.Collections.ObjectModel;
 using System.ComponentModel.DataAnnotations;
 using System.Data.Entity;
 using System.Data.Entity.Validation;
-using System.IO; // Add using directive for System.IO namespace
+using System.IO; 
 using System.Linq;
 using System.Runtime.Serialization.Formatters.Binary;
 
@@ -45,6 +45,7 @@ namespace EmployeeDocumentManagementApp
                 throw;
             }
         }
+
         public static void ArchiveEmployee(Employee employee)
         {
             try

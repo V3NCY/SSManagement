@@ -20,7 +20,7 @@ public class Employee
     public int EGN { get; set; } 
 
     [Required(ErrorMessage = "Employee Name is required.")]
-    public string EmployeeName { get; set; }
+    public string EmployeeName => $"{FirstName} {LastName}";
 
     [Required(ErrorMessage = "Remaining Leave Days is required")]
     public int RemainingLeaveDays { get; set; }
@@ -35,8 +35,8 @@ public class Employee
 
     [Timestamp]
     public byte[] RowVersion { get; set; }
-    [Timestamp]
-    public byte[] NewRowVersion { get; set; }
+    //[Timestamp]
+    //public byte[] NewRowVersion { get; set; }
     public bool PaidLeave { get; set; }
     public bool UnpaidLeave { get; set; }
     public bool OtherLeave { get; set; }
