@@ -117,5 +117,6 @@ namespace EmployeeDocumentManagementApp
                 formatter.Serialize(fileStream, archivedEmployees);
             }
         }
+
     }
 }

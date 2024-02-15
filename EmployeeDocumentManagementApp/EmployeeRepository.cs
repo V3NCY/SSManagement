@@ -45,7 +45,26 @@ namespace EmployeeDocumentManagementApp
                 throw;
             }
         }
+        private void OnClosing(object sender, EventArgs e)
+        {
+            using (FileStream fs = new FileStream("employees.bin", FileMode.Create))
+            {
+                BinaryFormatter formatter = new BinaryFormatter();
+                formatter.Serialize(fs, employeesList);
+            }
+        }
 
+        private void OnLoaded(object sender, EventArgs e)
+        {
+            if (File.Exists("employees.bin"))
+            {
+                using (FileStream fs = new FileStream("employees.bin", FileMode.Open))
+                {
+                    BinaryFormatter formatter = new BinaryFormatter();
+                    employeesList = (ObservableCollection<Employee>)formatter.Deserialize(fs);
+                }
+            }
+        }
         public static void ArchiveEmployee(Employee employee)
         {
             try

@@ -1,8 +1,7 @@
-﻿using System.Configuration;
+﻿using System;
+using System.Configuration;
 using System.Data.SqlClient;
-using System;
 using System.Windows;
-using OfficeOpenXml.Packaging.Ionic.Zip;
 
 namespace EmployeeDocumentManagementApp
 {
@@ -12,16 +11,22 @@ namespace EmployeeDocumentManagementApp
         {
             base.OnStartup(e);
 
+            // Load employees and archived employees on application startup
+            EmployeeRepository.GetEmployeesList();
             ArchiveEmployeeRepository.LoadArchivedEmployees();
+
+            // Test database connection
             TestDatabaseConnection();
         }
 
         protected override void OnExit(ExitEventArgs e)
         {
-            ArchiveEmployeeRepository.SaveArchivedEmployees();
-
             base.OnExit(e);
+
+            // Save changes to archived employees when exiting the application
+            ArchiveEmployeeRepository.SaveArchivedEmployees();
         }
+
         private void TestDatabaseConnection()
         {
             string connectionString = ConfigurationManager.ConnectionStrings["DBEmployees"].ConnectionString;
