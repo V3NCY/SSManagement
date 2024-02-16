@@ -30,13 +30,15 @@ namespace EmployeeDocumentManagementApp
             try
             {
                 var newEmployeeList = EmployeeRepository.GetEmployeesList();
-                EmployeesList = new ObservableCollection<Employee>(newEmployeeList);
+                var activeEmployees = newEmployeeList.Where(emp => !emp.IsArchived);
+                EmployeesList = new ObservableCollection<Employee>(activeEmployees);
             }
             catch (Exception ex)
             {
                 Console.WriteLine($"Problem loading the employees list: {ex.Message}");
             }
         }
+
 
         public ObservableCollection<Employee> EmployeesList
         {
@@ -82,7 +84,7 @@ namespace EmployeeDocumentManagementApp
                 {
                     try
                     {
-                        EmployeeRepository.ArchiveEmployee(selectedEmployee);
+                        ArchiveEmployeeRepository.ArchiveEmployee(selectedEmployee);
                         LoadEmployeeList();
                     }
                     catch (DbUpdateConcurrencyException ex)
@@ -98,7 +100,7 @@ namespace EmployeeDocumentManagementApp
                                 else
                                 {
                                     entry.OriginalValues.SetValues(entry.GetDatabaseValues());
-                                    EmployeeRepository.ArchiveEmployee(conflictingEmployee);
+                                    ArchiveEmployeeRepository.ArchiveEmployee(conflictingEmployee);
                                     LoadEmployeeList();
                                 }
                             }
@@ -127,8 +129,8 @@ namespace EmployeeDocumentManagementApp
                 {
                     try
                     {
-                        EmployeeRepository.ArchiveEmployee(selectedEmployee);
-                        LoadEmployeeList();
+                        ArchiveEmployeeRepository.ArchiveEmployee(selectedEmployee);
+                        EmployeesList.Remove(selectedEmployee); 
                     }
                     catch (Exception ex)
                     {
@@ -137,6 +139,7 @@ namespace EmployeeDocumentManagementApp
                 }
             }
         }
+
         private void EditMenuItem_Click(object sender, RoutedEventArgs e)
         {
             Employee selectedEmployee = (Employee)lvEmployees.SelectedItem;

@@ -6,32 +6,61 @@ using System.Data.Entity.Validation;
 using System.IO;
 using System.Linq;
 using System.Runtime.Serialization.Formatters.Binary;
+using System.Windows;
 
 namespace EmployeeDocumentManagementApp
 {
     public class EmployeeRepository
     {
+        internal static ObservableCollection<Employee> employeesList = new ObservableCollection<Employee>();
         private static AppDbContext context = new AppDbContext();
         private static Random random = new Random();
-        private static ObservableCollection<Employee> employeesList = new ObservableCollection<Employee>();
         private static ObservableCollection<Employee> archivedEmployees = new ObservableCollection<Employee>();
 
         public static ObservableCollection<Employee> GetEmployeesList()
         {
-            LoadEmployeesFromDatabase(); // Load employees from database on startup
+            LoadEmployeesFromDatabase();
             return employeesList;
         }
 
-        public static void AddEmployee(Employee employee, Action refreshCallback = null)
+        public static void ArchiveEmployee(Employee employee)
         {
             try
             {
-                employee.EmployeeId = GenerateUniqueId();
-                context.Employees.Add(employee);
-                employeesList.Add(employee);
-                context.SaveChanges();
+                using (var context = new AppDbContext())
+                {
+                    var existingEmployee = context.Employees.FirstOrDefault(e => e.EmployeeId == employee.EmployeeId);
+                    if (existingEmployee != null)
+                    {
+                        existingEmployee.IsArchived = true;
+                        context.SaveChanges();
 
-                refreshCallback?.Invoke();
+                        employeesList.Remove(existingEmployee);
+
+                        archivedEmployees.Add(existingEmployee);
+
+                        MessageBox.Show($"Employee {existingEmployee.EmployeeId} archived successfully.", "Success", MessageBoxButton.OK, MessageBoxImage.Information);
+                    }
+                    else
+                    {
+                        MessageBox.Show($"Employee with ID {employee.EmployeeId} not found in the database.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Error archiving employee: {ex.Message}");
+                MessageBox.Show($"Error archiving employee: {ex.Message}", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+        }
+
+
+        public static void AddEmployee(Employee employee)
+        {
+            try
+            {
+                context.Employees.Add(employee);
+                context.SaveChanges();
             }
             catch (DbEntityValidationException ex)
             {
@@ -42,27 +71,11 @@ namespace EmployeeDocumentManagementApp
             }
             catch (Exception ex)
             {
-                LogErrorDetails(ex);
-                throw;
+                Console.WriteLine($"Error adding employee: {ex.Message}");
+                MessageBox.Show($"Error adding employee: {ex.Message}", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
 
-        public static void ArchiveEmployee(Employee employee)
-        {
-            try
-            {
-                employee.IsArchived = true;
-                employeesList.Remove(employee);
-                archivedEmployees.Add(employee);
-                SaveArchivedEmployees();
-                context.SaveChanges();
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine($"Error archiving employee: {ex.Message}");
-                throw;
-            }
-        }
         public static void UpdateEmployee(Employee employee)
         {
             try
@@ -81,12 +94,12 @@ namespace EmployeeDocumentManagementApp
             }
         }
 
-        private static void LoadEmployeesFromDatabase()
+        public static void LoadEmployeesFromDatabase()
         {
             employeesList = new ObservableCollection<Employee>(context.Employees.ToList());
         }
 
-        private static void SaveArchivedEmployees()
+        public static void SaveArchivedEmployees() 
         {
             try
             {

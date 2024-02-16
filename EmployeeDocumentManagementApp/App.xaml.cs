@@ -16,7 +16,7 @@ namespace EmployeeDocumentManagementApp
             ArchiveEmployeeRepository.LoadArchivedEmployees();
 
             // Test database connection
-            TestDatabaseConnection();
+            //TestDatabaseConnection();
         }
 
         protected override void OnExit(ExitEventArgs e)
@@ -27,22 +27,22 @@ namespace EmployeeDocumentManagementApp
             ArchiveEmployeeRepository.SaveArchivedEmployees();
         }
 
-        private void TestDatabaseConnection()
-        {
-            string connectionString = ConfigurationManager.ConnectionStrings["DBEmployees"].ConnectionString;
+        //private void TestDatabaseConnection()
+        //{
+        //    string connectionString = ConfigurationManager.ConnectionStrings["DBEmployees"].ConnectionString;
 
-            using (var connection = new SqlConnection(connectionString))
-            {
-                try
-                {
-                    connection.Open();
-                    MessageBox.Show("Database connection successful!", "Success", MessageBoxButton.OK, MessageBoxImage.Information);
-                }
-                catch (Exception ex)
-                {
-                    MessageBox.Show($"Error connecting to the database: {ex.Message}", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
-                }
-            }
-        }
+        //    using (var connection = new SqlConnection(connectionString))
+        //    {
+        //        try
+        //        {
+        //            connection.Open();
+        //            MessageBox.Show("Database connection successful!", "Success", MessageBoxButton.OK, MessageBoxImage.Information);
+        //        }
+        //        catch (Exception ex)
+        //        {
+        //            MessageBox.Show($"Error connecting to the database: {ex.Message}", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+        //        }
+        //    }
+        //}
     }
 }

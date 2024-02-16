@@ -2,11 +2,13 @@
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel.DataAnnotations;
+using System.Data.Entity;
 using System.Data.Entity.Infrastructure;
 using System.Data.Entity.Validation;
 using System.IO;
 using System.Linq;
 using System.Runtime.Serialization.Formatters.Binary;
+using System.Windows;
 
 namespace EmployeeDocumentManagementApp
 {
@@ -24,73 +26,13 @@ namespace EmployeeDocumentManagementApp
             return archivedEmployees;
         }
 
-        public static void ArchiveEmployee(Employee employee)
-        {
-            try
-            {
-                using (var context = new AppDbContext())
-                {
-                    // Ensure the employee exists in the database
-                    var existingEmployee = context.Employees.FirstOrDefault(e => e.EmployeeId == employee.EmployeeId);
-                    if (existingEmployee != null)
-                    {
-                        // Update the IsArchived property
-                        existingEmployee.IsArchived = true;
-
-                        // Perform data validation before saving changes
-                        var validationContext = new ValidationContext(existingEmployee, serviceProvider: null, items: null);
-                        var validationResults = new List<ValidationResult>();
-                        if (!Validator.TryValidateObject(existingEmployee, validationContext, validationResults, validateAllProperties: true))
-                        {
-                            // Print validation errors
-                            foreach (var validationResult in validationResults)
-                            {
-                                Console.WriteLine($"Validation Error: {validationResult.ErrorMessage}");
-                            }
-                            return;
-                        }
-
-                        // Save changes to the database
-                        context.SaveChanges();
-
-                        // Log successful archiving
-                        Console.WriteLine($"Employee {existingEmployee.EmployeeId} archived successfully.");
-                    }
-                    else
-                    {
-                        Console.WriteLine($"Employee with ID {employee.EmployeeId} not found in the database.");
-                    }
-                }
-            }
-            catch (DbEntityValidationException ex)
-            {
-                // Log validation errors
-                foreach (var validationError in ex.EntityValidationErrors.SelectMany(validationResult => validationResult.ValidationErrors))
-                {
-                    Console.WriteLine($"Validation Error: {validationError.ErrorMessage}");
-                }
-                throw;
-            }
-            catch (DbUpdateException ex)
-            {
-                // Log database update error
-                Console.WriteLine($"Error updating the database: {ex.Message}");
-                throw;
-            }
-            catch (Exception ex)
-            {
-                // Log other exceptions
-                Console.WriteLine($"Error archiving employee: {ex.Message}");
-                throw;
-            }
-        }
-
-
         public static void LoadArchivedEmployees()
         {
-            if (File.Exists("archivedEmployees.dat"))
+            string filePath = "archivedEmployees.dat";
+
+            if (File.Exists(filePath))
             {
-                using (var fileStream = File.OpenRead("archivedEmployees.dat"))
+                using (var fileStream = File.OpenRead(filePath))
                 {
                     if (fileStream.Length > 0)
                     {
@@ -111,12 +53,51 @@ namespace EmployeeDocumentManagementApp
 
         public static void SaveArchivedEmployees()
         {
-            using (var fileStream = File.Create("archivedEmployees.dat"))
+            try
             {
-                var formatter = new BinaryFormatter();
-                formatter.Serialize(fileStream, archivedEmployees);
+                using (var fileStream = File.Create("archivedEmployees.dat"))
+                {
+                    var formatter = new BinaryFormatter();
+                    formatter.Serialize(fileStream, archivedEmployees);
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Error saving archived employees: {ex.Message}");
+                throw;
             }
         }
 
+        public static void ArchiveEmployee(Employee employee)
+        {
+            try
+            {
+                var existingEmployee = EmployeeRepository.GetEmployeesList().FirstOrDefault(e => e.EmployeeId == employee.EmployeeId);
+                if (existingEmployee != null)
+                {
+                    existingEmployee.IsArchived = true;
+                    EmployeeRepository.SaveArchivedEmployees();
+                    EmployeeRepository.GetEmployeesList().Remove(existingEmployee);
+                    archivedEmployees.Add(existingEmployee);
+                    SaveArchivedEmployees();
+                    MessageBox.Show($"Employee {existingEmployee.EmployeeId} archived successfully.", "Success", MessageBoxButton.OK, MessageBoxImage.Information);
+                }
+                else
+                {
+                    MessageBox.Show($"Employee with ID {employee.EmployeeId} not found in the database.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Error archiving employee: {ex.Message}");
+                MessageBox.Show($"Error archiving employee: {ex.Message}", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+        }
+
+        public static void AddArchivedEmployee(Employee employee)
+        {
+            archivedEmployees.Add(employee);
+            SaveArchivedEmployees();
+        }
     }
 }
