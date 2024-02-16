@@ -3,7 +3,7 @@ using System.Collections.ObjectModel;
 using System.ComponentModel.DataAnnotations;
 using System.Data.Entity;
 using System.Data.Entity.Validation;
-using System.IO; 
+using System.IO;
 using System.Linq;
 using System.Runtime.Serialization.Formatters.Binary;
 
@@ -18,6 +18,7 @@ namespace EmployeeDocumentManagementApp
 
         public static ObservableCollection<Employee> GetEmployeesList()
         {
+            LoadEmployeesFromDatabase(); // Load employees from database on startup
             return employeesList;
         }
 
@@ -45,26 +46,7 @@ namespace EmployeeDocumentManagementApp
                 throw;
             }
         }
-        private void OnClosing(object sender, EventArgs e)
-        {
-            using (FileStream fs = new FileStream("employees.bin", FileMode.Create))
-            {
-                BinaryFormatter formatter = new BinaryFormatter();
-                formatter.Serialize(fs, employeesList);
-            }
-        }
 
-        private void OnLoaded(object sender, EventArgs e)
-        {
-            if (File.Exists("employees.bin"))
-            {
-                using (FileStream fs = new FileStream("employees.bin", FileMode.Open))
-                {
-                    BinaryFormatter formatter = new BinaryFormatter();
-                    employeesList = (ObservableCollection<Employee>)formatter.Deserialize(fs);
-                }
-            }
-        }
         public static void ArchiveEmployee(Employee employee)
         {
             try
@@ -82,6 +64,10 @@ namespace EmployeeDocumentManagementApp
             }
         }
 
+        private static void LoadEmployeesFromDatabase()
+        {
+            employeesList = new ObservableCollection<Employee>(context.Employees.ToList());
+        }
 
         private static void SaveArchivedEmployees()
         {
@@ -99,6 +85,18 @@ namespace EmployeeDocumentManagementApp
                 throw;
             }
         }
+        public static Employee GetEmployeeByName(string name)
+        {
+            try
+            {
+                return context.Employees.FirstOrDefault(e => e.EmployeeName == name);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Error getting employee by name: {ex.Message}");
+                throw;
+            }
+        }
 
         private static void LogErrorDetails(Exception ex)
         {
@@ -111,19 +109,6 @@ namespace EmployeeDocumentManagementApp
                 Console.WriteLine($"InnerException Type: {ex.InnerException.GetType().FullName}");
                 Console.WriteLine($"InnerException Message: {ex.InnerException.Message}");
                 Console.WriteLine($"InnerException.StackTrace: {ex.InnerException.StackTrace}");
-            }
-        }
-
-        public static Employee GetEmployeeByName(string name)
-        {
-            try
-            {
-                return context.Employees.FirstOrDefault(e => e.EmployeeName == name);
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine($"Error getting employee by name: {ex.Message}");
-                throw;
             }
         }
 
