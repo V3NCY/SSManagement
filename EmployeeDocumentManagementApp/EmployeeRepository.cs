@@ -63,6 +63,23 @@ namespace EmployeeDocumentManagementApp
                 throw;
             }
         }
+        public static void UpdateEmployee(Employee employee)
+        {
+            try
+            {
+                var existingEmployee = context.Employees.Find(employee.EmployeeId);
+                if (existingEmployee != null)
+                {
+                    context.Entry(existingEmployee).CurrentValues.SetValues(employee);
+                    context.SaveChanges();
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Error updating employee: {ex.Message}");
+                throw;
+            }
+        }
 
         private static void LoadEmployeesFromDatabase()
         {

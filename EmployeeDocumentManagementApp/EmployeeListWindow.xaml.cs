@@ -6,6 +6,7 @@ using System.Data.Entity.Validation;
 using System.Linq;
 using System.Windows;
 using System.Windows.Input;
+using EmployeeDocumentManagementApp;
 
 namespace EmployeeDocumentManagementApp
 {
@@ -136,6 +137,16 @@ namespace EmployeeDocumentManagementApp
                 }
             }
         }
+        private void EditMenuItem_Click(object sender, RoutedEventArgs e)
+        {
+            Employee selectedEmployee = (Employee)lvEmployees.SelectedItem;
+            if (selectedEmployee != null)
+            {
+                EditEmployeeWindow editWindow = new EditEmployeeWindow(this, selectedEmployee);
+                editWindow.ShowDialog();
+            }
+        }
+
 
         private class RelayCommand : ICommand
         {
