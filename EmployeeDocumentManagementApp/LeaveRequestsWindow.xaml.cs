@@ -15,7 +15,6 @@ namespace EmployeeDocumentManagementApp
             string employeeIdentifier = txtEmployeeIdentifier.Text;
             Employee employee;
 
-            // Check if the input is an ID or a name
             if (int.TryParse(employeeIdentifier, out int employeeId))
             {
                 employee = EmployeeRepository.GetEmployeeById(employeeId);
@@ -40,11 +39,14 @@ namespace EmployeeDocumentManagementApp
                 }
 
                 employee.RemainingLeaveDays--;
+
+                EmployeeRepository.UpdateEmployee(employee);
             }
 
             MessageBox.Show("Отпуската е записана успешно!");
             Close();
         }
+
 
         private bool IsPaidLeave()
         {
