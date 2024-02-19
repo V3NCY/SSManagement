@@ -39,18 +39,18 @@ namespace EmployeeDocumentManagementApp
 
                         archivedEmployees.Add(existingEmployee);
 
-                        MessageBox.Show($"Employee {existingEmployee.EmployeeId} archived successfully.", "Success", MessageBoxButton.OK, MessageBoxImage.Information);
+                        MessageBox.Show($"Служителят {existingEmployee.EmployeeId} е архивиран успешно!.", "Успех", MessageBoxButton.OK, MessageBoxImage.Information);
                     }
                     else
                     {
-                        MessageBox.Show($"Employee with ID {employee.EmployeeId} not found in the database.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                        MessageBox.Show($"Служител с ID {employee.EmployeeId} не бше от крит в базата с данни.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
                     }
                 }
             }
             catch (Exception ex)
             {
-                Console.WriteLine($"Error archiving employee: {ex.Message}");
-                MessageBox.Show($"Error archiving employee: {ex.Message}", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                Console.WriteLine($"Проблем при архивиране на служителя: {ex.Message}");
+                MessageBox.Show($"Проблем при архивиране на служителя: {ex.Message}", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
 
@@ -71,8 +71,8 @@ namespace EmployeeDocumentManagementApp
             }
             catch (Exception ex)
             {
-                Console.WriteLine($"Error adding employee: {ex.Message}");
-                MessageBox.Show($"Error adding employee: {ex.Message}", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                Console.WriteLine($"Проблем при добавяне на служителя: {ex.Message}");
+                MessageBox.Show($"Проблем при добавяне на служителя: {ex.Message}", "Грешка", MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
 
@@ -89,7 +89,7 @@ namespace EmployeeDocumentManagementApp
             }
             catch (Exception ex)
             {
-                Console.WriteLine($"Error updating employee: {ex.Message}");
+                Console.WriteLine($"Проблем с обновяване на служителя: {ex.Message}");
                 throw;
             }
         }
@@ -111,7 +111,7 @@ namespace EmployeeDocumentManagementApp
             }
             catch (Exception ex)
             {
-                Console.WriteLine($"Error saving archived employees: {ex.Message}");
+                Console.WriteLine($"Грешка при архивиране на служителите: {ex.Message}");
                 throw;
             }
         }
@@ -123,7 +123,7 @@ namespace EmployeeDocumentManagementApp
             }
             catch (Exception ex)
             {
-                Console.WriteLine($"Error getting employee by name: {ex.Message}");
+                Console.WriteLine($"Проблем при извличане на името на служителя: {ex.Message}");
                 throw;
             }
         }
@@ -139,6 +139,18 @@ namespace EmployeeDocumentManagementApp
                 Console.WriteLine($"InnerException Type: {ex.InnerException.GetType().FullName}");
                 Console.WriteLine($"InnerException Message: {ex.InnerException.Message}");
                 Console.WriteLine($"InnerException.StackTrace: {ex.InnerException.StackTrace}");
+            }
+        }
+        public static Employee GetEmployeeById(int employeeId)
+        {
+            try
+            {
+                return context.Employees.FirstOrDefault(e => e.EmployeeId == employeeId);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Error retrieving employee by ID: {ex.Message}");
+                throw;
             }
         }
 

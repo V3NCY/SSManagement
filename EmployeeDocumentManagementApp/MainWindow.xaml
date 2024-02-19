@@ -38,7 +38,7 @@
             <Image Source="images/ТРЗorak.png" Width="100" HorizontalAlignment="Left"/>
             <TextBlock Text="" FontWeight="Bold" FontSize="16" Margin="0,0,0,10"/>
             <UniformGrid Rows="4" Columns="4" Margin="0,0,0,10">
-                <Button Content="Болничи" Click="OnSickLeaveButtonClick"/>
+                <Button Content="Болнични" Click="OnSickLeaveButtonClick"/>
                 <Button Content="Молби" Click="OnSpecialRequestsButtonClick"/>
                 <Button Content="Отпуски" Click="OnLeaveRequestsButtonClick"/>
                 <Button Content="Добави служител" Click="OnEmployeeRegistrationButtonClick"/>

@@ -35,12 +35,12 @@ namespace EmployeeDocumentManagementApp
                 EmployeeRepository.AddEmployee(newEmployee);
                 _employeeListWindow.LoadEmployeeList(); 
 
-                MessageBox.Show($"Employee added successfully! Name: {newEmployee.FirstName} {newEmployee.LastName}, ID: {newEmployee.EmployeeId}");
+                MessageBox.Show($"Служителят е добавен успешно! Име: {newEmployee.FirstName} {newEmployee.LastName}, ID: {newEmployee.EmployeeId}");
                 
             }
             catch (Exception ex)
             {
-                MessageBox.Show($"Error adding employee: {ex.Message}");
+                MessageBox.Show($"Грешка при добавяне на служителя: {ex.Message}");
             }
         }
 

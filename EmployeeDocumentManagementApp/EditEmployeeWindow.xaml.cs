@@ -29,12 +29,12 @@ namespace EmployeeDocumentManagementApp
 
                 _employeeListWindow.LoadEmployeeList();
 
-                MessageBox.Show($"Employee updated successfully! Name: {_selectedEmployee.FirstName} {_selectedEmployee.LastName}, ID: {_selectedEmployee.EmployeeId}");
+                MessageBox.Show($"Служителят е редактиран успешно! Име: {_selectedEmployee.FirstName} {_selectedEmployee.LastName}, ID: {_selectedEmployee.EmployeeId}");
                 Close();
             }
             catch (Exception ex)
             {
-                MessageBox.Show($"Error updating employee: {ex.Message}");
+                MessageBox.Show($"Проблем при редактиране на служителя: {ex.Message}");
             }
         }
     }

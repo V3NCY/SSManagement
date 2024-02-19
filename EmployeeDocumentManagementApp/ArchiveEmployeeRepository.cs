@@ -63,7 +63,7 @@ namespace EmployeeDocumentManagementApp
             }
             catch (Exception ex)
             {
-                Console.WriteLine($"Error saving archived employees: {ex.Message}");
+                Console.WriteLine($"Проблем при запазване на архивираните служители: {ex.Message}");
                 throw;
             }
         }
@@ -80,17 +80,17 @@ namespace EmployeeDocumentManagementApp
                     EmployeeRepository.GetEmployeesList().Remove(existingEmployee);
                     archivedEmployees.Add(existingEmployee);
                     SaveArchivedEmployees();
-                    MessageBox.Show($"Employee {existingEmployee.EmployeeId} archived successfully.", "Success", MessageBoxButton.OK, MessageBoxImage.Information);
+                    MessageBox.Show($"Служителят {existingEmployee.EmployeeId} е архивиран успешно.", "Успех!", MessageBoxButton.OK, MessageBoxImage.Information);
                 }
                 else
                 {
-                    MessageBox.Show($"Employee with ID {employee.EmployeeId} not found in the database.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                    MessageBox.Show($"Служителят с ID {employee.EmployeeId} не беше намерен в базата с данни.", "Грешка!", MessageBoxButton.OK, MessageBoxImage.Error);
                 }
             }
             catch (Exception ex)
             {
-                Console.WriteLine($"Error archiving employee: {ex.Message}");
-                MessageBox.Show($"Error archiving employee: {ex.Message}", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                Console.WriteLine($"Проблем при архивиране на служителя: {ex.Message}");
+                MessageBox.Show($"Проблем при архивиране на служителя: {ex.Message}", "Грешка!", MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
 

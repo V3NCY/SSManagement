@@ -16,7 +16,7 @@ public class AppDbContext : DbContext
         }
         catch (Exception ex)
         {
-            Console.WriteLine($"Error initializing database: {ex}");
+            Console.WriteLine($"Грешка при инициализиране на базата с данни: {ex}");
         }
     }
 

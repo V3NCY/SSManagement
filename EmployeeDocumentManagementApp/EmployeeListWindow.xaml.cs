@@ -35,7 +35,7 @@ namespace EmployeeDocumentManagementApp
             }
             catch (Exception ex)
             {
-                Console.WriteLine($"Problem loading the employees list: {ex.Message}");
+                Console.WriteLine($"Проблем при зареждането на списъка със служители: {ex.Message}");
             }
         }
 
@@ -95,7 +95,7 @@ namespace EmployeeDocumentManagementApp
                             {
                                 if (entry.OriginalValues["IsArchived"].Equals(true))
                                 {
-                                    MessageBox.Show("This employee has already been archived by another user.");
+                                    MessageBox.Show("Този служител е бил архивиран от друг изпълнител.");
                                 }
                                 else
                                 {
@@ -134,7 +134,7 @@ namespace EmployeeDocumentManagementApp
                     }
                     catch (Exception ex)
                     {
-                        MessageBox.Show($"Error archiving employee: {ex.Message}", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                        MessageBox.Show($"Грешка при архивиране на служителя: {ex.Message}", "Грешка!", MessageBoxButton.OK, MessageBoxImage.Error);
                     }
                 }
             }
