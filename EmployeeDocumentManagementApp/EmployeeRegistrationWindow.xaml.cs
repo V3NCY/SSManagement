@@ -20,6 +20,7 @@ namespace EmployeeDocumentManagementApp
                 string firstName = txtFirstName.Text;
                 string lastName = txtLastName.Text;
                 string jobTitle = txtJobTitle.Text;
+                int.TryParse(txtEGN.Text, out int EGN);
                 string department = txtDepartment.Text;
                 int remainingLeaveDays = 20;
 
@@ -27,6 +28,7 @@ namespace EmployeeDocumentManagementApp
                 {
                     FirstName = firstName,
                     LastName = lastName,
+                    EGN = EGN,
                     JobTitle = jobTitle,
                     Department = department,
                     RemainingLeaveDays = remainingLeaveDays,

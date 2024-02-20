@@ -35,7 +35,7 @@ namespace EmployeeDocumentManagementApp
                 {
                     calendar.SelectedDates.Add(selectedDate);
                 }
-                
+
             }
         }
         private void AddConsecutiveLeaveDaysToCalendar(DateTime startDate, int consecutiveDays)
@@ -253,7 +253,7 @@ namespace EmployeeDocumentManagementApp
                     try
                     {
                         ArchiveEmployeeRepository.ArchiveEmployee(selectedEmployee);
-                        EmployeesList.Remove(selectedEmployee); 
+                        EmployeesList.Remove(selectedEmployee);
                     }
                     catch (Exception ex)
                     {

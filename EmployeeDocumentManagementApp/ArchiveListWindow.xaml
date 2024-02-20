@@ -31,7 +31,13 @@
         </Style>
     </Window.Resources>
     <Grid>
-        <ListView Name="lvArchivedEmployees">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="457*"/>
+            <ColumnDefinition Width="182*"/>
+            <ColumnDefinition Width="275*"/>
+            <ColumnDefinition Width="546*"/>
+        </Grid.ColumnDefinitions>
+        <ListView Name="lvArchivedEmployees" Grid.ColumnSpan="4">
             <ListView.View>
                 <GridView>
                     <GridViewColumn Header="ID" DisplayMemberBinding="{Binding EmployeeId}" Width="50"/>
@@ -45,6 +51,10 @@
                 </GridView>
             </ListView.View>
         </ListView>
-        <Button Content="Refresh" HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="30" Click="OnRefreshButtonClick"/>
+        <Button Content="Refresh" HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="0,0,30,30" Click="OnRefreshButtonClick" Grid.Column="3"/>
     </Grid>
 </Window>
+
+    
+    
+    

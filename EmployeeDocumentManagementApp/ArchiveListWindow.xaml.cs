@@ -12,8 +12,8 @@ namespace EmployeeDocumentManagementApp
             InitializeComponent();
             LoadArchivedEmployees();
         }
-
         private void LoadArchivedEmployees()
+
         {
             lvArchivedEmployees.ItemsSource = ArchiveEmployeeRepository.GetArchivedEmployees();
         }

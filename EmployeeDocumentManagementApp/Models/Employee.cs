@@ -55,6 +55,7 @@ public class Employee
     public int RemainingPaidLeaveDays { get; set; }
     public int RemainingUnpaidLeaveDays { get; set; }
     public int RemainingOtherLeaveDays { get; set; }
+    
     public int GetTotalPaidLeaveDays()
     {
         return PaidLeaveDates.Count;
@@ -69,4 +70,5 @@ public class Employee
     {
         return OtherLeaveDates.Count;
     }
+
 }
