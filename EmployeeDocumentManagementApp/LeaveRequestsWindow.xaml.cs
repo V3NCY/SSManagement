@@ -30,27 +30,41 @@ namespace EmployeeDocumentManagementApp
                 return;
             }
 
+            int leaveDays = GetLeaveDaysToDeduct();
+
             if (IsPaidLeave())
             {
-                if (employee.RemainingLeaveDays <= 0)
+                if (employee.RemainingLeaveDays < leaveDays)
                 {
-                    MessageBox.Show("Служителят е изчерпал своята отпуска за тази година.");
+                    MessageBox.Show("Служителят няма достатъчно оставащи отпускни дни за избрания период.");
                     return;
                 }
 
-                employee.RemainingLeaveDays--;
-
+                employee.RemainingLeaveDays -= leaveDays;
                 EmployeeRepository.UpdateEmployee(employee);
+                EmployeeRepository.UpdatePaidLeaveRecords(employee.EmployeeId, DateTime.Today);
             }
 
             MessageBox.Show("Отпуската е записана успешно!");
             Close();
         }
 
-
         private bool IsPaidLeave()
         {
             return chkPaidLeave.IsChecked ?? false;
+        }
+
+        private int GetLeaveDaysToDeduct()
+        {
+            if (IsPaidLeave() && textBoxLeaveDays != null) 
+            {
+                int leaveDays;
+                if (int.TryParse(textBoxLeaveDays.Text, out leaveDays))
+                {
+                    return leaveDays;
+                }
+            }
+            return 0;
         }
     }
 }

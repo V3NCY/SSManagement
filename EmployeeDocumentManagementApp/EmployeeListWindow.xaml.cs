@@ -7,24 +7,134 @@ using System.Linq;
 using System.Windows;
 using System.Windows.Input;
 using EmployeeDocumentManagementApp;
+using System.Threading.Tasks;
+using System.Globalization;
+using System.Windows.Controls;
+using System.Collections.Generic;
 
 namespace EmployeeDocumentManagementApp
 {
     public partial class EmployeeListWindow : Window, INotifyPropertyChanged
     {
         private ObservableCollection<Employee> employeesList;
-
         public ICommand RefreshCommand => new RelayCommand(() => LoadEmployeeList());
-
-
         public EmployeeListWindow()
         {
             InitializeComponent();
             DataContext = this;
             LoadEmployeeList();
             SubscribeToEmployeeChanges();
+
+            Loaded += EmployeeListWindow_Loaded;
+        }
+        private void MarkLeaveOnCalendar(Employee employee, DateTime selectedDate, DateTime leaveEndDate)
+        {
+            if (employee != null)
+            {
+                if (employee.PaidLeaveDates.Contains(selectedDate) && employee.PaidLeave && employee.GetTotalPaidLeaveDays() < 20)
+                {
+                    calendar.SelectedDates.Add(selectedDate);
+                }
+                
+            }
+        }
+        private void AddConsecutiveLeaveDaysToCalendar(DateTime startDate, int consecutiveDays)
+        {
+            for (int i = 0; i < consecutiveDays; i++)
+            {
+                calendar.SelectedDates.Add(startDate.AddDays(i));
+            }
         }
 
+        private int GetConsecutiveLeaveDays(List<DateTime> leaveDates, DateTime leaveStartDate, DateTime leaveEndDate)
+        {
+            int count = 0;
+            for (DateTime date = leaveStartDate; date <= leaveEndDate; date = date.AddDays(1))
+            {
+                if (leaveDates.Contains(date))
+                {
+                    count++;
+                }
+                else
+                {
+                    break;
+                }
+            }
+            return count;
+        }
+
+
+        private void Calendar_SelectedDatesChanged(object sender, SelectionChangedEventArgs e)
+        {
+            Employee employee = (Employee)lvEmployees.SelectedItem;
+            if (employee != null)
+            {
+                foreach (DateTime selectedDate in calendar.SelectedDates)
+                {
+                    DateTime leaveEndDate = selectedDate;
+                    int consecutiveLeaveDays = GetConsecutiveLeaveDays(employee.PaidLeaveDates, selectedDate, leaveEndDate);
+
+                    if (consecutiveLeaveDays > 0)
+                    {
+                        AddConsecutiveLeaveDaysToCalendar(selectedDate, consecutiveLeaveDays);
+                    }
+                }
+            }
+        }
+
+        private void OnLeaveRequestEntered(Employee employee, DateTime leaveDate)
+        {
+            if (employee != null)
+            {
+                if (employee.PaidLeave)
+                {
+                    employee.PaidLeaveDates.Add(leaveDate);
+
+                    int totalLeaveDaysTaken = employee.GetTotalPaidLeaveDays();
+
+                    int remainingPaidLeaveDays = 20 - totalLeaveDaysTaken;
+
+                    if (remainingPaidLeaveDays >= 0)
+                    {
+                        DateTime leaveEndDate = leaveDate.AddDays(1);
+                        MarkLeaveOnCalendar(employee, leaveDate, leaveEndDate);
+                    }
+                    else
+                    {
+                        MessageBox.Show("No remaining paid leave days.");
+                    }
+                }
+                else if (employee.UnpaidLeave)
+                {
+                    employee.UnpaidLeaveDates.Add(leaveDate);
+                }
+                else if (employee.OtherLeave)
+                {
+                    employee.OtherLeaveDates.Add(leaveDate);
+                }
+
+                RefreshEmployeeList();
+            }
+        }
+
+
+        private async void EmployeeListWindow_Loaded(object sender, RoutedEventArgs e)
+        {
+            await LoadEmployeeListAsync();
+        }
+        public async Task LoadEmployeeListAsync()
+        {
+            try
+            {
+                var newEmployeeList = await Task.Run(() => EmployeeRepository.GetEmployeesList());
+                var activeEmployees = newEmployeeList.Where(emp => !emp.IsArchived);
+                EmployeesList = new ObservableCollection<Employee>(activeEmployees);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Грешка при зареждане на списъка със служители: {ex.Message}");
+            }
+        }
         public void LoadEmployeeList()
         {
             try
@@ -36,6 +146,19 @@ namespace EmployeeDocumentManagementApp
             catch (Exception ex)
             {
                 Console.WriteLine($"Проблем при зареждането на списъка със служители: {ex.Message}");
+            }
+        }
+        public void RefreshEmployeeList()
+        {
+            try
+            {
+                var newEmployeeList = EmployeeRepository.GetEmployeesList();
+                var activeEmployees = newEmployeeList.Where(emp => !emp.IsArchived);
+                EmployeesList = new ObservableCollection<Employee>(activeEmployees);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Error loading employee list: {ex.Message}");
             }
         }
 
@@ -172,6 +295,11 @@ namespace EmployeeDocumentManagementApp
             {
                 _execute();
             }
+        }
+
+        private void lvEmployees_SelectionChanged(object sender, System.Windows.Controls.SelectionChangedEventArgs e)
+        {
+
         }
     }
 }

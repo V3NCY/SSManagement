@@ -23,7 +23,7 @@
             <Setter Property="Foreground" Value="Black"/>
             <Setter Property="BorderBrush" Value="#CCCCCC"/>
             <Setter Property="BorderThickness" Value="0,1,0,0"/>
-            
+
         </Style>
         <Style TargetType="ContextMenu">
             <Setter Property="Background" Value="#F0F0F0"/>
@@ -43,7 +43,9 @@
         </Style>
     </Window.Resources>
     <Grid>
-        <ListView Name="lvEmployees" ItemsSource="{Binding EmployeesList}">
+        <Slider x:Name="sliderLeaveDays" Minimum="0" Maximum="30" TickFrequency="1" IsSnapToTickEnabled="True" Value="0"/>
+        <Calendar x:Name="calendar" SelectedDatesChanged="Calendar_SelectedDatesChanged"/>
+        <ListView Name="lvEmployees" ItemsSource="{Binding EmployeesList}" SelectionChanged="lvEmployees_SelectionChanged">
             <ListView.View>
                 <GridView>
                     <GridViewColumn Header="ID" DisplayMemberBinding="{Binding EmployeeId}" Width="50"/>
@@ -51,9 +53,49 @@
                     <GridViewColumn Header="Длъжност" DisplayMemberBinding="{Binding JobTitle}" Width="200"/>
                     <GridViewColumn Header="Отдел" DisplayMemberBinding="{Binding Department}" Width="200"/>
                     <GridViewColumn Header="Оставащи дни от отпуска" DisplayMemberBinding="{Binding RemainingLeaveDays}" Width="200"/>
-                    <GridViewColumn Header="Платен отпуск" DisplayMemberBinding="{Binding PaidLeave}" Width="200"/>
-                    <GridViewColumn Header="Неплатен отпуск" DisplayMemberBinding="{Binding UnpaidLeave}" Width="200"/>
-                    <GridViewColumn Header="Друг отпуск" DisplayMemberBinding="{Binding OtherLeave}" Width="200"/>
+
+                    <GridViewColumn Header="Платен отпуск" Width="200">
+                        <GridViewColumn.CellTemplate>
+                            <DataTemplate>
+                                <DatePicker x:Name="datePickerPaidLeave" IsEnabled="True" Margin="2" BorderThickness="0">
+                                    <DatePicker.Resources>
+                                        <Style TargetType="DatePickerTextBox">
+                                            <Setter Property="Visibility" Value="Collapsed"/>
+                                        </Style>
+                                    </DatePicker.Resources>
+                                </DatePicker>
+                            </DataTemplate>
+                        </GridViewColumn.CellTemplate>
+                    </GridViewColumn>
+
+                    <GridViewColumn Header="Неплатен отпуск" Width="200">
+                        <GridViewColumn.CellTemplate>
+                            <DataTemplate>
+                                <DatePicker x:Name="datePickerUnpaidLeave" IsEnabled="True" Margin="2" BorderThickness="0">
+                                    <DatePicker.Resources>
+                                        <Style TargetType="DatePickerTextBox">
+                                            <Setter Property="Visibility" Value="Collapsed"/>
+                                        </Style>
+                                    </DatePicker.Resources>
+                                </DatePicker>
+                            </DataTemplate>
+                        </GridViewColumn.CellTemplate>
+                    </GridViewColumn>
+
+                    <GridViewColumn Header="Друг отпуск" Width="200">
+                        <GridViewColumn.CellTemplate>
+                            <DataTemplate>
+                                <DatePicker x:Name="datePickerOtherLeave" IsEnabled="True"  Margin="2" BorderThickness="0">
+                                    <DatePicker.Resources>
+                                        <Style TargetType="DatePickerTextBox">
+                                            <Setter Property="Visibility" Value="Collapsed"/>
+                                        </Style>
+                                    </DatePicker.Resources>
+                                </DatePicker>
+                            </DataTemplate>
+                        </GridViewColumn.CellTemplate>
+                    </GridViewColumn>
+
                 </GridView>
             </ListView.View>
             <ListView.ContextMenu>

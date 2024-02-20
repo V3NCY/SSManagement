@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel.DataAnnotations;
 using System.Data.Entity;
@@ -16,7 +17,31 @@ namespace EmployeeDocumentManagementApp
         private static AppDbContext context = new AppDbContext();
         private static Random random = new Random();
         private static ObservableCollection<Employee> archivedEmployees = new ObservableCollection<Employee>();
+        private static Dictionary<int, List<DateTime>> paidLeaveRecords = new Dictionary<int, List<DateTime>>();
 
+        public static List<DateTime> GetPaidLeaveRecords(int employeeId)
+        {
+            if (paidLeaveRecords.ContainsKey(employeeId))
+            {
+                return paidLeaveRecords[employeeId];
+            }
+            else
+            {
+                return new List<DateTime>();
+            }
+        }
+
+        public static void UpdatePaidLeaveRecords(int employeeId, DateTime paidLeaveDate)
+        {
+            if (paidLeaveRecords.ContainsKey(employeeId))
+            {
+                paidLeaveRecords[employeeId].Add(paidLeaveDate);
+            }
+            else
+            {
+                paidLeaveRecords[employeeId] = new List<DateTime> { paidLeaveDate };
+            }
+        }
         public static ObservableCollection<Employee> GetEmployeesList()
         {
             LoadEmployeesFromDatabase();
