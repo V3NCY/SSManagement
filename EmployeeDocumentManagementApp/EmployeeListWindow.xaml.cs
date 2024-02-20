@@ -272,8 +272,6 @@ namespace EmployeeDocumentManagementApp
                 editWindow.ShowDialog();
             }
         }
-
-
         private class RelayCommand : ICommand
         {
             private readonly Action _execute;
