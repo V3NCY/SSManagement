@@ -1,0 +1,17 @@
+﻿<Window x:Class="EmployeeDocumentManagementApp.EmployeeProfile"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Лично досие" Height="450" Width="800">
+    <Grid>
+        <StackPanel>
+            <Image Source="{Binding Image}" Margin="10"/>
+            <ListBox ItemsSource="{Binding Documents}" DisplayMemberPath="Name" Margin="10"/>
+            <ListBox x:Name="employeeListBox" ItemsSource="{Binding Employees}" DisplayMemberPath="FullName" Margin="10">
+                <ListBox.ItemContainerStyle>
+                    <Style TargetType="ListBoxItem">
+                    </Style>
+                </ListBox.ItemContainerStyle>
+            </ListBox>
+        </StackPanel>
+    </Grid>
+</Window>

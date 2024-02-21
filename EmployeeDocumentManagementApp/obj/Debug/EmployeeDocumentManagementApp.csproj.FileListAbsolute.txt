@@ -2,13 +2,16 @@ C:\Users\orak\Desktop\EmployeeDocumentManagementApp\EmployeeDocumentManagementAp
 C:\Users\orak\Desktop\EmployeeDocumentManagementApp\EmployeeDocumentManagementApp\obj\Debug\EmployeeDocumentManagementApp.csproj.SuggestedBindingRedirects.cache
 C:\Users\orak\Desktop\EmployeeDocumentManagementApp\EmployeeDocumentManagementApp\obj\Debug\ArchiveListWindow.baml
 C:\Users\orak\Desktop\EmployeeDocumentManagementApp\EmployeeDocumentManagementApp\obj\Debug\EmployeeListWindow.baml
+C:\Users\orak\Desktop\EmployeeDocumentManagementApp\EmployeeDocumentManagementApp\obj\Debug\EmployeeProfile.baml
 C:\Users\orak\Desktop\EmployeeDocumentManagementApp\EmployeeDocumentManagementApp\obj\Debug\LeaveRequestsWindow.baml
 C:\Users\orak\Desktop\EmployeeDocumentManagementApp\EmployeeDocumentManagementApp\obj\Debug\MainWindow.baml
 C:\Users\orak\Desktop\EmployeeDocumentManagementApp\EmployeeDocumentManagementApp\obj\Debug\SickLeaveWindow.baml
 C:\Users\orak\Desktop\EmployeeDocumentManagementApp\EmployeeDocumentManagementApp\obj\Debug\SpecialRequestsWindow.baml
 C:\Users\orak\Desktop\EmployeeDocumentManagementApp\EmployeeDocumentManagementApp\obj\Debug\ArchiveListWindow.g.cs
 C:\Users\orak\Desktop\EmployeeDocumentManagementApp\EmployeeDocumentManagementApp\obj\Debug\EditEmployeeWindow.g.cs
+C:\Users\orak\Desktop\EmployeeDocumentManagementApp\EmployeeDocumentManagementApp\obj\Debug\EmployeeDetailsWindow.g.cs
 C:\Users\orak\Desktop\EmployeeDocumentManagementApp\EmployeeDocumentManagementApp\obj\Debug\EmployeeListWindow.g.cs
+C:\Users\orak\Desktop\EmployeeDocumentManagementApp\EmployeeDocumentManagementApp\obj\Debug\EmployeeProfile.g.cs
 C:\Users\orak\Desktop\EmployeeDocumentManagementApp\EmployeeDocumentManagementApp\obj\Debug\EmployeeRegistrationWindow.g.cs
 C:\Users\orak\Desktop\EmployeeDocumentManagementApp\EmployeeDocumentManagementApp\obj\Debug\LeaveRequestsWindow.g.cs
 C:\Users\orak\Desktop\EmployeeDocumentManagementApp\EmployeeDocumentManagementApp\obj\Debug\MainWindow.g.cs
@@ -42,6 +45,7 @@ C:\Users\orak\Desktop\EmployeeDocumentManagementApp\EmployeeDocumentManagementAp
 C:\Users\orak\Desktop\EmployeeDocumentManagementApp\EmployeeDocumentManagementApp\bin\Debug\System.Runtime.CompilerServices.Unsafe.xml
 C:\Users\orak\Desktop\EmployeeDocumentManagementApp\EmployeeDocumentManagementApp\obj\Debug\App.baml
 C:\Users\orak\Desktop\EmployeeDocumentManagementApp\EmployeeDocumentManagementApp\obj\Debug\EditEmployeeWindow.baml
+C:\Users\orak\Desktop\EmployeeDocumentManagementApp\EmployeeDocumentManagementApp\obj\Debug\EmployeeDetailsWindow.baml
 C:\Users\orak\Desktop\EmployeeDocumentManagementApp\EmployeeDocumentManagementApp\obj\Debug\EmployeeRegistrationWindow.baml
 C:\Users\orak\Desktop\EmployeeDocumentManagementApp\EmployeeDocumentManagementApp\obj\Debug\PersonalFiles.baml
 C:\Users\orak\Desktop\EmployeeDocumentManagementApp\EmployeeDocumentManagementApp\obj\Debug\EmployeeDocumentManagementApp.g.resources
@@ -57,5 +61,3 @@ C:\Users\orak\Desktop\EmployeeDocumentManagementApp\EmployeeDocumentManagementAp
 C:\Users\orak\Desktop\EmployeeDocumentManagementApp\EmployeeDocumentManagementApp\obj\Debug\EmployeeDocumentManagementApp.csproj.CopyComplete
 C:\Users\orak\Desktop\EmployeeDocumentManagementApp\EmployeeDocumentManagementApp\obj\Debug\EmployeeDocumentManagementApp.exe
 C:\Users\orak\Desktop\EmployeeDocumentManagementApp\EmployeeDocumentManagementApp\obj\Debug\EmployeeDocumentManagementApp.pdb
-C:\Users\orak\Desktop\EmployeeDocumentManagementApp\EmployeeDocumentManagementApp\obj\Debug\EmployeeDetailsWindow.g.cs
-C:\Users\orak\Desktop\EmployeeDocumentManagementApp\EmployeeDocumentManagementApp\obj\Debug\EmployeeDetailsWindow.baml

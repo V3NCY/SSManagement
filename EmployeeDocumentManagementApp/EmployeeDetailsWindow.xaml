@@ -5,15 +5,15 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:EmployeeDocumentManagementApp"
         mc:Ignorable="d"
-        Title="EmployeeDetailsWindow" Height="450" Width="800">
+        Title="Досиета" Height="450" Width="800">
     <Grid>
-        <ListView x:Name="employeeListView">
+        <ListView x:Name="employeeListView">                                                                
             <ListView.View>
                 <GridView>
                     <GridViewColumn Header="ID" DisplayMemberBinding="{Binding EmployeeId}" Width="50"/>
                     <GridViewColumn Header="Name" DisplayMemberBinding="{Binding FullName}" Width="150"/>
                 </GridView>
             </ListView.View>
-        </ListView>
+            </ListView>
     </Grid>
 </Window>
