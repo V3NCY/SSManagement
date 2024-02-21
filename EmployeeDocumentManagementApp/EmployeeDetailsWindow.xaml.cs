@@ -16,5 +16,19 @@ namespace EmployeeDocumentManagementApp
             Employees = employees;
             employeeListView.ItemsSource = Employees;
         }
+        private void OnEmployeeDoubleClick(object sender, MouseButtonEventArgs e)
+        {
+            // Get the selected employee from the ListView
+            Employee selectedEmployee = (Employee)employeeListView.SelectedItem;
+
+            if (selectedEmployee != null)
+            {
+                // Create a new instance of the EmployeeProfile window with the selected employee
+                EmployeeProfile profileWindow = new EmployeeProfile(selectedEmployee);
+
+                // Show the EmployeeProfile window
+                profileWindow.Show();
+            }
+        }
     }
 }

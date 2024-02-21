@@ -12,15 +12,8 @@ namespace EmployeeDocumentManagementApp
             InitializeComponent();
             DataContext = employee;
         }
-        private void OnEmployeeDoubleClick(object sender, MouseButtonEventArgs e)
-        {
-            if (employeeListBox.SelectedItem != null)
-            {
-                Employee selectedEmployee = (Employee)employeeListBox.SelectedItem;
-                List<Employee> selectedEmployees = new List<Employee> { selectedEmployee };
-                EmployeeDetailsWindow detailsWindow = new EmployeeDetailsWindow(selectedEmployees);
-                detailsWindow.Show();
-            }
-        }
+        
+
+
     }
 }

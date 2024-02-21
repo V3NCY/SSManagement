@@ -7,13 +7,13 @@
         mc:Ignorable="d"
         Title="Досиета" Height="450" Width="800">
     <Grid>
-        <ListView x:Name="employeeListView">                                                                
+        <ListView x:Name="employeeListView" MouseDoubleClick="OnEmployeeDoubleClick">
             <ListView.View>
                 <GridView>
                     <GridViewColumn Header="ID" DisplayMemberBinding="{Binding EmployeeId}" Width="50"/>
                     <GridViewColumn Header="Name" DisplayMemberBinding="{Binding FullName}" Width="150"/>
                 </GridView>
             </ListView.View>
-            </ListView>
+        </ListView>
     </Grid>
 </Window>
