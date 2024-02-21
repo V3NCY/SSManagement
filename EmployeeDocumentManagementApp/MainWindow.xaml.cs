@@ -1,10 +1,15 @@
 ﻿using System;
+using System.Collections.ObjectModel;
 using System.Windows;
+using System.Windows.Controls;
+using System.Linq;
+
 
 namespace EmployeeDocumentManagementApp
 {
     public partial class MainWindow : Window
     {
+        private ObservableCollection<Employee> Employees;
         private EmployeeListWindow employeeListWindow;
         public MainWindow()
         {
@@ -69,6 +74,14 @@ namespace EmployeeDocumentManagementApp
 
             employeeListWindow.Show();
         }
-      
+
+
+        private void OnFileButtonClick(object sender, RoutedEventArgs e)
+        {
+            EmployeeDetailsWindow employeeDetailsWindow = new EmployeeDetailsWindow(Employees ?? new ObservableCollection<Employee>());
+            employeeDetailsWindow.Show();
+        }
+
+
     }
 }
