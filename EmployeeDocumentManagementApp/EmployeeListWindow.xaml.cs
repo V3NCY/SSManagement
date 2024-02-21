@@ -242,7 +242,6 @@ namespace EmployeeDocumentManagementApp
                 }
             }
         }
-
         private void OnArchiveMenuItemClick(object sender, RoutedEventArgs e)
         {
             if (lvEmployees.SelectedItem is Employee selectedEmployee && selectedEmployee != null)
@@ -262,7 +261,6 @@ namespace EmployeeDocumentManagementApp
                 }
             }
         }
-
         private void EditMenuItem_Click(object sender, RoutedEventArgs e)
         {
             Employee selectedEmployee = (Employee)lvEmployees.SelectedItem;

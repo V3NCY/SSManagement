@@ -1,13 +1,15 @@
-﻿using System.Collections.ObjectModel;
+﻿using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Windows;
 
 namespace EmployeeDocumentManagementApp
 {
     public partial class EmployeeDetailsWindow : Window
     {
-        public ObservableCollection<Employee> Employees { get; set; }
+        public List<Employee> Employees { get; set; }
+        public ObservableCollection<Employee> Employee { get; set; }
 
-        public EmployeeDetailsWindow(ObservableCollection<Employee> employees)
+        public EmployeeDetailsWindow(List<Employee> employees)
         {
             InitializeComponent();
             Employees = employees;

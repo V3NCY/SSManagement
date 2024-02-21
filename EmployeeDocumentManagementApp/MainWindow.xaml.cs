@@ -3,13 +3,14 @@ using System.Collections.ObjectModel;
 using System.Windows;
 using System.Windows.Controls;
 using System.Linq;
+using System.Collections.Generic;
 
 
 namespace EmployeeDocumentManagementApp
 {
     public partial class MainWindow : Window
     {
-        private ObservableCollection<Employee> Employees;
+
         private EmployeeListWindow employeeListWindow;
         public MainWindow()
         {
@@ -78,8 +79,22 @@ namespace EmployeeDocumentManagementApp
 
         private void OnFileButtonClick(object sender, RoutedEventArgs e)
         {
-            EmployeeDetailsWindow employeeDetailsWindow = new EmployeeDetailsWindow(Employees ?? new ObservableCollection<Employee>());
-            employeeDetailsWindow.Show();
+            List<Employee> employees;
+
+            using (var dbContext = new AppDbContext())
+            {
+                employees = dbContext.Employees.ToList();
+            }
+
+            if (employees != null && employees.Any())
+            {
+                EmployeeDetailsWindow employeeDetailsWindow = new EmployeeDetailsWindow(employees);
+                employeeDetailsWindow.Show();
+            }
+            else
+            {
+                MessageBox.Show("No employees available.");
+            }
         }
 
 

@@ -70,5 +70,6 @@ public class Employee
     {
         return OtherLeaveDates.Count;
     }
+         public List<Employee> Employees { get; set; }
 
 }
