@@ -22,11 +22,14 @@
             <TextBlock Text="{Binding EGN}" Margin="10" FontSize="15px" TextAlignment="Center"/>
             <TextBlock Text="Стаж:" Margin="10" FontSize="20px" TextAlignment="Left"/>
             <ListBox ItemsSource="{Binding TimePeriod}" DisplayMemberPath="Name" Margin="10"/>
+            <TextBlock Text="Сума ДОО:" Margin="10" FontSize="20px" TextAlignment="Left"/>
+            <ListBox ItemsSource="{Binding PriceDOO}" DisplayMemberPath="Name" Margin="10"/>
             <TextBlock Text="Документи:" Margin="10" FontSize="20px" TextAlignment="Left"/>
-            <ListBox ItemsSource="{Binding Documents}" DisplayMemberPath="Name" Margin="10"/>
-            
+            <ListBox ItemsSource="{Binding Employee.Documents}" DisplayMemberPath="Name" Margin="10"/>
+
             <TextBlock Text="Категория труд:" Margin="10" FontSize="20px" TextAlignment="Left"/>
             <ListBox ItemsSource="{Binding LaborCategory}" DisplayMemberPath="Name" Margin="10"/>
+
         </StackPanel>
             <Button Content="Запази" HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="30"/>
             <Button Content="Редактирай" HorizontalAlignment="Left" VerticalAlignment="Bottom" Margin="30"/>

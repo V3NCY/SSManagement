@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using System.Xml.Linq;
 
 [Serializable]
 public class Employee
@@ -17,7 +18,7 @@ public class Employee
     public string LastName { get; set; }
 
     public string TimePeriod { get; set; }
-
+    public string PriceDOO { get; set; }
     public string LaborCategory { get; set; }
     public string FullName => $"{FirstName} {LastName}";
 
@@ -74,5 +75,4 @@ public class Employee
         return OtherLeaveDates.Count;
     }
          public List<Employee> Employees { get; set; }
-
 }
