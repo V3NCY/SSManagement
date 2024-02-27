@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Linq;
 using System.Windows;
 using System.Windows.Input;
 
@@ -22,12 +23,28 @@ namespace EmployeeDocumentManagementApp
 
             if (selectedEmployee != null)
             {
-                EmployeeProfile profileWindow = new EmployeeProfile(selectedEmployee);
+                bool isWindowOpen = false;
+                foreach (Window window in Application.Current.Windows)
+                {
+                    if (window.GetType() == typeof(EmployeeProfile))
+                    {
+                        EmployeeProfile profileWindow = (EmployeeProfile)window;
+                        if (profileWindow.DataContext == selectedEmployee)
+                        {
+                            isWindowOpen = true;
+                            profileWindow.Activate();
+                            break;
+                        }
+                    }
+                }
 
-                profileWindow.Title = "Лично досие - " + selectedEmployee.FullName;
-                profileWindow.Show();
+                if (!isWindowOpen)
+                {
+                    EmployeeProfile profileWindow = new EmployeeProfile(selectedEmployee);
+                    profileWindow.Title = "Лично досие - " + selectedEmployee.FullName;
+                    profileWindow.Show();
+                }
             }
         }
-
     }
 }

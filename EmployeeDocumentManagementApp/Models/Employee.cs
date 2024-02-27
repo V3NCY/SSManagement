@@ -16,6 +16,9 @@ public class Employee
     [Required(ErrorMessage = "Last Name is required")]
     public string LastName { get; set; }
 
+    public string TimePeriod { get; set; }
+
+    public string LaborCategory { get; set; }
     public string FullName => $"{FirstName} {LastName}";
 
     [Required(ErrorMessage = "EGN is required")]
