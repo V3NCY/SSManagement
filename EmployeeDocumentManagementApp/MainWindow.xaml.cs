@@ -97,5 +97,10 @@ namespace EmployeeDocumentManagementApp
                 MessageBox.Show("No employees available.");
             }
         }
+
+        private void ToggleButton_Checked(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }

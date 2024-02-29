@@ -30,8 +30,62 @@
         <Style TargetType="Window">
             <Setter Property="Background" Value="#FFF"/>
         </Style>
+        <Style TargetType="ComboBox">
+            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="BorderThickness" Value="0"/>
+            <Setter Property="Padding" Value="10"/>
+            <Setter Property="Height" Value="40"/>
+            <Setter Property="Margin" Value="5"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="ComboBox">
+                        <Border x:Name="ComboBoxBorder" Background="#073763" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" CornerRadius="5">
+                            <Grid>
+                                <Border x:Name="ToggleButtonBorder" CornerRadius="5" HorizontalAlignment="Center">
+                                    <ToggleButton x:Name="ToggleButton" BorderBrush="Transparent" BorderThickness="0" Padding="5,0" VerticalAlignment="Center">
+                                        <ToggleButton.Style>
+                                            <Style TargetType="ToggleButton">
+                                                <Setter Property="Background" Value="Transparent"/>
+                                                <Setter Property="Template">
+                                                    <Setter.Value>
+                                                        <ControlTemplate TargetType="ToggleButton">
+                                                            <Grid Background="#073763">
+                                                                <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
+                                                                    <TextBlock Text="Служители" Foreground="White" Margin="0 0 5 0"/>
+                                                                    <Path Width="8" Height="8" Fill="White" Data="M0,0 L4,4 L8,0 Z"/>
+                                                                </StackPanel>
+                                                            </Grid>
+                                                        </ControlTemplate>
+                                                    </Setter.Value>
+                                                </Setter>
+                                            </Style>
+                                        </ToggleButton.Style>
+                                        <ToggleButton.Triggers>
+                                            <EventTrigger RoutedEvent="ToggleButton.Click">
+                                                <BeginStoryboard>
+                                                    <Storyboard>
+                                                        <BooleanAnimationUsingKeyFrames Storyboard.TargetName="Popup" Storyboard.TargetProperty="IsOpen">
+                                                            <DiscreteBooleanKeyFrame KeyTime="0:0:0" Value="{Binding IsChecked, ElementName=ToggleButton, Mode=OneWay}"/>
+                                                        </BooleanAnimationUsingKeyFrames>
+                                                    </Storyboard>
+                                                </BeginStoryboard>
+                                            </EventTrigger>
+                                        </ToggleButton.Triggers>
+                                    </ToggleButton>
+                                     </Border>
+                                <Popup x:Name="Popup" Placement="Bottom" IsOpen="{Binding IsDropDownOpen, RelativeSource={RelativeSource TemplatedParent}}" AllowsTransparency="True" Focusable="False" PopupAnimation="Slide">
+                                    <Border Background="#073763" BorderBrush="#073763" BorderThickness="0" CornerRadius="5">
+                                        <ItemsPresenter />
+                                    </Border>
+                                </Popup>
+                            </Grid>
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
     </Window.Resources>
-
+    
     <Grid>
         <Image Source="images/worldwidemap.png" Stretch="Uniform"/>
         <StackPanel Margin="10">
@@ -40,12 +94,14 @@
             <UniformGrid Rows="4" Columns="4" Margin="0,0,0,10">
                 <Button Content="Добави болничен" Click="OnSickLeaveButtonClick"/>
                 <!--<Button Content="Списък с болнични" Click="OnViewEmployeeListButtonClick"/>-->
-                <Button Content="Молби" Click="OnSpecialRequestsButtonClick"/>
-                <Button Content="Отпуски" Click="OnLeaveRequestsButtonClick"/>
-                <Button Content="Добави служител" Click="OnEmployeeRegistrationButtonClick"/>
-                <Button Content="Списък със служители" Click="OnViewEmployeeListButtonClick"/>
-                <Button Content="Архив на служители" Click="OnArchiveListButtonClick"/>
-                <Button Content="Досиета" Click="OnFileButtonClick"/>
+                <Button Content="Добави молба" Click="OnSpecialRequestsButtonClick"/>
+                <Button Content="Добави отпуск" Click="OnLeaveRequestsButtonClick"/>
+                <ComboBox>
+                    <Button Content="Добави служител" Click="OnEmployeeRegistrationButtonClick"/>
+                    <Button Content="Списък със служители" Click="OnViewEmployeeListButtonClick"/>
+                    <Button Content="Архив на служители" Click="OnArchiveListButtonClick"/>
+                    <Button Content="Досиета" Click="OnFileButtonClick"/>
+                </ComboBox>
             </UniformGrid>
 
             <Frame x:Name="mainFrame" NavigationUIVisibility="Hidden"/>
