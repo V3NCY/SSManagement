@@ -36,13 +36,25 @@
             <Setter Property="Template">
                 <Setter.Value>
                     <ControlTemplate TargetType="ToggleButton">
-                        <Border Background="{TemplateBinding Background}"
-                                BorderBrush="{TemplateBinding BorderBrush}"
-                                BorderThickness="{TemplateBinding BorderThickness}"
-                                CornerRadius="8">
-                            <ContentPresenter HorizontalAlignment="Center"
-                                              VerticalAlignment="Center"/>
-                        </Border>
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="165"/>
+                                <ColumnDefinition Width="Auto"/>
+                            </Grid.ColumnDefinitions>
+                            <Border Background="{TemplateBinding Background}"
+                                    BorderBrush="{TemplateBinding BorderBrush}"
+                                    BorderThickness="{TemplateBinding BorderThickness}"
+                                    CornerRadius="6">
+                                <ContentPresenter HorizontalAlignment="Center"
+                                                  VerticalAlignment="Center"/>
+                            </Border>
+                            <Path x:Name="Arrow" Data="M0,0 L4,4 L8,0 Z" Fill="White" Margin="120,20,0,16" Stretch="Uniform" Height="4" Visibility="Visible" Grid.ColumnSpan="2" HorizontalAlignment="Left" Width="8"/>
+                        </Grid>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsChecked" Value="True">
+                                <Setter TargetName="Arrow" Property="Visibility" Value="Visible"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
                     </ControlTemplate>
                 </Setter.Value>
             </Setter>
@@ -59,10 +71,11 @@
                 <!--<Button Content="Списък с болнични" Click="OnViewEmployeeListButtonClick"/>-->
                 <Button Content="Добави молба" Click="OnSpecialRequestsButtonClick"/>
                 <Button Content="Добави отпуск" Click="OnLeaveRequestsButtonClick"/>
-                <ToggleButton x:Name="ToggleButton" Content="Служители" HorizontalAlignment="Center" VerticalAlignment="Center">
+                <ToggleButton x:Name="ToggleButton" Content="Служители" HorizontalAlignment="Center" VerticalAlignment="Center" >
                 </ToggleButton>
-                <Popup x:Name="Popup" PlacementTarget="{Binding ElementName=ToggleButton}" Placement="Bottom" IsOpen="{Binding IsChecked, ElementName=ToggleButton}" AllowsTransparency="True" Focusable="False" PopupAnimation="Slide">
-                    <Border Background="#073763" BorderBrush="#073763" BorderThickness="0" CornerRadius="5" Width="164">
+                <Popup x:Name="Popup" PlacementTarget="{Binding ElementName=ToggleButton}" Placement="Bottom" IsOpen="{Binding IsChecked, ElementName=ToggleButton, Mode=OneWay}"
+                        StaysOpen="False" AllowsTransparency="True" Focusable="False" PopupAnimation="Slide" >
+                    <Border Background="#073763" BorderBrush="#073763" BorderThickness="0" CornerRadius="5" Width="165" >
                         <ItemsControl>
                             <Button Content="Добави служител" Click="OnEmployeeRegistrationButtonClick"/>
                             <Button Content="Списък със служители" Click="OnViewEmployeeListButtonClick"/>
@@ -71,8 +84,8 @@
                         </ItemsControl>
                     </Border>
                 </Popup>
-            </UniformGrid>
 
+            </UniformGrid>
             <Frame x:Name="mainFrame" NavigationUIVisibility="Hidden"/>
         </StackPanel>
     </Grid>

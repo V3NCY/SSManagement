@@ -76,8 +76,10 @@ namespace EmployeeDocumentManagementApp
 
             employeeListWindow.Show();
         }
-
-
+        //private void Popup_LostFocus(object sender, RoutedEventArgs e)
+        //{
+        //    Popup.IsOpen = false;
+        //}
         private void OnFileButtonClick(object sender, RoutedEventArgs e)
         {
             List<Employee> employees;
