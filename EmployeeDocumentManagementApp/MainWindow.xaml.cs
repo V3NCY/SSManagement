@@ -24,6 +24,7 @@ namespace EmployeeDocumentManagementApp
             LeaveRequestsWindow leaveRequestsWindow = new LeaveRequestsWindow();
             leaveRequestsWindow.Show();
             ToggleButton.IsChecked = false;
+            DocumentsPopup.IsOpen = false;
         }
 
         private void OnSickLeaveButtonClick(object sender, RoutedEventArgs e)
@@ -31,6 +32,7 @@ namespace EmployeeDocumentManagementApp
             SickLeaveWindow sickLeaveWindow = new SickLeaveWindow();
             sickLeaveWindow.Show();
             ToggleButton.IsChecked = false;
+            DocumentsPopup.IsOpen = false;
         }
 
         private void OnSpecialRequestsButtonClick(object sender, RoutedEventArgs e)
@@ -38,6 +40,7 @@ namespace EmployeeDocumentManagementApp
             SpecialRequestsWindow specialRequestsWindow = new SpecialRequestsWindow();
             specialRequestsWindow.Show();
             ToggleButton.IsChecked = false;
+            DocumentsPopup.IsOpen = false;
         }
 
         private void OnEmployeeRegistrationButtonClick(object sender, RoutedEventArgs e)
@@ -105,6 +108,10 @@ namespace EmployeeDocumentManagementApp
         }
 
         private void ToggleButton_Checked(object sender, RoutedEventArgs e)
+        {
+
+        }
+        private void DocumentsToggleButton_Checked(object sender, RoutedEventArgs e)
         {
 
         }

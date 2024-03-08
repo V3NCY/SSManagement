@@ -48,7 +48,41 @@
                                 <ContentPresenter HorizontalAlignment="Center"
                                                   VerticalAlignment="Center"/>
                             </Border>
-                            <Path x:Name="Arrow" Data="M0,0 L4,4 L8,0 Z" Fill="White" Margin="120,20,0,16" Stretch="Uniform" Height="4" Visibility="Visible" Grid.ColumnSpan="2" HorizontalAlignment="Left" Width="8"/>
+                            <Path x:Name="Arrow" Data="M0,0 L4,4 L8,0 Z"   Fill="White" Margin="145,18,0,16" Stretch="Uniform" Height="4" Visibility="Visible" Grid.ColumnSpan="2" HorizontalAlignment="Left" Width="8"/>
+                        </Grid>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsChecked" Value="True">
+                                <Setter TargetName="Arrow" Property="Visibility" Value="Visible"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+        <Style TargetType="ToggleButton" x:Key="DocumentsToggleButtonStyle">
+            <Setter Property="Background" Value="#073763"/>
+            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="BorderThickness" Value="0"/>
+            <Setter Property="Padding" Value="10"/>
+            <Setter Property="Height" Value="40"/>
+            <Setter Property="Margin" Value="5"/>
+            <Setter Property="Width" Value="165"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="ToggleButton">
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="165"/>
+                                <ColumnDefinition Width="Auto"/>
+                            </Grid.ColumnDefinitions>
+                            <Border Background="{TemplateBinding Background}"
+                            BorderBrush="{TemplateBinding BorderBrush}"
+                            BorderThickness="{TemplateBinding BorderThickness}"
+                            CornerRadius="6">
+                                <ContentPresenter HorizontalAlignment="Center"
+                                          VerticalAlignment="Center"/>
+                            </Border>
+                            <Path x:Name="Arrow" Data="M0,0 L4,4 L8,0 Z" Fill="White" Margin="145,18,0,16" Stretch="Uniform" Height="4" Visibility="Visible" Grid.ColumnSpan="2" HorizontalAlignment="Left" Width="8"/>
                         </Grid>
                         <ControlTemplate.Triggers>
                             <Trigger Property="IsChecked" Value="True">
@@ -67,13 +101,23 @@
             <Image Source="images/ТРЗorak.png" Width="100" HorizontalAlignment="Left"/>
             <TextBlock Text="" FontWeight="Bold" FontSize="16" Margin="0,0,0,10"/>
             <UniformGrid Rows="4" Columns="4" Margin="0,0,0,10">
-                <Button Content="Добави болничен" Click="OnSickLeaveButtonClick"/>
-                <!--<Button Content="Списък с болнични" Click="OnViewEmployeeListButtonClick"/>-->
-                <Button Content="Добави молба" Click="OnSpecialRequestsButtonClick"/>
-                <Button Content="Добави отпуск" Click="OnLeaveRequestsButtonClick"/>
-                <ToggleButton x:Name="ToggleButton" Content="Служители" HorizontalAlignment="Center" VerticalAlignment="Center" />
-                <Popup x:Name="Popup" PlacementTarget="{Binding ElementName=ToggleButton}" Placement="Bottom" IsOpen="{Binding IsChecked, ElementName=ToggleButton, Mode=TwoWay}"
+
+                <ToggleButton x:Name="DocumentsToggleButton" Content="Добави документ" HorizontalAlignment="Center" VerticalAlignment="Center" Style="{StaticResource DocumentsToggleButtonStyle}" />
+                <Popup x:Name="DocumentsPopup" PlacementTarget="{Binding ElementName=DocumentsToggleButton}" Placement="Bottom" IsOpen="{Binding IsChecked, ElementName=DocumentsToggleButton, Mode=TwoWay}"
        StaysOpen="False" AllowsTransparency="True" Focusable="False" PopupAnimation="Slide" >
+                    <Border Background="#073763" BorderBrush="#073763" BorderThickness="0" CornerRadius="5" Width="165" >
+                        <ItemsControl>
+                            <Button Content="Добави болничен" Click="OnSickLeaveButtonClick"/>
+                            <Button Content="Добави молба" Click="OnSpecialRequestsButtonClick"/>
+                            <Button Content="Добави отпуск" Click="OnLeaveRequestsButtonClick"/>
+                        </ItemsControl>
+                    </Border>
+                </Popup>       
+
+                <ToggleButton x:Name="ToggleButton" Content="Служители" HorizontalAlignment="Center" VerticalAlignment="Center" />
+                <Popup x:Name="EmployeesPopup" PlacementTarget="{Binding ElementName=ToggleButton}" Placement="Bottom" IsOpen="{Binding IsChecked, ElementName=ToggleButton, Mode=TwoWay}"
+       StaysOpen="False" AllowsTransparency="True" Focusable="False" PopupAnimation="Slide">
+
                     <Border Background="#073763" BorderBrush="#073763" BorderThickness="0" CornerRadius="5" Width="165" >
                         <ItemsControl>
                             <Button Content="Добави служител" Click="OnEmployeeRegistrationButtonClick"/>
