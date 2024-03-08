@@ -93,6 +93,40 @@
                 </Setter.Value>
             </Setter>
         </Style>
+        <Style TargetType="ToggleButton" x:Key="DogovoriToggleButtonStyle">
+            <Setter Property="Background" Value="#073763"/>
+            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="BorderThickness" Value="0"/>
+            <Setter Property="Padding" Value="10"/>
+            <Setter Property="Height" Value="40"/>
+            <Setter Property="Margin" Value="5"/>
+            <Setter Property="Width" Value="165"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="ToggleButton">
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="165"/>
+                                <ColumnDefinition Width="Auto"/>
+                            </Grid.ColumnDefinitions>
+                            <Border Background="{TemplateBinding Background}"
+                            BorderBrush="{TemplateBinding BorderBrush}"
+                            BorderThickness="{TemplateBinding BorderThickness}"
+                            CornerRadius="6">
+                                <ContentPresenter HorizontalAlignment="Center"
+                                          VerticalAlignment="Center"/>
+                            </Border>
+                            <Path x:Name="Arrow" Data="M0,0 L4,4 L8,0 Z" Fill="White" Margin="145,18,0,16" Stretch="Uniform" Height="4" Visibility="Visible" Grid.ColumnSpan="2" HorizontalAlignment="Left" Width="8"/>
+                        </Grid>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsChecked" Value="True">
+                                <Setter TargetName="Arrow" Property="Visibility" Value="Visible"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
     </Window.Resources>
 
     <Grid>
@@ -124,6 +158,18 @@
                             <Button Content="Списък със служители" Click="OnViewEmployeeListButtonClick"/>
                             <Button Content="Архив на служители" Click="OnArchiveListButtonClick"/>
                             <Button Content="Досиета" Click="OnFileButtonClick"/>
+                        </ItemsControl>
+                    </Border>
+                </Popup>
+                <ToggleButton x:Name="DogovoriToggleButton" Content="Договори" HorizontalAlignment="Center" VerticalAlignment="Center" />
+                <Popup x:Name="DogovoriPopup" PlacementTarget="{Binding ElementName=DogovoriToggleButton}" Placement="Bottom" IsOpen="{Binding IsChecked, ElementName=DogovoriToggleButton, Mode=TwoWay}"
+       StaysOpen="False" AllowsTransparency="True" Focusable="False" PopupAnimation="Slide">
+
+                    <Border Background="#073763" BorderBrush="#073763" BorderThickness="0" CornerRadius="5" Width="165" >
+                        <ItemsControl>
+                            <Button Content="Трудови договори" Click="OnTrudovDogovorButtonClick"/>
+                            <Button Content="Граждански договори" Click="OnGrazhdanskiDogovorButtonClick"/>
+                         
                         </ItemsControl>
                     </Border>
                 </Popup>

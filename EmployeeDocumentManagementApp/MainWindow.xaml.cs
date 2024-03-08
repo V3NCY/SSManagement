@@ -70,7 +70,21 @@ namespace EmployeeDocumentManagementApp
             archiveListWindow.Show();
             ToggleButton.IsChecked = false;
         }
+        private void OnTrudovDogovorButtonClick(object sender, RoutedEventArgs e)
+        {
+            TrudovDogovorWindow trudovDogovorWindow = new TrudovDogovorWindow();
+            trudovDogovorWindow.Show();
+            DogovoriToggleButton.IsChecked = false;
+        }
 
+
+
+        private void OnGrazhdanskiDogovorButtonClick(object sender, RoutedEventArgs e)
+        {
+            GrazhdanskiDogovoriWindow grazhdanskiDogovoriWindow = new GrazhdanskiDogovoriWindow();
+            grazhdanskiDogovoriWindow.Show();
+            DogovoriToggleButton.IsChecked = false;
+        }
         private void OnViewEmployeeListButtonClick(object sender, RoutedEventArgs e)
         {
             if (employeeListWindow == null || !employeeListWindow.IsLoaded)

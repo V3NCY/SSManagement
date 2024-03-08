@@ -131,6 +131,9 @@
       <DependentUpon>EmployeeRegistrationWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="EmployeeRepository.cs" />
+    <Compile Include="GrazhdanskiDogovorWindow.xaml.cs">
+      <DependentUpon>GrazhdanskiDogovorWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="LeaveRequestsWindowBase.cs" />
     <Compile Include="Migrations\202401240806137_AddRowVersionColumn.cs" />
     <Compile Include="Migrations\202401240806137_AddRowVersionColumn.designer.cs">
@@ -168,6 +171,9 @@
     <Compile Include="SpecialRequestsWindow.xaml.cs">
       <DependentUpon>SpecialRequestsWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="TrudovDogovorWindow.xaml.cs">
+      <DependentUpon>TrudovDogovorWindow.xaml</DependentUpon>
+    </Compile>
     <Page Include="ArchiveListWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -189,6 +195,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="EmployeeRegistrationWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="GrazhdanskiDogovorWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -220,6 +230,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="SpecialRequestsWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="TrudovDogovorWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
