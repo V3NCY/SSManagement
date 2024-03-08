@@ -24,14 +24,13 @@ namespace EmployeeDocumentManagementApp
             LeaveRequestsWindow leaveRequestsWindow = new LeaveRequestsWindow();
             leaveRequestsWindow.Show();
             ToggleButton.IsChecked = false;
-
         }
 
         private void OnSickLeaveButtonClick(object sender, RoutedEventArgs e)
         {
             SickLeaveWindow sickLeaveWindow = new SickLeaveWindow();
             sickLeaveWindow.Show();
-             ToggleButton.IsChecked = false;
+            ToggleButton.IsChecked = false;
         }
 
         private void OnSpecialRequestsButtonClick(object sender, RoutedEventArgs e)
@@ -53,8 +52,6 @@ namespace EmployeeDocumentManagementApp
 
             ToggleButton.IsChecked = false;
         }
-
-
         private void EmployeeRegistrationWindow_Closing(object sender, EventArgs e)
         {
             if (employeeListWindow != null)
@@ -109,13 +106,7 @@ namespace EmployeeDocumentManagementApp
 
         private void ToggleButton_Checked(object sender, RoutedEventArgs e)
         {
-            ToggleButton.IsChecked = !ToggleButton.IsChecked;
-        }
 
-        private void ToggleButton_Unchecked(object sender, RoutedEventArgs e)
-        {
-            Popup.IsOpen = false;
         }
-
     }
 }
