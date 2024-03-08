@@ -14,26 +14,23 @@
         </Style>
     </Window.Resources>
     <Grid>
-        <StackPanel>
+        <StackPanel >
 
             <TextBlock Text="{Binding FullName}" Margin="10" FontSize="25px" TextAlignment="Center" FontWeight="Bold"/>
             <TextBlock Text="{Binding JobTitle}" Margin="10" FontSize="15px" TextAlignment="Center"/>
             <TextBlock Text="{Binding Department}" Margin="10" FontSize="15px" TextAlignment="Center"/>
             <TextBlock Text="{Binding EGN}" Margin="10" FontSize="15px" TextAlignment="Center"/>
-            <TextBlock Text="Стаж:" Margin="10" FontSize="20px" TextAlignment="Left"/>
-            <ListBox ItemsSource="{Binding TimePeriod}" DisplayMemberPath="Name" Margin="10"/>
-            <TextBlock Text="Сума ДОО:" Margin="10" FontSize="20px" TextAlignment="Left"/>
-            <ListBox ItemsSource="{Binding PriceDOO}" DisplayMemberPath="Name" Margin="10"/>
-            <TextBlock Text="Документи:" Margin="10" FontSize="20px" TextAlignment="Left"/>
-            <ListBox ItemsSource="{Binding Employee.Documents}" DisplayMemberPath="Name" Margin="10"/>
-            <ListBox ItemsSource="{Binding Employee.Documents.LeaveRequests}" DisplayMemberPath="Name" Margin="10"/>
-            <ListBox ItemsSource="{Binding Employee.Documents.SickLeave}" DisplayMemberPath="Name" Margin="10"/>
-            <ListBox ItemsSource="{Binding Employee.Documents.SpecialRequests}" DisplayMemberPath="Name" Margin="10"/>
-            <TextBlock Text="Категория труд:" Margin="10" FontSize="20px" TextAlignment="Left"/>
-            <ListBox ItemsSource="{Binding LaborCategory}" DisplayMemberPath="Name" Margin="10"/>
+            <TextBlock Text="Стаж:" Margin="30, 0, 0, 10" FontSize="20px" TextAlignment="Left"/>
+            <TextBlock Text="Сума ДОО:" Margin="30, 0, 0, 100" FontSize="20px" TextAlignment="Left"/>
+           
+            
             
         </StackPanel>
-            <Button Content="Запази" HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="30"/>
-            <Button Content="Редактирай" HorizontalAlignment="Left" VerticalAlignment="Bottom" Margin="30"/>
+        <Button Content="Документи" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="30" Tag="Documents"></Button>
+        <Button Content="Банкова информация" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="30, 0, 0, 100" Tag="BankInformation" ></Button>
+        <Button Content="Заплата" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="30, 0, 0, -100" Tag="Salary" ></Button>
+
+        <Button Content="Запази" HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="30"/>
+            <!--<Button Content="Редактирай" HorizontalAlignment="Left" VerticalAlignment="Bottom" Margin="30"/>-->
     </Grid>
 </Window>
