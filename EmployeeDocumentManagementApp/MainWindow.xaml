@@ -71,10 +71,9 @@
                 <!--<Button Content="Списък с болнични" Click="OnViewEmployeeListButtonClick"/>-->
                 <Button Content="Добави молба" Click="OnSpecialRequestsButtonClick"/>
                 <Button Content="Добави отпуск" Click="OnLeaveRequestsButtonClick"/>
-                <ToggleButton x:Name="ToggleButton" Content="Служители" HorizontalAlignment="Center" VerticalAlignment="Center" >
-                </ToggleButton>
-                <Popup x:Name="Popup" PlacementTarget="{Binding ElementName=ToggleButton}" Placement="Bottom" IsOpen="{Binding IsChecked, ElementName=ToggleButton, Mode=OneWay}"
-                        StaysOpen="False" AllowsTransparency="True" Focusable="False" PopupAnimation="Slide" >
+                <ToggleButton x:Name="ToggleButton" Content="Служители" HorizontalAlignment="Center" VerticalAlignment="Center" />
+                <Popup x:Name="Popup" PlacementTarget="{Binding ElementName=ToggleButton}" Placement="Bottom" IsOpen="{Binding IsChecked, ElementName=ToggleButton, Mode=TwoWay}"
+       StaysOpen="False" AllowsTransparency="True" Focusable="False" PopupAnimation="Slide" >
                     <Border Background="#073763" BorderBrush="#073763" BorderThickness="0" CornerRadius="5" Width="165" >
                         <ItemsControl>
                             <Button Content="Добави служител" Click="OnEmployeeRegistrationButtonClick"/>
@@ -84,7 +83,6 @@
                         </ItemsControl>
                     </Border>
                 </Popup>
-
             </UniformGrid>
             <Frame x:Name="mainFrame" NavigationUIVisibility="Hidden"/>
         </StackPanel>

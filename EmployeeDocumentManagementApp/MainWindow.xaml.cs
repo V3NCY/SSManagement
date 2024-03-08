@@ -23,33 +23,37 @@ namespace EmployeeDocumentManagementApp
         {
             LeaveRequestsWindow leaveRequestsWindow = new LeaveRequestsWindow();
             leaveRequestsWindow.Show();
+            ToggleButton.IsChecked = false;
+
         }
 
         private void OnSickLeaveButtonClick(object sender, RoutedEventArgs e)
         {
             SickLeaveWindow sickLeaveWindow = new SickLeaveWindow();
             sickLeaveWindow.Show();
+             ToggleButton.IsChecked = false;
         }
 
         private void OnSpecialRequestsButtonClick(object sender, RoutedEventArgs e)
         {
             SpecialRequestsWindow specialRequestsWindow = new SpecialRequestsWindow();
             specialRequestsWindow.Show();
+            ToggleButton.IsChecked = false;
         }
 
         private void OnEmployeeRegistrationButtonClick(object sender, RoutedEventArgs e)
         {
-            if (employeeListWindow != null)
-            {
-                EmployeeRegistrationWindow registrationWindow = new EmployeeRegistrationWindow(employeeListWindow);
+            EmployeeRegistrationWindow registrationWindow = new EmployeeRegistrationWindow(employeeListWindow);
 
-                if (registrationWindow.IsInitialized)
-                {
-                    registrationWindow.Closing += EmployeeRegistrationWindow_Closing;
-                    registrationWindow.Show();
-                }
+            if (registrationWindow.IsInitialized)
+            {
+                registrationWindow.Closing += EmployeeRegistrationWindow_Closing;
             }
+            registrationWindow.Show();
+
+            ToggleButton.IsChecked = false;
         }
+
 
         private void EmployeeRegistrationWindow_Closing(object sender, EventArgs e)
         {
@@ -64,6 +68,7 @@ namespace EmployeeDocumentManagementApp
         {
             ArchiveListWindow archiveListWindow = new ArchiveListWindow();
             archiveListWindow.Show();
+            ToggleButton.IsChecked = false;
         }
 
         private void OnViewEmployeeListButtonClick(object sender, RoutedEventArgs e)
@@ -75,6 +80,7 @@ namespace EmployeeDocumentManagementApp
             }
 
             employeeListWindow.Show();
+            ToggleButton.IsChecked = false;
         }
         //private void Popup_LostFocus(object sender, RoutedEventArgs e)
         //{
@@ -98,11 +104,18 @@ namespace EmployeeDocumentManagementApp
             {
                 MessageBox.Show("No employees available.");
             }
+            ToggleButton.IsChecked = false;
         }
 
         private void ToggleButton_Checked(object sender, RoutedEventArgs e)
         {
-
+            ToggleButton.IsChecked = !ToggleButton.IsChecked;
         }
+
+        private void ToggleButton_Unchecked(object sender, RoutedEventArgs e)
+        {
+            Popup.IsOpen = false;
+        }
+
     }
 }
