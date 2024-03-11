@@ -125,7 +125,7 @@ namespace EmployeeDocumentManagementApp
         {
 
         }
-        private void DocumentsToggleButton_Checked(object sender, RoutedEventArgs e)
+        private void ToggleButton_Unchecked(object sender, RoutedEventArgs e)
         {
 
         }
