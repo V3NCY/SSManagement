@@ -1,0 +1,64 @@
+﻿<Window x:Class="EmployeeDocumentManagementApp.DocumentsWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Documents" Height="450" Width="600">
+    <Grid>
+        <TabControl>
+            <!-- Leave Requests Tab -->
+            <TabItem Header="Отпуски">
+                <ListView ItemsSource="{Binding LeaveRequests}">
+                    <ListView.View>
+                        <GridView>
+                            <GridViewColumn Header="Date" DisplayMemberBinding="{Binding Date}" />
+                            <GridViewColumn Header="Period" DisplayMemberBinding="{Binding Period}" />
+                        </GridView>
+                    </ListView.View>
+                </ListView>
+            </TabItem>
+
+            <TabItem Header="Болнични">
+                <ListView ItemsSource="{Binding SickLeaveRequests}">
+                    <ListView.View>
+                        <GridView>
+                            <GridViewColumn Header="Date" DisplayMemberBinding="{Binding Date}" />
+                            <GridViewColumn Header="Period" DisplayMemberBinding="{Binding Period}" />
+                        </GridView>
+                    </ListView.View>
+                </ListView>
+            </TabItem>
+
+            <TabItem Header="Банкова информация">
+                <ListView ItemsSource="{Binding SickLeaveRequests}">
+                    <ListView.View>
+                        <GridView>
+                            <GridViewColumn Header="Date" DisplayMemberBinding="{Binding Date}" />
+                            <GridViewColumn Header="Period" DisplayMemberBinding="{Binding Period}" />
+                        </GridView>
+                    </ListView.View>
+                </ListView>
+            </TabItem>
+
+            <TabItem Header="Трудов договор">
+                <ListView ItemsSource="{Binding SickLeaveRequests}">
+                    <ListView.View>
+                        <GridView>
+                            <GridViewColumn Header="Date" DisplayMemberBinding="{Binding Date}" />
+                            <GridViewColumn Header="Period" DisplayMemberBinding="{Binding Period}" />
+                        </GridView>
+                    </ListView.View>
+                </ListView>
+            </TabItem>
+
+            <TabItem Header="Други молби">
+                <ListView ItemsSource="{Binding SickLeaveRequests}">
+                    <ListView.View>
+                        <GridView>
+                            <GridViewColumn Header="Date" DisplayMemberBinding="{Binding Date}" />
+                            <GridViewColumn Header="Period" DisplayMemberBinding="{Binding Period}" />
+                        </GridView>
+                    </ListView.View>
+                </ListView>
+            </TabItem>
+        </TabControl>
+    </Grid>
+</Window>

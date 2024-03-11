@@ -26,6 +26,7 @@
         </Style>
     </Window.Resources>
     <Grid>
+        
         <StackPanel>
             <TextBlock Text="{Binding FullName}" Margin="10" FontSize="25px" TextAlignment="Center" FontWeight="Bold"/>
             <TextBlock Text="{Binding JobTitle}" Margin="10" FontSize="15px" TextAlignment="Center"/>
@@ -35,11 +36,11 @@
             <TextBox x:Name="txtInternship" Margin="20, 0, 20, 0" Width="100px" HorizontalAlignment="Left"/>
             <TextBlock Text="Сума ДОО:" Foreground="#000" Margin="20, 0, 20, 0"/>
             <TextBox x:Name="txtCurrencyDOO" Margin="20, 0, 20, 0" Width="100px" HorizontalAlignment="Left"/>
+            
         </StackPanel>
-        <Button Content="Банкова информация" HorizontalAlignment="Stretch" VerticalAlignment="Center" Margin="20, 0, 20, 0" Tag="BankInformation" />
-        <Button Content="Документи" HorizontalAlignment="Stretch" VerticalAlignment="Center" Margin="20, 0, 20, -100" Tag="Documents" />
-        <Button Content="Заплата" HorizontalAlignment="Stretch" VerticalAlignment="Center" Margin="20, 0, 20, -200" Tag="Salary" />
-
+        <Button Content="Банкова информация" HorizontalAlignment="Stretch" VerticalAlignment="Center" Margin="20, 0, 20, 0" Tag="BankInformation" Click="OpenInformation_Click"/>
+        <Button Content="Документи" HorizontalAlignment="Stretch" VerticalAlignment="Center" Margin="20, 0, 20, -100" Tag="Documents" Click="OpenInformation_Click"/>
+        <Button Content="Заплата" HorizontalAlignment="Stretch" VerticalAlignment="Center" Margin="20, 0, 20, -200" Tag="Salary" Click="OpenInformation_Click"/>
 
         <Button Content="Запази" HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="30"/>
         <!--<Button Content="Редактирай" HorizontalAlignment="Left" VerticalAlignment="Bottom" Margin="30"/>-->

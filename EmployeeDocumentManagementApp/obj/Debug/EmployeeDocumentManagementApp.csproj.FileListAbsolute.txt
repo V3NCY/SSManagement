@@ -83,3 +83,9 @@ C:\Users\orak\Desktop\EmployeeDocumentManagementApp\EmployeeDocumentManagementAp
 C:\Users\orak\Desktop\EmployeeDocumentManagementApp\EmployeeDocumentManagementApp\obj\Debug\EmployeeDocumentManagementApp.csproj.CopyComplete
 C:\Users\orak\Desktop\EmployeeDocumentManagementApp\EmployeeDocumentManagementApp\obj\Debug\EmployeeDocumentManagementApp.exe
 C:\Users\orak\Desktop\EmployeeDocumentManagementApp\EmployeeDocumentManagementApp\obj\Debug\EmployeeDocumentManagementApp.pdb
+C:\Users\orak\Desktop\EmployeeDocumentManagementApp\EmployeeDocumentManagementApp\obj\Debug\BankInformationWindow.g.cs
+C:\Users\orak\Desktop\EmployeeDocumentManagementApp\EmployeeDocumentManagementApp\obj\Debug\DocumentsWindow.g.cs
+C:\Users\orak\Desktop\EmployeeDocumentManagementApp\EmployeeDocumentManagementApp\obj\Debug\SalaryWindow.g.cs
+C:\Users\orak\Desktop\EmployeeDocumentManagementApp\EmployeeDocumentManagementApp\obj\Debug\BankInformationWindow.baml
+C:\Users\orak\Desktop\EmployeeDocumentManagementApp\EmployeeDocumentManagementApp\obj\Debug\DocumentsWindow.baml
+C:\Users\orak\Desktop\EmployeeDocumentManagementApp\EmployeeDocumentManagementApp\obj\Debug\SalaryWindow.baml

@@ -10,11 +10,11 @@ none
 false
 DEBUG;TRACE
 C:\Users\orak\Desktop\EmployeeDocumentManagementApp\EmployeeDocumentManagementApp\App.xaml
-13561873755
+16-1944093991
 
-39-84664811
+42-219053481
 34-1527545501
-ArchiveListWindow.xaml;EditEmployeeWindow.xaml;EmployeeDetailsWindow.xaml;EmployeeListWindow.xaml;EmployeeProfile.xaml;EmployeeRegistrationWindow.xaml;GrazhdanskiDogovorWindow.xaml;LeaveRequestsWindow.xaml;MainWindow.xaml;PersonalFiles.xaml;SickLeaveWindow.xaml;SpecialRequestsWindow.xaml;TrudovDogovorWindow.xaml;
+ArchiveListWindow.xaml;BankInformationWindow.xaml;DocumentsWindow.xaml;EditEmployeeWindow.xaml;EmployeeDetailsWindow.xaml;EmployeeListWindow.xaml;EmployeeProfile.xaml;EmployeeRegistrationWindow.xaml;GrazhdanskiDogovorWindow.xaml;LeaveRequestsWindow.xaml;MainWindow.xaml;PersonalFiles.xaml;SalaryWindow.xaml;SickLeaveWindow.xaml;SpecialRequestsWindow.xaml;TrudovDogovorWindow.xaml;
 
-False
+True
 

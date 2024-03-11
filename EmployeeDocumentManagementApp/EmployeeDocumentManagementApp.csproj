@@ -115,6 +115,12 @@
     <Compile Include="ArchiveListWindow.xaml.cs">
       <DependentUpon>ArchiveListWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="BankInformationWindow.xaml.cs">
+      <DependentUpon>BankInformationWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="DocumentsWindow.xaml.cs">
+      <DependentUpon>DocumentsWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="EditEmployeeWindow.xaml.cs">
       <DependentUpon>EditEmployeeWindow.xaml</DependentUpon>
     </Compile>
@@ -165,6 +171,9 @@
     <Compile Include="PersonalFiles.xaml.cs">
       <DependentUpon>PersonalFiles.xaml</DependentUpon>
     </Compile>
+    <Compile Include="SalaryWindow.xaml.cs">
+      <DependentUpon>SalaryWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="SickLeaveWindow.xaml.cs">
       <DependentUpon>SickLeaveWindow.xaml</DependentUpon>
     </Compile>
@@ -175,6 +184,14 @@
       <DependentUpon>TrudovDogovorWindow.xaml</DependentUpon>
     </Compile>
     <Page Include="ArchiveListWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="BankInformationWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="DocumentsWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -222,6 +239,10 @@
       <SubType>Code</SubType>
     </Compile>
     <Page Include="PersonalFiles.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="SalaryWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

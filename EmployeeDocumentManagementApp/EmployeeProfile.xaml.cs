@@ -34,6 +34,30 @@ namespace EmployeeDocumentManagementApp
                 openWindows.Last().Activate();
             }
         }
-       
+        private void OpenInformation_Click(object sender, RoutedEventArgs e)
+        {
+            Button button = sender as Button;
+            if (button != null)
+            {
+                string tag = button.Tag as string;
+                switch (tag)
+                {
+                    case "BankInformation":
+                        BankInformationWindow bankInfoWindow = new BankInformationWindow();
+                        bankInfoWindow.Show();
+                        break;
+                    case "Documents":
+                        DocumentsWindow documentsWindow = new DocumentsWindow();
+                        documentsWindow.Show();
+                        break;
+                    case "Salary":
+                        SalaryWindow salaryWindow = new SalaryWindow();
+                        salaryWindow.Show();
+                        break;
+                    default:
+                        break;
+                }
+            }
+        }
     }
 }
