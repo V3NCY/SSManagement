@@ -3,34 +3,45 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         Title="Лично досие" WindowState="Maximized">
     <Window.Resources>
-       
+
         <Style TargetType="Button">
             <Setter Property="Background" Value="#073763"/>
             <Setter Property="Foreground" Value="White"/>
             <Setter Property="BorderThickness" Value="0"/>
             <Setter Property="Padding" Value="10"/>
             <Setter Property="Height" Value="40"/>
-            <Setter Property="Margin" Value="5"/>
+            <Setter Property="Margin" Value="20,0,20,10"/>
+            <Setter Property="HorizontalAlignment" Value="Stretch"/>
+        </Style>
+        <Style TargetType="TextBlock">
+            <Setter Property="Margin" Value="20,0,20,0"/>
+        </Style>
+        <Style TargetType="TextBox">
+            <Setter Property="Background" Value="#F0F0F0"/>
+            <Setter Property="Foreground" Value="Black"/>
+            <Setter Property="BorderBrush" Value="#CCCCCC"/>
+            <Setter Property="BorderThickness" Value="1"/>
+            <Setter Property="Margin" Value="20,0,20,10"/>
+            <Setter Property="HorizontalAlignment" Value="Stretch"/>
         </Style>
     </Window.Resources>
     <Grid>
-        <StackPanel >
-
+        <StackPanel>
             <TextBlock Text="{Binding FullName}" Margin="10" FontSize="25px" TextAlignment="Center" FontWeight="Bold"/>
             <TextBlock Text="{Binding JobTitle}" Margin="10" FontSize="15px" TextAlignment="Center"/>
             <TextBlock Text="{Binding Department}" Margin="10" FontSize="15px" TextAlignment="Center"/>
-            <TextBlock Text="{Binding EGN}" Margin="10" FontSize="15px" TextAlignment="Center"/>
-            <TextBlock Text="Стаж:" Margin="30, 0, 0, 10" FontSize="20px" TextAlignment="Left"/>
-            <TextBlock Text="Сума ДОО:" Margin="30, 0, 0, 100" FontSize="20px" TextAlignment="Left"/>
-           
-            
-            
+            <TextBlock Text="{Binding EGN}" Margin="10" FontSize="15px" TextAlignment="Center" Width="Auto"/>
+            <TextBlock Text="Стаж:" Foreground="#000" Margin="20, 0, 20, 0"/>
+            <TextBox x:Name="txtInternship" Margin="20, 0, 20, 0" Width="100px" HorizontalAlignment="Left"/>
+            <TextBlock Text="Сума ДОО:" Foreground="#000" Margin="20, 0, 20, 0"/>
+            <TextBox x:Name="txtCurrencyDOO" Margin="20, 0, 20, 0" Width="100px" HorizontalAlignment="Left"/>
         </StackPanel>
-        <Button Content="Документи" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="30" Tag="Documents"></Button>
-        <Button Content="Банкова информация" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="30, 0, 0, 100" Tag="BankInformation" ></Button>
-        <Button Content="Заплата" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="30, 0, 0, -100" Tag="Salary" ></Button>
+        <Button Content="Банкова информация" HorizontalAlignment="Stretch" VerticalAlignment="Center" Margin="20, 0, 20, 0" Tag="BankInformation" />
+        <Button Content="Документи" HorizontalAlignment="Stretch" VerticalAlignment="Center" Margin="20, 0, 20, -100" Tag="Documents" />
+        <Button Content="Заплата" HorizontalAlignment="Stretch" VerticalAlignment="Center" Margin="20, 0, 20, -200" Tag="Salary" />
+
 
         <Button Content="Запази" HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="30"/>
-            <!--<Button Content="Редактирай" HorizontalAlignment="Left" VerticalAlignment="Bottom" Margin="30"/>-->
+        <!--<Button Content="Редактирай" HorizontalAlignment="Left" VerticalAlignment="Bottom" Margin="30"/>-->
     </Grid>
 </Window>

@@ -33,6 +33,20 @@ public class Employee
 
     [Required(ErrorMessage = "Job Title is required")]
     public string JobTitle { get; set; }
+    public string StartDate { get; set; }
+    public string EndDate { get; set; }
+    public string Internship { get; set; }
+    public string InsuranceInternship { get; set; }
+    public string ProfessionalInternship { get; set; }
+    public string TypeOfInsurance { get; set; }
+    public string Salary { get; set; }
+    public string Currency { get; set; }
+    public string CurrencyDOO { get; set; }
+    public string CurrencyZO { get; set; }
+    public string IBAN { get; set; }
+    public string BIC { get; set; }
+    public string Bank { get; set; }
+
 
     [Required(ErrorMessage = "Department is required")]
     public string Department { get; set; }
@@ -52,7 +66,6 @@ public class Employee
     public bool PaidLeave { get; set; }
     public bool UnpaidLeave { get; set; }
     public bool OtherLeave { get; set; }
-
     public List<DateTime> PaidLeaveDates { get; set; } = new List<DateTime>();
     public List<DateTime> UnpaidLeaveDates { get; set; } = new List<DateTime>();
     public List<DateTime> OtherLeaveDates { get; set; } = new List<DateTime>();

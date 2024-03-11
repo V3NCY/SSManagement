@@ -25,21 +25,21 @@
     </Window.Resources>
     <Grid>
         <StackPanel Margin="20">
-            <TextBlock Text="Добави служител" FontWeight="Bold" FontSize="20" Margin="0,0,0,20"/>
+            <TextBlock Text="Добави служител" FontWeight="Bold" FontSize="15" Margin="0,0,0,20"/>
 
-            <Label Content="Име" FontSize="16"/>
+            <Label Content="Име" FontSize="15"/>
             <TextBox x:Name="txtFirstName"/>
-            
-            <Label Content="Фамилия" FontSize="16"/>
+
+            <Label Content="Фамилия" FontSize="15"/>
             <TextBox x:Name="txtLastName"/>
 
-            <Label Content="ЕГН" FontSize="16"/>
+            <Label Content="ЕГН" FontSize="15"/>
             <TextBox x:Name="txtEGN"/>
 
-            <Label Content="Длъжност" FontSize="16"/>
+            <Label Content="Длъжност" FontSize="15"/>
             <TextBox x:Name="txtJobTitle"/>
 
-            <Label Content="Отдел" FontSize="16"/>
+            <Label Content="Отдел" FontSize="15"/>
             <TextBox x:Name="txtDepartment"/>
 
             <Button Content="Добави" Click="OnRegisterButtonClick"/>
