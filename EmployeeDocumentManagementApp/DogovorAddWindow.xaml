@@ -1,0 +1,72 @@
+﻿<Window x:Class="EmployeeDocumentManagementApp.DogovorAddWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:EmployeeDocumentManagementApp"
+        mc:Ignorable="d"
+        Title="Добави договор" WindowState="Maximized">
+    <Window.Resources>
+        <Style TargetType="TextBox">
+            <Setter Property="Background" Value="#F0F0F0"/>
+            <Setter Property="Foreground" Value="Black"/>
+            <Setter Property="BorderBrush" Value="#CCCCCC"/>
+            <Setter Property="BorderThickness" Value="1"/>
+            <Setter Property="Margin" Value="0,0,0,20"/>
+            <Setter Property="FontSize" Value="16"/>
+        </Style>
+        <Style TargetType="Button">
+            <Setter Property="Background" Value="#073763"/>
+            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="BorderThickness" Value="0"/>
+            <Setter Property="Padding" Value="10"/>
+            <Setter Property="FontSize" Value="16"/>
+        </Style>
+    </Window.Resources>
+    <Grid>
+        <ScrollViewer HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto">
+            <StackPanel Margin="10">
+                <TextBlock Text="Добави договор" FontWeight="Bold" FontSize="15" Margin="0,0,0,20"/>
+
+                <Label Content="Вид на договора" FontSize="15"/>
+                <ComboBox x:Name="cmbName">
+                    <ComboBoxItem Content="-"/>
+                    <ComboBoxItem Content="Трудов договор"/>
+                    <ComboBoxItem Content="Граждански договор"/>
+                </ComboBox>
+
+                <Label Content="Име и фамилия на служителя" FontSize="15" />
+                <TextBox x:Name="txtFullName"/>
+
+                <Label Content="Длъжност" FontSize="15"/>
+                <TextBox x:Name="txtJobTitle"/>
+
+                <Label Content="Отдел" FontSize="15"/>
+                <TextBox x:Name="txtDepartment"/>
+
+                <Label Content="Банка" FontSize="15"/>
+                <TextBox x:Name="txtBank"/>
+
+                <Label Content="IBAN" FontSize="15"/>
+                <TextBox x:Name="txtIBAN"/>
+
+                <Label Content="BIC" FontSize="15"/>
+                <TextBox x:Name="txtBIC"/>
+
+                <Label Content="Стаж" FontSize="15"/>
+                <TextBox x:Name="txtInternship"/>
+
+                <Label Content="Номер и дата на договор" FontSize="15"/>
+                <TextBox x:Name="txtInternshipPeriod"/>
+
+                <Label Content="Започнал работа на:" FontSize="15"/>
+                <TextBox x:Name="txtStartDate"/>
+
+                <Label Content="Напуснал:" FontSize="15"/>
+                <TextBox x:Name="txtEndDate"/>
+
+                <Button Content="Добави"/>
+            </StackPanel>
+        </ScrollViewer>
+    </Grid>
+</Window>

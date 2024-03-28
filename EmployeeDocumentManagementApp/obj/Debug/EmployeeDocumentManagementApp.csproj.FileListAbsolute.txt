@@ -89,3 +89,5 @@ C:\Users\orak\Desktop\EmployeeDocumentManagementApp\EmployeeDocumentManagementAp
 C:\Users\orak\Desktop\EmployeeDocumentManagementApp\EmployeeDocumentManagementApp\obj\Debug\BankInformationWindow.baml
 C:\Users\orak\Desktop\EmployeeDocumentManagementApp\EmployeeDocumentManagementApp\obj\Debug\DocumentsWindow.baml
 C:\Users\orak\Desktop\EmployeeDocumentManagementApp\EmployeeDocumentManagementApp\obj\Debug\SalaryWindow.baml
+C:\Users\orak\Desktop\EmployeeDocumentManagementApp\EmployeeDocumentManagementApp\obj\Debug\DogovorAddWindow.g.cs
+C:\Users\orak\Desktop\EmployeeDocumentManagementApp\EmployeeDocumentManagementApp\obj\Debug\DogovorAddWindow.baml

@@ -121,6 +121,9 @@
     <Compile Include="DocumentsWindow.xaml.cs">
       <DependentUpon>DocumentsWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="DogovorAddWindow.xaml.cs">
+      <DependentUpon>DogovorAddWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="EditEmployeeWindow.xaml.cs">
       <DependentUpon>EditEmployeeWindow.xaml</DependentUpon>
     </Compile>
@@ -192,6 +195,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="DocumentsWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="DogovorAddWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

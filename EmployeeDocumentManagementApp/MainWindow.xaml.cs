@@ -85,6 +85,13 @@ namespace EmployeeDocumentManagementApp
             grazhdanskiDogovoriWindow.Show();
             DogovoriToggleButton.IsChecked = false;
         }
+
+        private void OnDogovorAddButtonClick(object sender, RoutedEventArgs e)
+        {
+            DogovorAddWindow documentsWindow = new DogovorAddWindow();
+            documentsWindow.Show();
+            DogovoriToggleButton.IsChecked = false;
+        }
         private void OnViewEmployeeListButtonClick(object sender, RoutedEventArgs e)
         {
             if (employeeListWindow == null || !employeeListWindow.IsLoaded)

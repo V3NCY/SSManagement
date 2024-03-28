@@ -167,6 +167,7 @@
 
                     <Border Background="#073763" BorderBrush="#073763" BorderThickness="0" CornerRadius="5" Width="165" >
                         <ItemsControl>
+                            <Button Content="Добави договор" Click="OnDogovorAddButtonClick"/>
                             <Button Content="Трудови договори" Click="OnTrudovDogovorButtonClick"/>
                             <Button Content="Граждански договори" Click="OnGrazhdanskiDogovorButtonClick"/>                         
                         </ItemsControl>

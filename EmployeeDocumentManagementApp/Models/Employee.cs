@@ -36,6 +36,8 @@ public class Employee
     public string StartDate { get; set; }
     public string EndDate { get; set; }
     public string Internship { get; set; }
+
+    public string InternshipPeriod { get; set; }
     public string InsuranceInternship { get; set; }
     public string ProfessionalInternship { get; set; }
     public string TypeOfInsurance { get; set; }
